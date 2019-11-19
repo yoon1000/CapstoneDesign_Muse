@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -22,6 +23,7 @@ public class Register_Activity extends AppCompatActivity {
 
     private EditText et_password, et_passwordConfirm;
     ImageView setImage;
+    Button btnschool;
     boolean passwordcheck = true;
 
     @Override
@@ -32,7 +34,9 @@ public class Register_Activity extends AppCompatActivity {
         et_password = (EditText)findViewById(R.id.et_password);
         et_passwordConfirm = (EditText)findViewById((R.id.et_passwordConfirm));
         setImage = (ImageView)findViewById(R.id.setImage);
+        btnschool = (Button)findViewById(R.id.selectschool);
 
+        //비밀번호인와 비밀번호확인 일치하는지 체크
         et_passwordConfirm.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -57,6 +61,15 @@ public class Register_Activity extends AppCompatActivity {
 
             }
         });
+
+        btnschool.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Register_Activity.this, ChooseShoolActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     /*public boolean datecheck (){
@@ -75,19 +88,7 @@ public class Register_Activity extends AppCompatActivity {
         return check;
     }*/
 
-    public void btnSchool(View view){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("학교 선택");
-        builder.setItems(R.array.School_List, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int pos) {
-                String[] items = getResources().getStringArray(R.array.School_List);
-                Toast.makeText(getApplicationContext(),items[pos],Toast.LENGTH_LONG).show();//선택한 항목 띄우기->실제로는 데이터베이스에 반영
-            }
-        });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-    }
+
 
     public void btnMajor(View view){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

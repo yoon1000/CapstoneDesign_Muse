@@ -91,17 +91,16 @@
         />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/selectschool"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:onClick="btnSchool"
         android:text="학교 선택"
         app:layout_constraintStart_toStartOf="@+id/et_passwordConfirm"
         app:layout_constraintTop_toBottomOf="@+id/et_passwordConfirm" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/selectmajor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -118,9 +117,9 @@
         android:ems="10"
         android:hint="학번 입력"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/button4"
-        app:layout_constraintStart_toStartOf="@+id/button3"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintEnd_toEndOf="@+id/selectmajor"
+        app:layout_constraintStart_toStartOf="@+id/selectschool"
+        app:layout_constraintTop_toBottomOf="@+id/selectschool" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
