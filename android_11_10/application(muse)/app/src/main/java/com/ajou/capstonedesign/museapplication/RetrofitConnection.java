@@ -25,8 +25,14 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class RetrofitConnection {
 
+    private String TAG = "TAG";
 
-    private static String URL = "http://106.10.43.201:8888";//연결할 url 설정
+
+    private static String URL = "http://106.10.43.201:9999";//연결할 url 설정
+
+    public String getURL() {
+        return URL;
+    }
 
     private static RetrofitCommunication retrofitCommunication;
 

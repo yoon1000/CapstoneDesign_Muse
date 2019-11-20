@@ -3,7 +3,7 @@ package com.ajou.capstonedesign.museapplication;
 public class LoginData {
 
     private String id;
-    private String pw;
+    private String password;
 
     public String getID() {
         return id;
@@ -14,11 +14,11 @@ public class LoginData {
     }
 
     public String getPW() {
-        return pw;
+        return password;
     }
 
-    public void setPW(String pw) {
-        this.pw = pw;
+    public void setPW(String password) {
+        this.password = password;
     }
 
 

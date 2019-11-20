@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/ed_id"
+        android:id="@+id/idregister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -30,7 +30,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/et_password"
+        android:id="@+id/passwordregister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -48,9 +48,9 @@
         android:layout_marginTop="24dp"
         android:onClick="btn_login"
         android:text="로그인"
-        app:layout_constraintEnd_toEndOf="@+id/et_password"
-        app:layout_constraintStart_toStartOf="@+id/et_password"
-        app:layout_constraintTop_toBottomOf="@+id/et_password" />
+        app:layout_constraintEnd_toEndOf="@+id/passwordregister"
+        app:layout_constraintStart_toStartOf="@+id/passwordregister"
+        app:layout_constraintTop_toBottomOf="@+id/passwordregister" />
 
     <Button
         android:id="@+id/registerbutton"

@@ -1,9 +1,7 @@
 package com.ajou.capstonedesign.museapplication;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,8 +35,8 @@ public class LoginActivity extends AppCompatActivity {
         loginbtn = (Button)findViewById(R.id.loginbutton);
         registerbtn = (Button)findViewById(R.id.registerbutton);
 
-        et_id = (EditText)findViewById(R.id.et_id);
-        et_password = (EditText)findViewById(R.id.et_password);
+        et_id = (EditText)findViewById(R.id.idregister);
+        et_password = (EditText)findViewById(R.id.passwordregister);
 
         //회원가입 화면으로 넘어가기
         registerbtn.setOnClickListener(new View.OnClickListener(){
@@ -50,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        /*
+
         loginbtn.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -58,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 JsonObject logindata = new JsonObject();
                 logindata.addProperty("id", et_id.getText().toString());
-                logindata.addProperty("pw", et_password.getText().toString());
+                logindata.addProperty("password", et_password.getText().toString());
 
                 RetrofitCommunication retrofitCommunication = new RetrofitConnection().init();
                 Call<JsonObject> login = retrofitCommunication.userLogin(logindata);
@@ -72,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             JsonArray jsonArray = response.body().getAsJsonArray("result");
                             LoginData.getInstance().setID(jsonArray.get(0).getAsJsonObject().get("id").getAsString());
-                            LoginData.getInstance().setPW(jsonArray.get(0).getAsJsonObject().get("pw").getAsString());
+                            LoginData.getInstance().setPW(jsonArray.get(0).getAsJsonObject().get("password").getAsString());
 
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
@@ -93,15 +91,15 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
             }
-        });*/
+        });
 
-        loginbtn.setOnClickListener(new View.OnClickListener() {
+        /*loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
     }
 

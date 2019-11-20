@@ -14,11 +14,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
-
 public class Register_Activity extends AppCompatActivity {
 
     private EditText et_password, et_passwordConfirm;
@@ -31,7 +26,7 @@ public class Register_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_);
 
-        et_password = (EditText)findViewById(R.id.et_password);
+        et_password = (EditText)findViewById(R.id.passwordregister);
         et_passwordConfirm = (EditText)findViewById((R.id.et_passwordConfirm));
         setImage = (ImageView)findViewById(R.id.setImage);
         btnschool = (Button)findViewById(R.id.selectschool);
