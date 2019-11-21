@@ -5,7 +5,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
@@ -18,9 +18,11 @@
 
         <Button
             android:id="@+id/addschool"
-            android:layout_width="20dp"
+            android:layout_width="1dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="추가하기" />
+            android:text="선택"
+            android:textSize="20dp"/>
+
     </LinearLayout>
 </LinearLayout>

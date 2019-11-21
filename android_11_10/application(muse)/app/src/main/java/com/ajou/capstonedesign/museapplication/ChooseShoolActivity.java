@@ -16,6 +16,8 @@ public class ChooseShoolActivity extends AppCompatActivity {
         setContentView(R.layout.activity_choose_shool);
 
         ArrayList<String> list = new ArrayList<>();
+        list.add(String.format("아주대학교"));
+
 
         // 리사이클러뷰에 LinearLayoutManager 객체 지정.
         RecyclerView recyclerView = findViewById(R.id.recyclerviewschool);

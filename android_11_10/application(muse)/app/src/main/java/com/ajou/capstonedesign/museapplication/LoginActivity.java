@@ -35,8 +35,8 @@ public class LoginActivity extends AppCompatActivity {
         loginbtn = (Button)findViewById(R.id.loginbutton);
         registerbtn = (Button)findViewById(R.id.registerbutton);
 
-        et_id = (EditText)findViewById(R.id.idregister);
-        et_password = (EditText)findViewById(R.id.passwordregister);
+        et_id = (EditText)findViewById(R.id.et_id);
+        et_password = (EditText)findViewById(R.id.et_password);
 
         //회원가입 화면으로 넘어가기
         registerbtn.setOnClickListener(new View.OnClickListener(){

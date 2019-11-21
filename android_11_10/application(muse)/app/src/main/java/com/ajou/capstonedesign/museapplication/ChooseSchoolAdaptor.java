@@ -25,6 +25,8 @@ public class ChooseSchoolAdaptor extends RecyclerView.Adapter<ChooseSchoolAdapto
             textView = itemView.findViewById(R.id.schoolname) ;
             button = itemView.findViewById(R.id.addschool);
         }
+
+
     }
 
     ChooseSchoolAdaptor(ArrayList<String> list){
