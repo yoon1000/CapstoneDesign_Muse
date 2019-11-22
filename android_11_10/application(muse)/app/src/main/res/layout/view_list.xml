@@ -9,20 +9,11 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/schoolname"
+            android:id="@+id/listname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="학교이름"
-            android:textSize="30dp"/>
-
-        <Button
-            android:id="@+id/addschool"
-            android:layout_width="1dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="선택"
-            android:textSize="20dp"/>
+            android:text="TextView" />
 
     </LinearLayout>
 </LinearLayout>
