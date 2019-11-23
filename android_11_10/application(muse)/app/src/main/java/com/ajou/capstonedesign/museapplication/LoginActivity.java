@@ -17,11 +17,16 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static java.security.AccessController.getContext;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
+import java.security.AccessControlContext;
 
 
 public class LoginActivity extends AppCompatActivity {
-    String string;
-
     private Button loginbtn;
     private Button registerbtn;
 
@@ -49,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
+        //로그인 버튼 누르기
         loginbtn.setOnClickListener(new View.OnClickListener(){
 
 
@@ -58,6 +63,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
                 JsonObject logindata = new JsonObject();
+                //사용자가 쓴 edittext들을 넣어준다
                 logindata.addProperty("id", et_id.getText().toString());
                 logindata.addProperty("password", et_password.getText().toString());
 
@@ -76,6 +82,11 @@ public class LoginActivity extends AppCompatActivity {
                             LoginData.getInstance().setPW(jsonArray.get(0).getAsJsonObject().get("password").getAsString());
                             StudentInfo.getInstance().setStudentmajor(jsonArray.get(0).getAsJsonObject().get("major").getAsString());
 
+                            //내장메모리를 이용해 id값과 major값을 지정해준다
+                            SharedPreference.setAttribute(v.getContext(), "id", jsonArray.get(0).getAsJsonObject().get("id").getAsString());
+                            SharedPreference.setAttribute(v.getContext(), "major", jsonArray.get(0).getAsJsonObject().get("major").getAsString());
+
+                            //로그인이 되면 MainActivity로 넘어가준다
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
                         }

@@ -18,6 +18,10 @@ public class FragmentCalender extends Fragment {
     private TextView mon1, tue1, wed1, thr1, fri1,
             mon2, tue2, wed2, thr2, fri2,
             mon3, tue3, wed3, thr3, fri3;
+    int dydlf = 2;
+    int a = 49;
+    int b = 51;
+
 
 
     public static FragmentCalender newInstance(){
@@ -35,13 +39,21 @@ public class FragmentCalender extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_calender, null);
         AddTimetable = (Button)view.findViewById(R.id.addtimetable);
-        //A1 = (TextView)view.findViewById(R.id.a1);
+        mon1 = (TextView)view.findViewById(R.id.Mon1);
+        tue1 = (TextView)view.findViewById(R.id.Tue1);
+        tue2 = (TextView)view.findViewById(R.id.Tue2);
+        tue3 = (TextView)view.findViewById(R.id.Tue3);
+
 
 
 
         AddTimetable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (dydlf == 2){
+
+                }
+
 
                 /*((MainActivity)getActivity()).replaceFragment(FragmentCalender.newInstance());
 

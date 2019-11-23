@@ -9,9 +9,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -21,15 +18,7 @@ public class ChooseMajorAdapter extends RecyclerView.Adapter<ChooseMajorAdapter.
 
     private List<MajorList> listData;
 
-    private Majordata majordata;
     public ChooseMajorAdapter(List<MajorList> list) { this.listData = list; }
-    public ChooseMajorAdapter(Majordata majordata) {this.majordata = majordata;}
-
-    private MyItemClickListner listener;
-
-    public void setOnItemClickListener(MyItemClickListner listener){
-        this.listener = listener;
-    }
 
     @NonNull
     @Override
@@ -49,9 +38,6 @@ public class ChooseMajorAdapter extends RecyclerView.Adapter<ChooseMajorAdapter.
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), Register_Activity.class);
                 intent.putExtra("major",listData.get(position).getMajor());
-
-                //setResult
-
                 v.getContext().startActivity(intent);
             }
 

@@ -77,48 +77,13 @@ public class Register_Activity extends AppCompatActivity {
         //리사이클러뷰에서 선택하면 바껴야 함
         majorselected = (TextView)findViewById(R.id.selected);
 
-
         setImage = (ImageView)findViewById(R.id.setImage);
 
         btnschool = (Button)findViewById(R.id.selectschool);
         btnmajor = (Button)findViewById(R.id.selectmajor);
         btnRegister = (Button)findViewById(R.id.Register);
 
-        RetrofitCommunication retrofitCommunication = new RetrofitConnection().init();
-        Call<JsonObject> regisetermajor = retrofitCommunication.regisetermajorlist();
-
-        regisetermajor.enqueue(new Callback<JsonObject>() {
-            @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                Gson gson = new Gson();
-                JsonObject res = response.body();
-
-                Log.d("Received", res.toString());
-
-                List<MajorList> majorList = gson.fromJson(res.get("result"), new TypeToken<List<MajorList>>(){}.getType());
-            }
-
-            @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
-
-            }
-        });
-
-
-
-
-/*
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-        linearLayoutManager = new LinearLayoutManager(this);
-
-        recyclerView.setHasFixedSize(true);
-
-        recyclerView.addItemDecoration(
-                new DividerItemDecoration(this, linearLayoutManager.getOrientation())
-        );
-        recyclerView.setLayoutManager(linearLayoutManager);*/
-
-        //비밀번호 일치 확인
+        //비밀번호 일치 확인,비밀번호 확인까지 됐으면 초록색 체크가 뜬다
         passwordConfirm.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -128,7 +93,7 @@ public class Register_Activity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(passwordtext.getText().toString().equals(passwordConfirm.getText().toString())){
-                    setImage.setImageResource(R.drawable.check);//비밀번호 확인까지 됐으면 초록색 체크가 뜬다
+                    setImage.setImageResource(R.drawable.check);
                     passwordcheck = true;
                 }
                 else{
@@ -161,6 +126,7 @@ public class Register_Activity extends AppCompatActivity {
             }
         });
 
+        //전공 선택:api를 통해 받아온 전공들을 리사이클러뷰 안에서 보여준다
         btnmajor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -171,13 +137,9 @@ public class Register_Activity extends AppCompatActivity {
         });
 
         Intent intent = getIntent();
-        majorselected.setText(intent.getStringExtra("major"));
-//        studentInfo.setStudentmajor(intent.getStringExtra("major"));
+        majorselected.setText(intent.getStringExtra("major"));//선택한 전공을 회원가입 페이지에서 보여준다
 
-
-
-
-        //회원가입 버튼 누르기
+        //회원가입 버튼 누르기,id/password/name/num/major가 retrofit을 통해 보내진다
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -190,7 +152,6 @@ public class Register_Activity extends AppCompatActivity {
 
                 //default 학교:아주대학교, 전공:소프트웨어학과
                 registerdata.addProperty("school", "아주대학교");
-                //registerdata.addProperty("major","소프트웨어학과");
 
                 RetrofitCommunication retrofitCommunication = new RetrofitConnection().init();
                 Call<JsonObject> register = retrofitCommunication.userRegister(registerdata);
@@ -217,11 +178,13 @@ public class Register_Activity extends AppCompatActivity {
                     }
                 });
 
+
+                //비밀번호 확인이 되지 않으면 넘어가지 못함
                 if (passwordcheck == true) {
                     Intent intent = new Intent(Register_Activity.this, LoginActivity.class);
                     startActivity(intent);
                 }
-                else if(passwordcheck == false)  //비밀번호 확인이 되지 않으면 넘어가지 못함
+                else if(passwordcheck == false)
                     Toast.makeText(getApplicationContext(), "비밀번호가 일치하지 않습니다.", Toast.LENGTH_LONG).show();
 
             }

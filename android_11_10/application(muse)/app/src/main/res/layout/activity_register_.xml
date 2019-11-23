@@ -15,8 +15,8 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="75dp"
-            android:text="회원가입"
+            android:layout_marginTop="60dp"
+            android:text="Reigister"
             android:textSize="36sp"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"/>
@@ -50,8 +50,6 @@
             android:id="@+id/selected"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
             android:text="전공:"
             android:layout_gravity="center"/>
 
@@ -88,31 +86,23 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"/>
 
-        <LinearLayout
+        <EditText
+            android:id="@+id/et_passwordConfirm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="비밀번호 확인"
             android:layout_gravity="center"
-            >
+            android:inputType="textPassword" />
 
-            <EditText
-                android:id="@+id/et_passwordConfirm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="비밀번호 확인"
-                android:inputType="textPassword"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"/>
-
-            <ImageView
-                android:id="@+id/setImage"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:scaleType="fitStart"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"/>
-        </LinearLayout>
+        <ImageView
+            android:id="@+id/setImage"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:scaleType="fitStart" />
 
         <EditText
             android:id="@+id/et_number"

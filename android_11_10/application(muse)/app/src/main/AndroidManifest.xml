@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FragmentHomeAdd"></activity>
+        <activity android:name=".HomeAdd"></activity>
+        <activity android:name=".FragmentHomeAdd" />
         <activity android:name=".ChooseMajorActivity" />
         <activity android:name=".Register_Activity" />
         <activity android:name=".LoginActivity" />

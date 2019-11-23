@@ -43,6 +43,7 @@ public class ChooseMajorActivity extends AppCompatActivity {
 
         JsonObject majorlist = new JsonObject();
 
+        //retrofit통신으로 majorlist에 있는 내용들을 받아온다
         RetrofitCommunication retrofitCommunication = new RetrofitConnection().init();
         Call<JsonObject> regisetermajor = retrofitCommunication.regisetermajorlist();
 
@@ -56,6 +57,7 @@ public class ChooseMajorActivity extends AppCompatActivity {
 
                 List<MajorList> majorList = gson.fromJson(res.get("result"), new TypeToken<List<MajorList>>(){}.getType());
 
+                //받아온 데이터를 이용해 리사이클러뷰를 띄워준다
                 recyclerAdapter = new ChooseMajorAdapter(majorList);
                 recyclerView.setAdapter(recyclerAdapter);
             }
