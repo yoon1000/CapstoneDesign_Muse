@@ -2,12 +2,14 @@ package com.ajou.capstonedesign.museapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.backup.SharedPreferencesBackupHelper;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.JsonArray;
@@ -35,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreference.removeAttribute(LoginActivity.this, "result");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 

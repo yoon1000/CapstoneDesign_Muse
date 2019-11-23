@@ -45,9 +45,9 @@ public class ChooseMajorActivity extends AppCompatActivity {
 
         //retrofit통신으로 majorlist에 있는 내용들을 받아온다
         RetrofitCommunication retrofitCommunication = new RetrofitConnection().init();
-        Call<JsonObject> regisetermajor = retrofitCommunication.regisetermajorlist();
+        Call<JsonObject> regisetermajorlist = retrofitCommunication.registermajorlist();
 
-        regisetermajor.enqueue(new Callback<JsonObject>() {
+        regisetermajorlist.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 Gson gson = new Gson();

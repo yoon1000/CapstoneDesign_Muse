@@ -19,7 +19,15 @@ public interface RetrofitCommunication {
     Call<JsonObject> userLogin(@Body JsonObject userData);
 
     @GET("/studentInfo/subject/majorlist")
-    Call<JsonObject> regisetermajorlist();
+    Call<JsonObject> registermajorlist();
+
+    @GET("/studentInfo/subject/nonmajorlist")
+    Call<JsonObject> nonmajorlist();
+
+    @GET("/studentInfo/subject/majorlist/major")
+    Call<JsonObject> majorlist();
+
+
 
 
 

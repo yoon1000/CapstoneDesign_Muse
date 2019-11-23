@@ -19,7 +19,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class FragmentHome extends Fragment {
 
-    TextView idtext;
     Button button;
 
     public static FragmentHome newInstance() {
@@ -32,18 +31,17 @@ public class FragmentHome extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_home, null);
         button = (Button)view.findViewById(R.id.add);
-        idtext = (TextView)view.findViewById(R.id.userid);
 
         //로그인을 통해 내장메모리에서 받아온 id와 major값을 화면에 버튼과 텍스트뷰에 띄워준다.
-        button.setText(SharedPreference.getAttribute(view.getContext(),"major"));
-        idtext.setText(SharedPreference.getAttribute(view.getContext(), "id"));
+        //button.setText(SharedPreference.getAttribute(view.getContext(),"major"));
+        //idtext.setText(SharedPreference.getAttribute(view.getContext(), "id" + "님이 로그인 중입니다."));
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 //fragment에서 activity로 넘기려면 이렇게 써야함
-                Intent intent1 = new Intent(getActivity(), HomeAdd.class);
+                Intent intent1 = new Intent(getActivity(), AddSubjectActivity.class);
                 startActivity(intent1);
             }
         });
