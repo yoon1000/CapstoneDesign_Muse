@@ -18,12 +18,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class FragmentHome extends Fragment {
 
-    private RecyclerView recyclerView;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_home, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_home, null);
+        return view;
 
     }
 

@@ -19,6 +19,7 @@ public class FragmentCalender extends Fragment {
             mon2, tue2, wed2, thr2, fri2,
             mon3, tue3, wed3, thr3, fri3;
 
+
     public static FragmentCalender newInstance(){
         return new FragmentCalender();
     }
@@ -46,9 +47,10 @@ public class FragmentCalender extends Fragment {
 
                 Intent intent = new Intent(v.getContext(), TimetableOptionPopup.class);
                 startActivity(intent);*/
-                //A1.setBackgroundColor(getResources().getColor(R.color.C4));
 
+                //A1.setBackgroundColor(getResources().getColor(R.color.C4));}
             }
+
         });
 
         return view;
