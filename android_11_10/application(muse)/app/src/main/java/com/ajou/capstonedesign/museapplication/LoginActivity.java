@@ -20,6 +20,7 @@ import retrofit2.Response;
 
 
 public class LoginActivity extends AppCompatActivity {
+    String string;
 
     private Button loginbtn;
     private Button registerbtn;
@@ -73,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                             JsonArray jsonArray = response.body().getAsJsonArray("result");
                             LoginData.getInstance().setID(jsonArray.get(0).getAsJsonObject().get("id").getAsString());
                             LoginData.getInstance().setPW(jsonArray.get(0).getAsJsonObject().get("password").getAsString());
+                            StudentInfo.getInstance().setStudentmajor(jsonArray.get(0).getAsJsonObject().get("major").getAsString());
 
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
@@ -83,8 +85,6 @@ public class LoginActivity extends AppCompatActivity {
                         }
 
                     }
-
-
                     @Override
                     public void onFailure(Call<JsonObject> call, Throwable t) {
                         Toast.makeText(LoginActivity.this, "정보받아오기 실패", Toast.LENGTH_LONG)
@@ -94,15 +94,6 @@ public class LoginActivity extends AppCompatActivity {
                 });
             }
         });
-
-        /*loginbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                startActivity(intent);
-            }
-        });*/
-
     }
 
 }

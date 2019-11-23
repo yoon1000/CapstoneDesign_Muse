@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ChooseMajorAdapter extends RecyclerView.Adapter<ChooseMajorAdapter.ItemViewHolder> {
 
     private List<MajorList> listData;
+
     private Majordata majordata;
     public ChooseMajorAdapter(List<MajorList> list) { this.listData = list; }
     public ChooseMajorAdapter(Majordata majordata) {this.majordata = majordata;}
@@ -43,12 +44,13 @@ public class ChooseMajorAdapter extends RecyclerView.Adapter<ChooseMajorAdapter.
     public void onBindViewHolder(@NonNull ItemViewHolder holder, final int position) {
 
         holder.major.setText(listData.get(position).getMajor());
-        //holder.text.setText((majordata.get(position).getMajor()));
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), Register_Activity.class);
                 intent.putExtra("major",listData.get(position).getMajor());
+
+                //setResult
 
                 v.getContext().startActivity(intent);
             }
@@ -71,14 +73,9 @@ public class ChooseMajorAdapter extends RecyclerView.Adapter<ChooseMajorAdapter.
             super(itemView);
 
             mView = itemView;
-            major = itemView.findViewById(R.id.listname);
-            text = itemView.findViewById(R.id.selected);
-
-
-
+            major = (TextView) itemView.findViewById(R.id.listname);
+            text = (TextView)itemView.findViewById(R.id.selected);
         }
-
-
 
         void onBind(ListData data) {
             major.setText(data.getTitle());

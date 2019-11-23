@@ -18,6 +18,41 @@
             android:layout_marginTop="75dp"
             android:text="회원가입"
             android:textSize="36sp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+
+            <Button
+                android:id="@+id/selectschool"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="학교선택"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/selectmajor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="전공선택"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/selected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="전공:"
             android:layout_gravity="center"/>
 
         <EditText
@@ -27,7 +62,9 @@
             android:ems="10"
             android:hint="이름"
             android:inputType="textPersonName"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
 
         <EditText
             android:id="@+id/et_id"
@@ -36,7 +73,9 @@
             android:ems="10"
             android:hint="아이디"
             android:inputType="textPersonName"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
 
         <EditText
             android:id="@+id/et_password"
@@ -45,12 +84,16 @@
             android:ems="10"
             android:hint="비밀번호"
             android:inputType="textPassword"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            >
 
             <EditText
                 android:id="@+id/et_passwordConfirm"
@@ -59,40 +102,16 @@
                 android:ems="10"
                 android:hint="비밀번호 확인"
                 android:inputType="textPassword"
-                />
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
 
             <ImageView
                 android:id="@+id/setImage"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="32dp"
-                android:scaleType="fitStart" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/selectschool"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="학교선택" />
-
-            <Button
-                android:id="@+id/selectmajor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="전공선택" />
-
-            <TextView
-                android:id="@+id/selected"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="전공:" />
+                android:layout_height="match_parent"
+                android:scaleType="fitStart"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
         </LinearLayout>
 
         <EditText
@@ -101,14 +120,20 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="학번 입력"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
 
         <Button
             android:id="@+id/Register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="회원가입"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
 
     </LinearLayout>
 

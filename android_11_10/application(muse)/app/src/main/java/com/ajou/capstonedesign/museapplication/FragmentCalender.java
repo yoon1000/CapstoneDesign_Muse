@@ -1,7 +1,5 @@
 package com.ajou.capstonedesign.museapplication;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,16 +7,21 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.xmlpull.v1.XmlPullParser;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 public class FragmentCalender extends Fragment {
 
     private Button AddTimetable;
-    private TextView A1;
+    private TextView mon1, tue1, wed1, thr1, fri1,
+            mon2, tue2, wed2, thr2, fri2,
+            mon3, tue3, wed3, thr3, fri3;
+
+    public static FragmentCalender newInstance(){
+        return new FragmentCalender();
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,15 +34,18 @@ public class FragmentCalender extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_calender, null);
         AddTimetable = (Button)view.findViewById(R.id.addtimetable);
-        A1 = (TextView)view.findViewById(R.id.a1);
+        //A1 = (TextView)view.findViewById(R.id.a1);
+
+
 
         AddTimetable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                /*((MainActivity)getActivity()).replaceFragment(FragmentCalender.newInstance());
+
                 Intent intent = new Intent(v.getContext(), TimetableOptionPopup.class);
-                v.getContext().startActivity(intent);
-
-
+                startActivity(intent);*/
                 //A1.setBackgroundColor(getResources().getColor(R.color.C4));
 
             }
@@ -47,6 +53,10 @@ public class FragmentCalender extends Fragment {
 
         return view;
 
+    }
+
+    private FragmentManager getSupportFragmentManager() {
+        return null;
     }
 
     /*

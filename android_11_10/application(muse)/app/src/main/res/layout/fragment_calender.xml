@@ -112,32 +112,36 @@
                         android:gravity="center_horizontal">
 
                         <TextView
-                            android:id="@+id/a1"
                             android:background="#FFFFFF"
-                            android:text="1"
+                            android:text="9시"
                             android:textSize="10dp" />
 
                         <TextView
-                            android:background="#FFFFFF"
-                            android:text=""
-                            android:textSize="10dp" />
-
-                        <TextView
+                            android:id="@+id/Mon1"
                             android:background="#FFFFFF"
                             android:text=""
                             android:textSize="10dp" />
 
                         <TextView
+                            android:id="@+id/Tue1"
                             android:background="#FFFFFF"
                             android:text=""
                             android:textSize="10dp" />
 
                         <TextView
+                            android:id="@+id/Wed1"
                             android:background="#FFFFFF"
                             android:text=""
                             android:textSize="10dp" />
 
                         <TextView
+                            android:id="@+id/Thr1"
+                            android:background="#FFFFFF"
+                            android:text=""
+                            android:textSize="10dp" />
+
+                        <TextView
+                            android:id="@+id/Fri1"
                             android:background="#FFFFFF"
                             android:text=""
                             android:textSize="10dp" />
@@ -154,26 +158,31 @@
                             android:textSize="10dp" />
 
                         <TextView
+                            android:id="@+id/Mon2"
                             android:background="#FFFFFF"
                             android:text=""
                             android:textSize="10dp" />
 
                         <TextView
+                            android:id="@+id/Tue2"
                             android:background="#FFFFFF"
                             android:text=""
                             android:textSize="10dp" />
 
                         <TextView
+                            android:id="@+id/Wed2"
                             android:background="#FFFFFF"
                             android:text=""
                             android:textSize="10dp" />
 
                         <TextView
+                            android:id="@+id/Thr2"
                             android:background="#FFFFFF"
                             android:text=""
                             android:textSize="10dp" />
 
                         <TextView
+                            android:id="@+id/Fri2"
                             android:background="#FFFFFF"
                             android:text=""
                             android:textSize="10dp" />
@@ -191,26 +200,31 @@
                             android:textSize="10dp" />
 
                         <TextView
+                            android:id="@+id/Mon3"
                             android:background="#FFFFFF"
                             android:text=""
                             android:textSize="10dp" />
 
                         <TextView
+                            android:id="@+id/Tue3"
                             android:background="#FFFFFF"
                             android:text=""
                             android:textSize="10dp" />
 
                         <TextView
+                            android:id="@+id/Wed3"
                             android:background="#FFFFFF"
                             android:text=""
                             android:textSize="10dp" />
 
                         <TextView
+                            android:id="@+id/Thr3"
                             android:background="#FFFFFF"
                             android:text=""
                             android:textSize="10dp" />
 
                         <TextView
+                            android:id="@+id/Fri3"
                             android:background="#FFFFFF"
                             android:text=""
                             android:textSize="10dp" />
@@ -228,26 +242,31 @@
                             android:textSize="10dp" />
 
                         <TextView
+                            android:id="@+id/Mon4"
                             android:background="#FFFFFF"
                             android:text=""
                             android:textSize="10dp" />
 
                         <TextView
+                            android:id="@+id/Tue4"
                             android:background="#FFFFFF"
                             android:text=""
                             android:textSize="10dp" />
 
                         <TextView
+                            android:id="@+id/Wed4"
                             android:background="#FFFFFF"
                             android:text=""
                             android:textSize="10dp" />
 
                         <TextView
+                            android:id="@+id/Thr4"
                             android:background="#FFFFFF"
                             android:text=""
                             android:textSize="10dp" />
 
                         <TextView
+                            android:id="@+id/Fri4"
                             android:background="#FFFFFF"
                             android:text=""
                             android:textSize="10dp" />
@@ -267,26 +286,31 @@
                             android:textSize="10dp" />
 
                         <TextView
+                            android:id="@+id/Mon5"
                             android:background="#FFFFFF"
                             android:text=""
                             android:textSize="10dp" />
 
                         <TextView
+                            android:id="@+id/Tue5"
                             android:background="#FFFFFF"
                             android:text=""
                             android:textSize="10dp" />
 
                         <TextView
+                            android:id="@+id/Wed5"
                             android:background="#FFFFFF"
                             android:text=""
                             android:textSize="10dp" />
 
                         <TextView
+                            android:id="@+id/Thr5"
                             android:background="#FFFFFF"
                             android:text=""
                             android:textSize="10dp" />
 
                         <TextView
+                            android:id="@+id/Fri5"
                             android:background="#FFFFFF"
                             android:text=""
                             android:textSize="10dp" />
@@ -303,26 +327,31 @@
                             android:textSize="10dp" />
 
                         <TextView
+                            android:id="@+id/Mon6"
                             android:background="#FFFFFF"
                             android:text=""
                             android:textSize="10dp" />
 
                         <TextView
+                            android:id="@+id/Tue6"
                             android:background="#FFFFFF"
                             android:text=""
                             android:textSize="10dp" />
 
                         <TextView
+                            android:id="@+id/Wed6"
                             android:background="#FFFFFF"
                             android:text=""
                             android:textSize="10dp" />
 
                         <TextView
+                            android:id="@+id/Thr6"
                             android:background="#FFFFFF"
                             android:text=""
                             android:textSize="10dp" />
 
                         <TextView
+                            android:id="@+id/Fri6"
                             android:background="#FFFFFF"
                             android:text=""
                             android:textSize="10dp" />
@@ -340,26 +369,31 @@
                             android:textSize="10dp" />
 
                         <TextView
+                            android:id="@+id/Mon7"
                             android:background="#FFFFFF"
                             android:text=""
                             android:textSize="10dp" />
 
                         <TextView
+                            android:id="@+id/Tue7"
                             android:background="#FFFFFF"
                             android:text=""
                             android:textSize="10dp" />
 
                         <TextView
+                            android:id="@+id/Wed7"
                             android:background="#FFFFFF"
                             android:text=""
                             android:textSize="10dp" />
 
                         <TextView
+                            android:id="@+id/Thr7"
                             android:background="#FFFFFF"
                             android:text=""
                             android:textSize="10dp" />
 
                         <TextView
+                            android:id="@+id/Fri7"
                             android:background="#FFFFFF"
                             android:text=""
                             android:textSize="10dp" />

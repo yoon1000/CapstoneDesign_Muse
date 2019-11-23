@@ -10,10 +10,13 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +25,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -33,14 +37,15 @@ import retrofit2.Response;
 
 public class Register_Activity extends AppCompatActivity {
 
+    public StudentInfo studentInfo;
+
     private EditText idtext;
     private EditText passwordtext, passwordConfirm;
     private EditText nametext;
     private EditText numtext;
 
     private TextView majorselected;
-    Intent intent;
-    String text;
+
 
     private ImageView setImage;
     private Button btnschool;
@@ -59,12 +64,17 @@ public class Register_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_);
 
+        Spinner spinner;
+        final ArrayList<String> arrayList = null;
+        ArrayAdapter<String> arrayAdapter;
+
         idtext = (EditText)findViewById(R.id.et_id);
         passwordtext = (EditText)findViewById(R.id.et_password);
         passwordConfirm = (EditText)findViewById((R.id.et_passwordConfirm));
         nametext = (EditText)findViewById(R.id.et_name);
         numtext = (EditText)findViewById(R.id.et_number);
 
+        //리사이클러뷰에서 선택하면 바껴야 함
         majorselected = (TextView)findViewById(R.id.selected);
 
 
@@ -73,6 +83,29 @@ public class Register_Activity extends AppCompatActivity {
         btnschool = (Button)findViewById(R.id.selectschool);
         btnmajor = (Button)findViewById(R.id.selectmajor);
         btnRegister = (Button)findViewById(R.id.Register);
+
+        RetrofitCommunication retrofitCommunication = new RetrofitConnection().init();
+        Call<JsonObject> regisetermajor = retrofitCommunication.regisetermajorlist();
+
+        regisetermajor.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                Gson gson = new Gson();
+                JsonObject res = response.body();
+
+                Log.d("Received", res.toString());
+
+                List<MajorList> majorList = gson.fromJson(res.get("result"), new TypeToken<List<MajorList>>(){}.getType());
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+
+            }
+        });
+
+
+
 
 /*
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
@@ -109,6 +142,7 @@ public class Register_Activity extends AppCompatActivity {
             }
         });
 
+
         //학교 선택: 선택한 항목 띄우기. 현재는 list에 넣어놓은 학교 목록이 뜸
         btnschool.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,19 +161,18 @@ public class Register_Activity extends AppCompatActivity {
             }
         });
 
-
-
         btnmajor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Register_Activity.this, ChooseMajorActivity.class);
                 startActivity(intent);
             }
-        });
-        intent = getIntent();
-        //text = String.format(intent.getStringExtra("major"));
-       // majorselected.append(text);
 
+        });
+
+        Intent intent = getIntent();
+        majorselected.setText(intent.getStringExtra("major"));
+//        studentInfo.setStudentmajor(intent.getStringExtra("major"));
 
 
 
@@ -157,7 +190,7 @@ public class Register_Activity extends AppCompatActivity {
 
                 //default 학교:아주대학교, 전공:소프트웨어학과
                 registerdata.addProperty("school", "아주대학교");
-                registerdata.addProperty("major","소프트웨어학과");
+                //registerdata.addProperty("major","소프트웨어학과");
 
                 RetrofitCommunication retrofitCommunication = new RetrofitConnection().init();
                 Call<JsonObject> register = retrofitCommunication.userRegister(registerdata);
