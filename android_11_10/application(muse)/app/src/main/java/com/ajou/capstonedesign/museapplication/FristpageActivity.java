@@ -42,8 +42,14 @@ public class FristpageActivity extends AppCompatActivity {
         card_view2 = (CardView) findViewById(R.id.card_view2);
         addsubject = (Button)findViewById(R.id.addsubject);
 
+        ////id 값을 서버로 보내주는 거 있어야함
+        JsonObject userID = new JsonObject();
+
+        //userID.addProperty(SharedPreference.getAttribute(FristpageActivity.this,"id"));
+        userID.addProperty("id",SharedPreference.getAttribute(FristpageActivity.this,"id"));
+
         RetrofitCommunication retrofitCommunication = new RetrofitConnection().init();
-        Call<JsonObject> majorCredit = retrofitCommunication.majorcreditSum();
+        Call<JsonObject> majorCredit = retrofitCommunication.majorcreditSum(userID);
 
         majorCredit.enqueue(new Callback<JsonObject>() {
             @Override
@@ -76,7 +82,7 @@ public class FristpageActivity extends AppCompatActivity {
         });
 
 
-        Call<JsonObject> nonmajorCredit = retrofitCommunication.nonmajorcreditSum();
+        Call<JsonObject> nonmajorCredit = retrofitCommunication.nonmajorcreditSum(userID);
 
         nonmajorCredit.enqueue(new Callback<JsonObject>() {
             @Override

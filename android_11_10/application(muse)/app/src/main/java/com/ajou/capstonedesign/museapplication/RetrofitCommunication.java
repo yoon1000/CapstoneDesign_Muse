@@ -27,11 +27,12 @@ public interface RetrofitCommunication {
     @GET("/studentInfo/subject/majorlist/major")
     Call<JsonObject> majorlist();
 
-    @GET("/studentInfo/main/majorCredit")
-    Call<JsonObject> majorcreditSum();
+    @POST("/studentInfo/main/majorCredit")
+    Call<JsonObject> majorcreditSum(@Body JsonObject userID);
 
-    @GET("/studentInfo/main/nonmajorCredit")
-    Call<JsonObject> nonmajorcreditSum();
+    @POST("/studentInfo/main/nonmajorCredit")
+    Call<JsonObject> nonmajorcreditSum(@Body JsonObject userID);
+
 
 
 

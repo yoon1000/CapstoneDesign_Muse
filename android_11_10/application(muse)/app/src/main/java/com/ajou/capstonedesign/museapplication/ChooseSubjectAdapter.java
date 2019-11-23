@@ -17,7 +17,8 @@ public class ChooseSubjectAdapter extends RecyclerView.Adapter<ChooseSubjectAdap
     private static  final String TAG = "ChooseSubjectAdapter";
     private List<SubjectList> listData2;
 
-    String result = "";
+    String result0 = "";
+    StringBuffer result = new StringBuffer();
 
     public ChooseSubjectAdapter(List<SubjectList> list) { this.listData2 = list; }
 
@@ -30,6 +31,7 @@ public class ChooseSubjectAdapter extends RecyclerView.Adapter<ChooseSubjectAdap
 
     }
 
+    //체크박스에서 선택한 항목들이 Json형식에 맞게 내장 메모리에 들어간다.
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder2 holder, final int position) {
         holder.major.setText(listData2.get(position).getSubject());
@@ -37,9 +39,12 @@ public class ChooseSubjectAdapter extends RecyclerView.Adapter<ChooseSubjectAdap
             @Override
             public void onClick(View v) {
                 if(holder.check.isChecked()){
-                    result +=  ","+  '\"'+holder.major.getText().toString()+'\"';
-                    Log.d(TAG,result);
-                    SharedPreference.setAttribute(v.getContext(),"result",result);
+                    if(!result.toString().equals("")){
+                        result.append(",");
+                    }
+                    result0 =  '\"'+holder.major.getText().toString()+'\"';
+                    result.append(result0);
+                    SharedPreference.setAttribute(v.getContext(),"resultmajor",result.toString());
                 }
             }
 
