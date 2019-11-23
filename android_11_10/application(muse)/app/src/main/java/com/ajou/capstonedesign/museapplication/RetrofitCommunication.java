@@ -27,6 +27,12 @@ public interface RetrofitCommunication {
     @GET("/studentInfo/subject/majorlist/major")
     Call<JsonObject> majorlist();
 
+    @GET("/studentInfo/main/majorCredit")
+    Call<JsonObject> majorcreditSum();
+
+    @GET("/studentInfo/main/nonmajorCredit")
+    Call<JsonObject> nonmajorcreditSum();
+
 
 
 

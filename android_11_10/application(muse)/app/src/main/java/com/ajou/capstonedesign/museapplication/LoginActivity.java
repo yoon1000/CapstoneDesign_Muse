@@ -90,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                             SharedPreference.setAttribute(v.getContext(), "major", jsonArray.get(0).getAsJsonObject().get("major").getAsString());
 
                             //로그인이 되면 MainActivity로 넘어가준다
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, FristpageActivity.class);
                             startActivity(intent);
                         }
                         else {
