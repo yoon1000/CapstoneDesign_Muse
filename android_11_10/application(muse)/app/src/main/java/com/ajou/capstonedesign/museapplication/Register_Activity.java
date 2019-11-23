@@ -38,7 +38,9 @@ public class Register_Activity extends AppCompatActivity {
     private EditText nametext;
     private EditText numtext;
 
-    private TextView major;
+    private TextView majorselected;
+    Intent intent;
+    String text;
 
     private ImageView setImage;
     private Button btnschool;
@@ -63,7 +65,8 @@ public class Register_Activity extends AppCompatActivity {
         nametext = (EditText)findViewById(R.id.et_name);
         numtext = (EditText)findViewById(R.id.et_number);
 
-        major = (TextView)findViewById(R.id.selected);
+        majorselected = (TextView)findViewById(R.id.selected);
+
 
         setImage = (ImageView)findViewById(R.id.setImage);
 
@@ -71,7 +74,7 @@ public class Register_Activity extends AppCompatActivity {
         btnmajor = (Button)findViewById(R.id.selectmajor);
         btnRegister = (Button)findViewById(R.id.Register);
 
-
+/*
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         linearLayoutManager = new LinearLayoutManager(this);
 
@@ -80,7 +83,7 @@ public class Register_Activity extends AppCompatActivity {
         recyclerView.addItemDecoration(
                 new DividerItemDecoration(this, linearLayoutManager.getOrientation())
         );
-        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setLayoutManager(linearLayoutManager);*/
 
         //비밀번호 일치 확인
         passwordConfirm.addTextChangedListener(new TextWatcher() {
@@ -129,35 +132,13 @@ public class Register_Activity extends AppCompatActivity {
         btnmajor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                JsonObject majorlist = new JsonObject();
-
-                RetrofitCommunication retrofitCommunication = new RetrofitConnection().init();
-                Call<JsonObject> regisetermajor = retrofitCommunication.regisetermajorlist();
-
-                regisetermajor.enqueue(new Callback<JsonObject>() {
-                    @Override
-                    public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                        Gson gson = new Gson();
-                        JsonObject res = response.body();
-
-                        Log.d("Received", res.toString());
-
-                        List<MajorList> majorList = gson.fromJson(res.get("result"), new TypeToken<List<MajorList>>(){}.getType());
-
-                        recyclerAdapter = new ChooseMajorAdapter(majorList);
-                        recyclerView.setAdapter(recyclerAdapter);
-                    }
-
-                    @Override
-                    public void onFailure(Call<JsonObject> call, Throwable t) {
-
-                    }
-                });
-
-
+                Intent intent = new Intent(Register_Activity.this, ChooseMajorActivity.class);
+                startActivity(intent);
             }
         });
-
+        intent = getIntent();
+        //text = String.format(intent.getStringExtra("major"));
+       // majorselected.append(text);
 
 
 
@@ -172,7 +153,7 @@ public class Register_Activity extends AppCompatActivity {
                 registerdata.addProperty("password", passwordtext.getText().toString());
                 registerdata.addProperty("name", nametext.getText().toString());
                 registerdata.addProperty("num", numtext.getText().toString());
-                registerdata.addProperty("major",major.getText().toString());
+                registerdata.addProperty("major",majorselected.getText().toString());
 
                 //default 학교:아주대학교, 전공:소프트웨어학과
                 registerdata.addProperty("school", "아주대학교");

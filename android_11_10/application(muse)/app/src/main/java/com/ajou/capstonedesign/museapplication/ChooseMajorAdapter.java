@@ -1,10 +1,13 @@
 package com.ajou.capstonedesign.museapplication;
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -17,7 +20,9 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ChooseMajorAdapter extends RecyclerView.Adapter<ChooseMajorAdapter.ItemViewHolder> {
 
     private List<MajorList> listData;
+    private Majordata majordata;
     public ChooseMajorAdapter(List<MajorList> list) { this.listData = list; }
+    public ChooseMajorAdapter(Majordata majordata) {this.majordata = majordata;}
 
     private MyItemClickListner listener;
 
@@ -38,12 +43,15 @@ public class ChooseMajorAdapter extends RecyclerView.Adapter<ChooseMajorAdapter.
     public void onBindViewHolder(@NonNull ItemViewHolder holder, final int position) {
 
         holder.major.setText(listData.get(position).getMajor());
+        //holder.text.setText((majordata.get(position).getMajor()));
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), Register_Activity.class);
+                intent.putExtra("major",listData.get(position).getMajor());
 
+                v.getContext().startActivity(intent);
             }
-
 
         });
     }
@@ -61,6 +69,7 @@ public class ChooseMajorAdapter extends RecyclerView.Adapter<ChooseMajorAdapter.
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
+
             mView = itemView;
             major = itemView.findViewById(R.id.listname);
             text = itemView.findViewById(R.id.selected);
@@ -68,6 +77,8 @@ public class ChooseMajorAdapter extends RecyclerView.Adapter<ChooseMajorAdapter.
 
 
         }
+
+
 
         void onBind(ListData data) {
             major.setText(data.getTitle());

@@ -10,8 +10,4 @@ public class MajorList {
     public String getMajor(){
         return major;
     }
-
-    public void setMajorname(String Majorname){
-        this.major = major;
-    }
 }
