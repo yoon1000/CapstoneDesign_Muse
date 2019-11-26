@@ -1,3 +1,4 @@
+/*
 package com.ajou.capstonedesign.museapplication;
 
 import android.content.Intent;
@@ -50,4 +51,4 @@ public class FragmentHome extends Fragment {
 
 
 
-}
+}*/

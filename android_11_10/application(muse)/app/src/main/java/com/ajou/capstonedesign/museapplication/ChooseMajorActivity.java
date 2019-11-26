@@ -34,7 +34,7 @@ public class ChooseMajorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_choose_major);
 
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        recyclerView = (RecyclerView) findViewById(R.id.Majorrecyclerview);
         linearLayoutManager = new LinearLayoutManager(this);
 
 

@@ -19,6 +19,7 @@
             android:orientation="vertical"
             android:padding="20dp">
 
+
             <Button
                 android:id="@+id/addsubject"
                 android:layout_width="wrap_content"
@@ -33,7 +34,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_gravity="center">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -82,11 +84,52 @@
                         android:fontFamily="@font/bmhanna_otf"/>
 
                 </LinearLayout>
-
-
-
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/firstgrd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1st"
+                    android:fontFamily="@font/bmhanna_otf"/>
+
+                <Button
+                    android:id="@+id/secondgrd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="2nd"
+                    android:fontFamily="@font/bmhanna_otf"/>
+
+                <Button
+                    android:id="@+id/thirdgrd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="3rd"
+                    android:fontFamily="@font/bmhanna_otf"/>
+
+                <Button
+                    android:id="@+id/fourthgrd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="4th+"
+                    android:fontFamily="@font/bmhanna_otf"/>
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/semesterinfo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/bmhanna_otf"/>
         </LinearLayout>
+
     </LinearLayout>
 
 </RelativeLayout>

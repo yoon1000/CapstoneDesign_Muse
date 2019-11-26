@@ -1,17 +1,14 @@
 package com.ajou.capstonedesign.museapplication;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,8 +32,8 @@ public class ChooseSubjectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_subject);
 
-        recyclerView2 = (RecyclerView) findViewById(R.id.recyclerview2);
-        btn = (Button) findViewById(R.id.btn);
+        recyclerView2 = (RecyclerView) findViewById(R.id.majorsubjectlist);
+        btn = (Button) findViewById(R.id.completebtn);
         linearLayoutManager = new LinearLayoutManager(this);
 
         recyclerView2.setHasFixedSize(true);
@@ -74,8 +71,6 @@ public class ChooseSubjectActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(v.getContext(), AddSubjectActivity.class);
-//                startActivity(intent);
                 finish();
             }
 

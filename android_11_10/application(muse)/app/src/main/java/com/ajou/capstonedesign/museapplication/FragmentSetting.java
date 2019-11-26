@@ -1,3 +1,4 @@
+/*
 package com.ajou.capstonedesign.museapplication;
 
 import android.os.Bundle;
@@ -18,3 +19,4 @@ public class FragmentSetting extends Fragment {
         return inflater.inflate(R.layout.fragment_setting, container, false);
     }
 }
+*/

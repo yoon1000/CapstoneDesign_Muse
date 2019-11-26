@@ -1,6 +1,5 @@
 package com.ajou.capstonedesign.museapplication;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -33,7 +32,7 @@ public class ChooseSubject2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_subject2);
 
-        recyclerView2 = (RecyclerView) findViewById(R.id.recyclerview3);
+        recyclerView2 = (RecyclerView) findViewById(R.id.nonmajorsubjectlist);
         btn = (Button) findViewById(R.id.btn2);
         linearLayoutManager = new LinearLayoutManager(this);
 
@@ -72,8 +71,6 @@ public class ChooseSubject2Activity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(v.getContext(), AddSubjectActivity.class);
-//                startActivity(intent);
                 finish();
             }
 

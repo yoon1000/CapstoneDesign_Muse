@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 public class SplashActivity extends Activity {
+    //첫 화면 띄워주기
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

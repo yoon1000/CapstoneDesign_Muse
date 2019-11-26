@@ -25,6 +25,11 @@ public class FirstpageActivity extends AppCompatActivity {
     private PieView pieView1;
     private PieView pieView2;
 
+    private Button firstgrd;
+    private Button secondgrd;
+    private Button thirdgrd;
+    private Button fourthgrd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +38,11 @@ public class FirstpageActivity extends AppCompatActivity {
         addsubject = (Button)findViewById(R.id.addsubject);
         pieView1 = (PieView) findViewById(R.id.pieViewMajor);
         pieView2 = (PieView) findViewById(R.id.pieViewNonMajor);
+
+        firstgrd = (Button)findViewById(R.id.firstgrd);
+        secondgrd = (Button)findViewById(R.id.secondgrd);
+        thirdgrd = (Button)findViewById(R.id.thirdgrd);
+        fourthgrd = (Button)findViewById(R.id.fourthgrd);
 
         pieView1.setPercentageBackgroundColor(getResources().getColor(R.color.main));
         pieView2.setPercentageBackgroundColor(getResources().getColor(R.color.main));
@@ -109,27 +119,18 @@ public class FirstpageActivity extends AppCompatActivity {
             }
         });
 
-        /*card_view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(FristpageActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        card_view2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(FristpageActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });*/
-
         addsubject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(FirstpageActivity.this, AddSubjectActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        firstgrd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                firstgrd.setBackgroundColor(getResources().getColor(R.color.main));
             }
         });
 

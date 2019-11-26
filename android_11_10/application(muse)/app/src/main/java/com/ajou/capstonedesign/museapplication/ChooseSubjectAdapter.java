@@ -1,6 +1,5 @@
 package com.ajou.capstonedesign.museapplication;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,7 +68,7 @@ public class ChooseSubjectAdapter extends RecyclerView.Adapter<ChooseSubjectAdap
 
             mView = itemView;
             major = (TextView) itemView.findViewById(R.id.listname2);
-            check = (CheckBox) itemView.findViewById(R.id.checkBox);
+            check = (CheckBox) itemView.findViewById(R.id.majorsubcheck);
             //text = (TextView) itemView.findViewById(R.id.getcheck);
         }
 

@@ -26,9 +26,8 @@ import static java.lang.Integer.parseInt;
 public class AddSubjectActivity extends AppCompatActivity {
     private Button majorbtn;
     private Button nonmajorbtn;
+
     private  Button addfinal;
-    private TextView getcheck;
-    private TextView getcheck2;
     private Boolean checkmajor;
     
     @Override
@@ -39,8 +38,6 @@ public class AddSubjectActivity extends AppCompatActivity {
         majorbtn = (Button) findViewById(R.id.majorbtn);
         nonmajorbtn = (Button)findViewById(R.id.nonmajorbtn);
         addfinal = (Button) findViewById(R.id.addfinal);
-       // getcheck = (TextView)findViewById(R.id.getcheck);
-       // getcheck2 = (TextView)findViewById(R.id.getcheck2);
 
         //전공 선택을 눌렀을 때 전공과목을 띄워주는 액티비티로 넘어감
         majorbtn.setOnClickListener(new View.OnClickListener() {
@@ -62,14 +59,12 @@ public class AddSubjectActivity extends AppCompatActivity {
 
 
         //내장메모리(resultmajor, resultnonmajor)에 있는 값을 통신을 통해 post해주면 studentIfo에 반영되어 파이차트에 학점이 늘어난다
-//        String idid = SharedPreference.getAttribute(AddSubjectActivity.this, "id");
         String majorresult = SharedPreference.getAttribute(AddSubjectActivity.this, "resultmajor");
         String majorresult2 = "[" + majorresult + "]";
 
         String nonmajorresult = SharedPreference.getAttribute(AddSubjectActivity.this, "resultnonmajor");
         String nonmajorresult2 = "[" + nonmajorresult +"]";
-//        getcheck.setText(majorresult2);
-//        getcheck2.setText(idid);
+
 
         //추가하기를 눌렀을 때 서버에 반영되어야
         addfinal.setOnClickListener(new View.OnClickListener() {
@@ -132,16 +127,9 @@ public class AddSubjectActivity extends AppCompatActivity {
                     }
                 });
                 //서버에 반영되고 나면 파이차트 있는 페이지로 넘어가
-//                Intent intent = new Intent(AddSubjectActivity.this, FirstpageActivity.class);
-//                startActivity(intent);
                 finish();
             }
         });
-
-
-        /*String nonmajorresult = SharedPreference.getAttribute(AddSubjectActivity.this, "resultnonmajor");
-        String nonmajorresult2 = "[" + nonmajorresult + "]";
-        getcheck2.setText(nonmajorresult2);*/
     }
 
 }

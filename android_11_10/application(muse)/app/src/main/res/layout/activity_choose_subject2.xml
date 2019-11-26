@@ -22,10 +22,6 @@
             android:fontFamily="@font/bmhanna_otf"
             android:layout_marginTop="20dp"/>
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -54,7 +50,7 @@
                 android:orientation="vertical">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerview3"
+                    android:id="@+id/nonmajorsubjectlist"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#F0F0F0" />

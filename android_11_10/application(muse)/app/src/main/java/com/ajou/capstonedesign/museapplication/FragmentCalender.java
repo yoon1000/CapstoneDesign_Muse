@@ -1,3 +1,4 @@
+/*
 package com.ajou.capstonedesign.museapplication;
 
 import android.os.Bundle;
@@ -55,10 +56,12 @@ public class FragmentCalender extends Fragment {
                 }
 
 
-                /*((MainActivity)getActivity()).replaceFragment(FragmentCalender.newInstance());
+                */
+/*((MainActivity)getActivity()).replaceFragment(FragmentCalender.newInstance());
 
                 Intent intent = new Intent(v.getContext(), TimetableOptionPopup.class);
-                startActivity(intent);*/
+                startActivity(intent);*//*
+
 
                 //A1.setBackgroundColor(getResources().getColor(R.color.C4));}
             }
@@ -73,7 +76,8 @@ public class FragmentCalender extends Fragment {
         return null;
     }
 
-    /*
+    */
+/*
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,5 +87,6 @@ public class FragmentCalender extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return super.onCreateView(inflater, container, savedInstanceState);
-    }*/
-}
+    }*//*
+
+}*/

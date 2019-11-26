@@ -1,3 +1,4 @@
+/*
 package com.ajou.capstonedesign.museapplication;
 
 import androidx.annotation.NonNull;
@@ -60,14 +61,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    /*public void replaceFragment(Fragment fragment) {
+    */
+/*public void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.popuplayout, fragment).commit();      // Fragment로 사용할 MainActivity내의 layout공간을 선택합니다.
-    }*/
+    }*//*
+
 }
 
 
 
 
 
+*/
