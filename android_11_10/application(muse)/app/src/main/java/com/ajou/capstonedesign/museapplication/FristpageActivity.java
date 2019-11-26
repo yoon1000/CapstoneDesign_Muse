@@ -1,6 +1,8 @@
+/*
 package com.ajou.capstonedesign.museapplication;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -31,6 +33,8 @@ public class FristpageActivity extends AppCompatActivity {
     private CardView card_view;
     private CardView card_view2;
     private Button addsubject;
+    private PieView pieView1;
+    private PieView pieView2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +42,16 @@ public class FristpageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_fristpage);
 
 
-        card_view = (CardView) findViewById(R.id.card_view);
-        card_view2 = (CardView) findViewById(R.id.card_view2);
+        //card_view = (CardView) findViewById(R.id.card_view);
+        //card_view2 = (CardView) findViewById(R.id.card_view2);
         addsubject = (Button)findViewById(R.id.addsubject);
+        pieView1 = (PieView) findViewById(R.id.pieViewMajor);
+        pieView2 = (PieView) findViewById(R.id.pieViewNonMajor);
+
+        pieView1.setPercentageBackgroundColor(getResources().getColor(R.color.main));
+        pieView2.setPercentageBackgroundColor(getResources().getColor(R.color.main));
+
+
 
         ////id 값을 서버로 보내주는 거 있어야함
         JsonObject userID = new JsonObject();
@@ -61,7 +72,6 @@ public class FristpageActivity extends AppCompatActivity {
                     String[] splitCreditSum1 = creditsumdata1.split("[}]");
                     Float persent_creditSum1 = parseFloat(splitCreditSum1[0]);
                     Integer creditSum1 = parseInt(splitCreditSum1[0]);
-                    PieView pieView1 = (PieView) findViewById(R.id.pieViewMajor);
                     pieView1.setPercentage(persent_creditSum1/75*100);
                     pieView1.setInnerText(creditSum1+"\n-\n75");
                 } else {
@@ -113,7 +123,8 @@ public class FristpageActivity extends AppCompatActivity {
             }
         });
 
-        card_view.setOnClickListener(new View.OnClickListener() {
+        */
+/*card_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(FristpageActivity.this, LoginActivity.class);
@@ -127,7 +138,8 @@ public class FristpageActivity extends AppCompatActivity {
                 Intent intent = new Intent(FristpageActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
-        });
+        });*//*
+
 
         addsubject.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,3 +152,4 @@ public class FristpageActivity extends AppCompatActivity {
 
     }
 }
+*/

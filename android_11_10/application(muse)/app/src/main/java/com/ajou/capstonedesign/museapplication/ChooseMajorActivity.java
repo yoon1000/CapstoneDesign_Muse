@@ -1,5 +1,8 @@
 package com.ajou.capstonedesign.museapplication;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -10,6 +13,7 @@ import com.google.gson.reflect.TypeToken;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -69,4 +73,6 @@ public class ChooseMajorActivity extends AppCompatActivity {
         });
 
     }
+
+
 }

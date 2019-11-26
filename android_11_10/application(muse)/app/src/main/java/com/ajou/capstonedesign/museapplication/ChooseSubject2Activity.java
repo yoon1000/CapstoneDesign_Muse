@@ -54,7 +54,7 @@ public class ChooseSubject2Activity extends AppCompatActivity {
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 Gson gson = new Gson();
                 JsonObject res = response.body();
-////
+
                 Log.d("Received", res.toString());
 
                 List<SubjectList> subjectList = gson.fromJson(res.get("result"), new TypeToken<List<SubjectList>>(){}.getType());
@@ -72,8 +72,9 @@ public class ChooseSubject2Activity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), AddSubjectActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(v.getContext(), AddSubjectActivity.class);
+//                startActivity(intent);
+                finish();
             }
 
         });

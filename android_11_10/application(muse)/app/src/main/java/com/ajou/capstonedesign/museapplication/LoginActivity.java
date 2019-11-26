@@ -3,7 +3,9 @@ package com.ajou.capstonedesign.museapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.backup.SharedPreferencesBackupHelper;
+import android.content.BroadcastReceiver;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +17,8 @@ import android.widget.Toast;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+import androidx.loader.app.LoaderManager;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SharedPreference.removeAttribute(LoginActivity.this, "result");
+        SharedPreference.removeAttribute(LoginActivity.this, "resultmajor");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -56,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
         //로그인 버튼 누르기
         loginbtn.setOnClickListener(new View.OnClickListener(){
@@ -90,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
                             SharedPreference.setAttribute(v.getContext(), "major", jsonArray.get(0).getAsJsonObject().get("major").getAsString());
 
                             //로그인이 되면 MainActivity로 넘어가준다
-                            Intent intent = new Intent(LoginActivity.this, FristpageActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, FirstpageActivity.class);
                             startActivity(intent);
                         }
                         else {

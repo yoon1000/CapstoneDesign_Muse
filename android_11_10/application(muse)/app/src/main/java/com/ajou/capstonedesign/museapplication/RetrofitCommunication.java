@@ -33,6 +33,12 @@ public interface RetrofitCommunication {
     @POST("/studentInfo/main/nonmajorCredit")
     Call<JsonObject> nonmajorcreditSum(@Body JsonObject userID);
 
+    @POST("/studentInfo/subject/majorlist")
+    Call<JsonObject> majorsubject(@Body JsonObject subjectData);
+
+    @POST("/studentInfo/subject/nonmajorlist")
+    Call<JsonObject> nonmajorsubject(@Body JsonObject subjectData);
+
 
 
 

@@ -1,5 +1,6 @@
 package com.ajou.capstonedesign.museapplication;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class ChooseMajorAdapter extends RecyclerView.Adapter<ChooseMajorAdapter.ItemViewHolder> {
@@ -36,13 +38,17 @@ public class ChooseMajorAdapter extends RecyclerView.Adapter<ChooseMajorAdapter.
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), Register_Activity.class);
+                //Intent intent = new Intent(v.getContext(), Register_Activity.class);
+                Intent intent = new Intent("majorToregister");
                 intent.putExtra("major",listData.get(position).getMajor());
-                v.getContext().startActivity(intent);
+                LocalBroadcastManager.getInstance(v.getContext()).sendBroadcast(intent);
+                ((ChooseMajorActivity)v.getContext()).finish();
             }
 
         });
     }
+
+
 
     @Override
     public int getItemCount() {
@@ -67,4 +73,8 @@ public class ChooseMajorAdapter extends RecyclerView.Adapter<ChooseMajorAdapter.
             major.setText(data.getTitle());
         }
     }
+
+
+
+
 }

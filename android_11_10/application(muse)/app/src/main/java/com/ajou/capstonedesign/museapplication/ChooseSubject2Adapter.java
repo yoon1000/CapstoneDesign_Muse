@@ -17,7 +17,8 @@ public class ChooseSubject2Adapter extends RecyclerView.Adapter<ChooseSubject2Ad
     private static  final String TAG = "ChooseSubjectAdapter";
     private List<SubjectList> listData2;
 
-    String result = "";
+    String result0 = "";
+    StringBuffer result = new StringBuffer();
 
     public ChooseSubject2Adapter(List<SubjectList> list) { this.listData2 = list; }
 
@@ -25,7 +26,7 @@ public class ChooseSubject2Adapter extends RecyclerView.Adapter<ChooseSubject2Ad
     @Override
     public ChooseSubject2Adapter.ItemViewHolder2 onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_list2, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_list3, parent, false);
         return new ChooseSubject2Adapter.ItemViewHolder2(view);
 
     }
@@ -37,9 +38,12 @@ public class ChooseSubject2Adapter extends RecyclerView.Adapter<ChooseSubject2Ad
             @Override
             public void onClick(View v) {
                 if(holder.check2.isChecked()){
-                    result +=  ","+  '\"'+holder.nonmajor.getText().toString()+'\"';
-                    Log.d(TAG,result);
-                    SharedPreference.setAttribute(v.getContext(),"resultnonmajor",result);
+                    if(!result.toString().equals("")){
+                        result.append(",");
+                    }
+                    result0 = '"'+holder.nonmajor.getText().toString()+'"';
+                    result.append(result0);
+                    SharedPreference.setAttribute(v.getContext(),"resultnonmajor",result.toString());
                 }
             }
 
@@ -65,7 +69,7 @@ public class ChooseSubject2Adapter extends RecyclerView.Adapter<ChooseSubject2Ad
             mView = itemView;
             nonmajor = (TextView) itemView.findViewById(R.id.listname3);
             check2 = (CheckBox) itemView.findViewById(R.id.checkBox2);
-            text = (TextView) itemView.findViewById(R.id.getcheck);
+            //text = (TextView) itemView.findViewById(R.id.getcheck);
         }
 
     }

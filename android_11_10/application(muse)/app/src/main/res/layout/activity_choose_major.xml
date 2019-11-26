@@ -11,13 +11,15 @@
         android:orientation="vertical">
 
         <TextView
+            android:layout_marginTop="20dp"
             android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="학교 선택"
+            android:text="전공 선택"
             android:textSize="30dp"
+            android:textColor="#000000"
             android:gravity="center"
-            android:background="@color/C5"/>
+            android:fontFamily="@font/bmhanna_otf"/>
 
         <Space
             android:layout_width="match_parent"

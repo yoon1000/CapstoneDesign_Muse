@@ -3,8 +3,11 @@ package com.ajou.capstonedesign.museapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -28,6 +31,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -56,8 +60,21 @@ public class Register_Activity extends AppCompatActivity {
     private LinearLayoutManager linearLayoutManager;
     private ChooseMajorAdapter recyclerAdapter;
 
-
     boolean passwordcheck = true;
+
+    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String receivedData = intent.getStringExtra("major");
+            majorselected.setText(receivedData);
+        }
+    };
+
+    /*@Override
+    protected void onDestroy() {
+        super.onDestroy();
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mBroadcastReceiver);
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +99,9 @@ public class Register_Activity extends AppCompatActivity {
         btnschool = (Button)findViewById(R.id.selectschool);
         btnmajor = (Button)findViewById(R.id.selectmajor);
         btnRegister = (Button)findViewById(R.id.Register);
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(mBroadcastReceiver,
+                new IntentFilter("majorToregister"));
 
         //비밀번호 일치 확인,비밀번호 확인까지 됐으면 초록색 체크가 뜬다
         passwordConfirm.addTextChangedListener(new TextWatcher() {
@@ -136,8 +156,8 @@ public class Register_Activity extends AppCompatActivity {
 
         });
 
-        Intent intent = getIntent();
-        majorselected.setText(intent.getStringExtra("major"));//선택한 전공을 회원가입 페이지에서 보여준다
+        //Intent intent = getIntent();
+        //majorselected.setText(intent.getStringExtra("major"));//선택한 전공을 회원가입 페이지에서 보여준다
 
         //회원가입 버튼 누르기,id/password/name/num/major가 retrofit을 통해 보내진다
         btnRegister.setOnClickListener(new View.OnClickListener() {
@@ -190,4 +210,5 @@ public class Register_Activity extends AppCompatActivity {
             }
         });
     }
+
 }

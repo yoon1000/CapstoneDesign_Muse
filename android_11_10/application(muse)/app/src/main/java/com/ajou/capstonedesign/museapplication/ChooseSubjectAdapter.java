@@ -42,7 +42,7 @@ public class ChooseSubjectAdapter extends RecyclerView.Adapter<ChooseSubjectAdap
                     if(!result.toString().equals("")){
                         result.append(",");
                     }
-                    result0 =  '\"'+holder.major.getText().toString()+'\"';
+                    result0 = '"'+holder.major.getText().toString()+'"';
                     result.append(result0);
                     SharedPreference.setAttribute(v.getContext(),"resultmajor",result.toString());
                 }
@@ -70,7 +70,7 @@ public class ChooseSubjectAdapter extends RecyclerView.Adapter<ChooseSubjectAdap
             mView = itemView;
             major = (TextView) itemView.findViewById(R.id.listname2);
             check = (CheckBox) itemView.findViewById(R.id.checkBox);
-            text = (TextView) itemView.findViewById(R.id.getcheck);
+            //text = (TextView) itemView.findViewById(R.id.getcheck);
         }
 
     }
