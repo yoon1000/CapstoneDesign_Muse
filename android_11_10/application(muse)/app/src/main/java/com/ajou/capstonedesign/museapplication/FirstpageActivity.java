@@ -131,6 +131,39 @@ public class FirstpageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 firstgrd.setBackgroundColor(getResources().getColor(R.color.main));
+                secondgrd.setBackgroundColor(getResources().getColor(R.color.back));
+                thirdgrd.setBackgroundColor(getResources().getColor(R.color.back));
+                fourthgrd.setBackgroundColor(getResources().getColor(R.color.back));
+            }
+        });
+
+        secondgrd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                firstgrd.setBackgroundColor(getResources().getColor(R.color.back));
+                secondgrd.setBackgroundColor(getResources().getColor(R.color.main));
+                thirdgrd.setBackgroundColor(getResources().getColor(R.color.back));
+                fourthgrd.setBackgroundColor(getResources().getColor(R.color.back));
+            }
+        });
+
+        thirdgrd.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                firstgrd.setBackgroundColor(getResources().getColor(R.color.back));
+                secondgrd.setBackgroundColor(getResources().getColor(R.color.back));
+                thirdgrd.setBackgroundColor(getResources().getColor(R.color.main));
+                fourthgrd.setBackgroundColor(getResources().getColor(R.color.back));
+            }
+        });
+
+        fourthgrd.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                firstgrd.setBackgroundColor(getResources().getColor(R.color.back));
+                secondgrd.setBackgroundColor(getResources().getColor(R.color.back));
+                thirdgrd.setBackgroundColor(getResources().getColor(R.color.back));
+                fourthgrd.setBackgroundColor(getResources().getColor(R.color.main));
             }
         });
 
