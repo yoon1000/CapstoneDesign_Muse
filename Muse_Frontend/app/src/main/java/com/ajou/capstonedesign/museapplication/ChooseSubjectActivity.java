@@ -37,7 +37,6 @@ public class ChooseSubjectActivity extends AppCompatActivity {
         setContentView(R.layout.activity_choose_subject);
 
         recyclerView2 = (RecyclerView) findViewById(R.id.majorsubjectlist);
-        ChooseSubjectAdapter adapter = new ChooseSubjectAdapter();
         btn = (Button) findViewById(R.id.completebtn);
         linearLayoutManager = new LinearLayoutManager(this);
 
@@ -45,7 +44,6 @@ public class ChooseSubjectActivity extends AppCompatActivity {
 
         recyclerView2.addItemDecoration(new DividerItemDecoration(this, linearLayoutManager.getOrientation()));
         recyclerView2.setLayoutManager(linearLayoutManager);
-        recyclerView2.setAdapter(adapter);
 
         //id와 전공을 보내주면 사용자의 안들은 전공과목들을 불러와준다.
         JsonObject logindata = new JsonObject();
@@ -65,9 +63,8 @@ public class ChooseSubjectActivity extends AppCompatActivity {
 
                 List<SubjectList> subjectList = gson.fromJson(res.get("result"), new TypeToken<List<SubjectList>>(){}.getType());
 
-                //recyclerAdapter = new ChooseSubjectAdapter(subjectList);
-                //recyclerView2.setAdapter(recyclerAdapter);
-                adapter.loadItems(subjectList);
+                recyclerAdapter = new ChooseSubjectAdapter(subjectList);
+                recyclerView2.setAdapter(recyclerAdapter);
             }
 
             @Override

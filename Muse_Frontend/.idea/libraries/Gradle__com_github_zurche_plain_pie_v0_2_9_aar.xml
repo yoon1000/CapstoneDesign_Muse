@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.zurche:plain-pie:v0.2.9@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d8c033cb4ee7d77b73a30703ad68a3d1/plain-pie-v0.2.9/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d8c033cb4ee7d77b73a30703ad68a3d1/plain-pie-v0.2.9/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.zurche/plain-pie/v0.2.9/709fe72571207dd58cf777718e6d621a0bb9f3d6/plain-pie-v0.2.9-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
