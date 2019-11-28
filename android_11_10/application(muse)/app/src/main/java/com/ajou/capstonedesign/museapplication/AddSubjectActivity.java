@@ -73,7 +73,6 @@ public class AddSubjectActivity extends AppCompatActivity {
                 ///id 값을 서버로 보내주는 거 있어야함
                 JsonObject subjectData = new JsonObject();
 
-//                userID.addProperty(SharedPreference.getAttribute(FristpageActivity.this,"id"));
                 subjectData.addProperty("id",SharedPreference.getAttribute(AddSubjectActivity.this,"id"));
                 subjectData.addProperty("subject",majorresult2);
                 subjectData.addProperty("subject2",nonmajorresult2);

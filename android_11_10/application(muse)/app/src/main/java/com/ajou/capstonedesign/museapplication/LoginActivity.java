@@ -89,6 +89,7 @@ public class LoginActivity extends AppCompatActivity {
                             LoginData.getInstance().setID(jsonArray.get(0).getAsJsonObject().get("id").getAsString());
                             LoginData.getInstance().setPW(jsonArray.get(0).getAsJsonObject().get("password").getAsString());
                             StudentInfo.getInstance().setStudentmajor(jsonArray.get(0).getAsJsonObject().get("major").getAsString());
+                            StudentInfo.getInstance().setNum(jsonArray.get(0).getAsJsonObject().get("num").getAsString());
 
                             //내장메모리를 이용해 id값과 major값을 지정해준다
                             SharedPreference.setAttribute(v.getContext(), "id", jsonArray.get(0).getAsJsonObject().get("id").getAsString());

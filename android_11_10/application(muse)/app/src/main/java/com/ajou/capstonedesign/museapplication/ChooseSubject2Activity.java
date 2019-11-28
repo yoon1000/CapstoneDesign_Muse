@@ -43,10 +43,11 @@ public class ChooseSubject2Activity extends AppCompatActivity {
         );
         recyclerView2.setLayoutManager(linearLayoutManager);
 
-        JsonObject majorList2 = new JsonObject();
+        JsonObject logindata = new JsonObject();
+        logindata.addProperty("id",SharedPreference.getAttribute(ChooseSubject2Activity.this, "id"));
 
         RetrofitCommunication retrofitCommunication = new RetrofitConnection().init();
-        Call<JsonObject> nonmajorlist = retrofitCommunication.nonmajorlist();
+        Call<JsonObject> nonmajorlist = retrofitCommunication.nonmajorlist(logindata);
 
         nonmajorlist.enqueue(new Callback<JsonObject>() {
             @Override

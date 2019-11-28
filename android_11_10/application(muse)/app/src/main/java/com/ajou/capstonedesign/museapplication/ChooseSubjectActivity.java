@@ -1,14 +1,18 @@
 package com.ajou.capstonedesign.museapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +31,9 @@ public class ChooseSubjectActivity extends AppCompatActivity {
     private ChooseSubjectAdapter recyclerAdapter;
     private Button btn;
 
+    ArrayList<SubjectList> completemajorlist = null;
+    ArrayList<SubjectList> subjectList = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,11 +49,16 @@ public class ChooseSubjectActivity extends AppCompatActivity {
                 new DividerItemDecoration(this, linearLayoutManager.getOrientation())
         );
         recyclerView2.setLayoutManager(linearLayoutManager);
+        //recyclerView2.setAdapter();
+        //String id = SharedPreference.getAttribute(ChooseSubjectActivity.this, "id");
 
-        JsonObject majorList2 = new JsonObject();
+        //id와 전공을 보내주면 사용자의 안들은 전공과목들을 불러와준다.
+        JsonObject logindata = new JsonObject();
+        logindata.addProperty("id",SharedPreference.getAttribute(ChooseSubjectActivity.this, "id"));
+        logindata.addProperty("major",SharedPreference.getAttribute(ChooseSubjectActivity.this, "major"));
 
         RetrofitCommunication retrofitCommunication = new RetrofitConnection().init();
-        Call<JsonObject> majorlist = retrofitCommunication.majorlist();
+        Call<JsonObject> majorlist = retrofitCommunication.majorlist(logindata);
 
         majorlist.enqueue(new Callback<JsonObject>() {
             @Override
@@ -68,6 +80,10 @@ public class ChooseSubjectActivity extends AppCompatActivity {
             }
         });
 
+
+
+
+        //전공 과목들을 체크한 후 완료버튼을 눌러준다
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

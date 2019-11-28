@@ -1,17 +1,20 @@
 package com.ajou.capstonedesign.museapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import az.plainpie.PieView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.JsonObject;
@@ -30,6 +33,8 @@ public class FirstpageActivity extends AppCompatActivity {
     private Button thirdgrd;
     private Button fourthgrd;
 
+    private TextView toeicscore;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,10 +49,10 @@ public class FirstpageActivity extends AppCompatActivity {
         thirdgrd = (Button)findViewById(R.id.thirdgrd);
         fourthgrd = (Button)findViewById(R.id.fourthgrd);
 
+        toeicscore = (TextView)findViewById(R.id.toeicscore);
+
         pieView1.setPercentageBackgroundColor(getResources().getColor(R.color.main));
         pieView2.setPercentageBackgroundColor(getResources().getColor(R.color.main));
-
-
 
         ////id 값을 서버로 보내주는 거 있어야함
         JsonObject userID = new JsonObject();
@@ -116,6 +121,19 @@ public class FirstpageActivity extends AppCompatActivity {
                 Toast.makeText(FirstpageActivity.this, "정보받아오기 실패", Toast.LENGTH_LONG)
                         .show();
                 Log.e("TAG", "onFailure: " + t.getMessage());
+            }
+        });
+
+
+        toeicscore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 커스텀 다이얼로그를 생성한다. 사용자가 만든 클래스이다.
+                CustomDialog customDialog = new CustomDialog(FirstpageActivity.this);
+
+                // 커스텀 다이얼로그를 호출한다.
+                // 커스텀 다이얼로그의 결과를 출력할 TextView를 매개변수로 같이 넘겨준다.
+                customDialog.callFunction(toeicscore);
             }
         });
 

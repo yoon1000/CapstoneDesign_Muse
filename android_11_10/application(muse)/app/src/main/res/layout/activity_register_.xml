@@ -19,7 +19,8 @@
             android:text="Reigister"
             android:textSize="36sp"
             android:layout_gravity="center"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/bmhanna_otf"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -34,7 +35,8 @@
                 android:layout_height="wrap_content"
                 android:text="학교선택"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/bmhanna_otf"/>
 
             <Button
                 android:id="@+id/selectmajor"
@@ -42,7 +44,8 @@
                 android:layout_height="wrap_content"
                 android:text="전공선택"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/bmhanna_otf"/>
 
         </LinearLayout>
 
@@ -51,7 +54,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="전공:"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:fontFamily="@font/bmhanna_otf"/>
 
         <EditText
             android:id="@+id/et_name"
@@ -62,7 +66,8 @@
             android:inputType="textPersonName"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/bmhanna_otf"/>
 
         <EditText
             android:id="@+id/et_id"
@@ -73,7 +78,8 @@
             android:inputType="textPersonName"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/bmhanna_otf"/>
 
         <EditText
             android:id="@+id/et_password"
@@ -84,7 +90,8 @@
             android:inputType="textPassword"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/bmhanna_otf"/>
 
         <EditText
             android:id="@+id/et_passwordConfirm"
@@ -95,7 +102,8 @@
             android:ems="10"
             android:hint="비밀번호 확인"
             android:layout_gravity="center"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:fontFamily="@font/bmhanna_otf"/>
 
         <ImageView
             android:id="@+id/setImage"
@@ -113,7 +121,8 @@
             android:inputType="textPersonName"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/bmhanna_otf"/>
 
         <Button
             android:id="@+id/Register"
@@ -123,7 +132,8 @@
             android:textSize="18sp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/bmhanna_otf"/>
 
     </LinearLayout>
 

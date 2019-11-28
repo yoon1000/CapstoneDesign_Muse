@@ -12,36 +12,42 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface RetrofitCommunication {
+    //회원가입
     @POST("/users/register")
     Call<JsonObject> userRegister(@Body JsonObject userData);
 
+    //로그인
     @POST("/users/login")
     Call<JsonObject> userLogin(@Body JsonObject userData);
 
+    //회원가입 할 때 모든 전공이름 갖고오기
     @GET("/studentInfo/subject/majorlist")
     Call<JsonObject> registermajorlist();
 
-    @GET("/studentInfo/subject/nonmajorlist")
-    Call<JsonObject> nonmajorlist();
+    //로그인 후 자신의 정보 입력할 때 안들은 전공과목만 가져오기(post:id, major)
+    @POST("/studentInfo/subject/majorlist/major")
+    Call<JsonObject> majorlist(@Body JsonObject logindata);
 
-    @GET("/studentInfo/subject/majorlist/major")
-    Call<JsonObject> majorlist();
+    //로그인 후 자신의 정보 입력할 때 안들은 교양과목만 가져오기
+    @POST("/studentInfo/subject/nonmajorlist")
+    Call<JsonObject> nonmajorlist(@Body JsonObject logindata);
 
+    //파이차트에 띄워줄 사용자의 현재 전공학점 가져오기
     @POST("/studentInfo/main/majorCredit")
     Call<JsonObject> majorcreditSum(@Body JsonObject userID);
 
+    //파이차트에 띄워줄 사용자의 현재 교양학점 가져오기
     @POST("/studentInfo/main/nonmajorCredit")
     Call<JsonObject> nonmajorcreditSum(@Body JsonObject userID);
 
+    //사용자가 들은 전공과목들 가져오기
     @POST("/studentInfo/subject/majorlist")
     Call<JsonObject> majorsubject(@Body JsonObject subjectData);
 
+    //사용자가 들은 교양과목들 가져오기
     @POST("/studentInfo/subject/nonmajorlist")
     Call<JsonObject> nonmajorsubject(@Body JsonObject subjectData);
 
-
-
-
-
-
+    @POST("/studentInfo/subject/completed_majorsubject")
+    Call<JsonObject> completedsubject(@Body JsonObject userID);
 }

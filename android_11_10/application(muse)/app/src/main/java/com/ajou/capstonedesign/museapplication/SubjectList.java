@@ -2,9 +2,9 @@ package com.ajou.capstonedesign.museapplication;
 
 public class SubjectList {
     private String subject_name;
-    private Boolean ischecked;
+    private int position;
 
-    public SubjectList(String subject_name){
+    public SubjectList(String subject_name, Boolean ischecked){
         this.subject_name = subject_name;
     }
 
@@ -20,11 +20,11 @@ public class SubjectList {
         this.subject_name = subject_name;
     }
 
-    public Boolean getIschecked() {
-        return ischecked;
+    public int getPosition() {
+        return position;
     }
 
-    public void setIschecked(Boolean ischecked) {
-        this.ischecked = ischecked;
+    public void setPosition(int position) {
+        this.position = position;
     }
 }
