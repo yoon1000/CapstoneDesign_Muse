@@ -27,8 +27,11 @@ public class AddSubjectActivity extends AppCompatActivity {
     private Button majorbtn;
     private Button nonmajorbtn;
 
+    private TextView textView;
+
     private  Button addfinal;
     private Boolean checkmajor;
+    private String resultMajor;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +42,15 @@ public class AddSubjectActivity extends AppCompatActivity {
         nonmajorbtn = (Button)findViewById(R.id.nonmajorbtn);
         addfinal = (Button) findViewById(R.id.addfinal);
 
+        textView = (TextView)findViewById(R.id.textView5);
+
         //전공 선택을 눌렀을 때 전공과목을 띄워주는 액티비티로 넘어감
         majorbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AddSubjectActivity.this, ChooseSubjectActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent,101);
+
             }
         });
         //교양 선택을 눌렀을 때 교양과목을 띄워주는 액티비티로 넘어감
@@ -56,7 +62,6 @@ public class AddSubjectActivity extends AppCompatActivity {
 
             }
         });
-
 
 //        //내장메모리(resultmajor, resultnonmajor)에 있는 값을 통신을 통해 post해주면 studentIfo에 반영되어 파이차트에 학점이 늘어난다
 //        String majorresult = SharedPreference.getAttribute(AddSubjectActivity.this, "resultmajor");
@@ -71,26 +76,26 @@ public class AddSubjectActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //내장메모리(resultmajor, resultnonmajor)에 있는 값을 통신을 통해 post해주면 studentIfo에 반영되어 파이차트에 학점이 늘어난다
-                String majorresult = SharedPreference.getAttribute(AddSubjectActivity.this, "resultmajor");
+                /*String majorresult = SharedPreference.getAttribute(AddSubjectActivity.this, "resultmajor");
                 String majorresult2 = "[" + majorresult + "]";
 
                 String nonmajorresult = SharedPreference.getAttribute(AddSubjectActivity.this, "resultnonmajor");
                 String nonmajorresult2 = "[" + nonmajorresult +"]";
-                
+                */
                 ///id 값을 서버로 보내주는 거 있어야함
                 JsonObject subjectData = new JsonObject();
 
                 subjectData.addProperty("id",SharedPreference.getAttribute(AddSubjectActivity.this,"id"));
-                subjectData.addProperty("subject",majorresult2);
-                subjectData.addProperty("subject2",nonmajorresult2);
+                subjectData.addProperty("subject",resultMajor);
+                //subjectData.addProperty("subject2",nonmajorresult2);
 
 
                 RetrofitCommunication retrofitCommunication = new RetrofitConnection().init();
                 Call<JsonObject> subjectdata = retrofitCommunication.majorsubject(subjectData);
-                Call<JsonObject> subjectdata2 = retrofitCommunication.nonmajorsubject(subjectData);
+                //Call<JsonObject> subjectdata2 = retrofitCommunication.nonmajorsubject(subjectData);
 
                 //전공과목이 서버로 들어가는 부분
-               /* subjectdata.enqueue(new Callback<JsonObject>() {
+                subjectdata.enqueue(new Callback<JsonObject>() {
                     @Override
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         if (response.body().get("code").getAsInt() == 200) {
@@ -107,7 +112,7 @@ public class AddSubjectActivity extends AppCompatActivity {
                                 .show();
                         Log.e("TAG", "onFailure: " + t.getMessage());
                     }
-                });*/
+                });
 
 
                 /*//교양과목이 서버로 들어가는 부분
@@ -133,9 +138,26 @@ public class AddSubjectActivity extends AppCompatActivity {
                     }
                 });*/
                 //서버에 반영되고 나면 파이차트 있는 페이지로 넘어가
-                finish();
+                //finish();
+
+                Intent intent = new Intent(AddSubjectActivity.this, FirstpageActivity.class);
+                startActivity(intent);
             }
         });
+
+
+
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 101){
+            String resultmajor = data.getStringExtra("resultmajor");
+            resultMajor = resultmajor;
+            //textView.setText(resultmajor);
+        }
+    }
 }

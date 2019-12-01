@@ -1,10 +1,12 @@
 package com.ajou.capstonedesign.museapplication;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -36,6 +38,7 @@ public class ChooseSubjectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_subject);
 
+
         recyclerView2 = (RecyclerView) findViewById(R.id.majorsubjectlist);
         btn = (Button) findViewById(R.id.completebtn);
         linearLayoutManager = new LinearLayoutManager(this);
@@ -65,6 +68,8 @@ public class ChooseSubjectActivity extends AppCompatActivity {
 
                 recyclerAdapter = new ChooseSubjectAdapter(subjectList);
                 recyclerView2.setAdapter(recyclerAdapter);
+
+
             }
 
             @Override
@@ -80,6 +85,23 @@ public class ChooseSubjectActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String data = "";
+                String Resultmajor = "";
+                List<SubjectList> resultmajor = ((ChooseSubjectAdapter)recyclerAdapter).getSubject();
+                for(int i = 0;i<resultmajor.size();i++){
+                    SubjectList singlemajor = resultmajor.get(i);
+                    if (singlemajor.isSelected() == true) {
+
+                        data = data + "," + singlemajor.getSubject().toString();
+                        Resultmajor = "["+ data.replaceFirst(",", "")+"]";
+
+                    }
+                }
+                //Toast.makeText(ChooseSubjectActivity.this, "selected:"+ Resultmajor, Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(ChooseSubjectActivity.this, AddSubjectActivity.class);
+                intent.putExtra("resultmajor", Resultmajor);
+                setResult(Activity.RESULT_OK,intent);
                 finish();
             }
 

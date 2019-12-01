@@ -8,6 +8,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,6 +28,8 @@ import static java.lang.Integer.parseInt;
 
 public class FirstpageActivity extends AppCompatActivity {
 
+    public static Context CONTEXT;
+    
     private Button timetable;
     private Button addsubject;
     private PieView pieView1;

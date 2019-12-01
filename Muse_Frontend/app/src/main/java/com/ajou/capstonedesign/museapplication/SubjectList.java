@@ -1,6 +1,8 @@
 package com.ajou.capstonedesign.museapplication;
 
-public class SubjectList {
+import java.io.Serializable;
+
+public class SubjectList implements Serializable {
     public boolean isSelected;
     private String subject_name;
     private int position;
