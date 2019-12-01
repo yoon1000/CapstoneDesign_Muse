@@ -1,6 +1,7 @@
 package com.ajou.capstonedesign.museapplication;
 
 public class SubjectList {
+    public boolean isSelected;
     private String subject_name;
     private int position;
 
@@ -26,5 +27,13 @@ public class SubjectList {
 
     public void setPosition(int position) {
         this.position = position;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 }

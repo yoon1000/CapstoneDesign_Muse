@@ -48,6 +48,14 @@ public interface RetrofitCommunication {
     @POST("/studentInfo/subject/nonmajorlist")
     Call<JsonObject> nonmajorsubject(@Body JsonObject subjectData);
 
+    //사용자의 비교과영역 졸업요건 가져오기
+    @POST("/studentInfo/main/required_nonSubject")
+    Call<JsonObject> nonSubject(@Body JsonObject userMajor);
+
+    //사용자의 학기별 추천 과목들 가져오기
+    @POST("/studentInfo/main/semester")
+    Call<JsonObject> majorsemester(@Body JsonObject userData);
+
     @POST("/studentInfo/subject/completed_majorsubject")
     Call<JsonObject> completedsubject(@Body JsonObject userID);
 }

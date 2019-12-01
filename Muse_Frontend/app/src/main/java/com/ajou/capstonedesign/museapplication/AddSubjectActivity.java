@@ -58,18 +58,25 @@ public class AddSubjectActivity extends AppCompatActivity {
         });
 
 
-        //내장메모리(resultmajor, resultnonmajor)에 있는 값을 통신을 통해 post해주면 studentIfo에 반영되어 파이차트에 학점이 늘어난다
-        String majorresult = SharedPreference.getAttribute(AddSubjectActivity.this, "resultmajor");
-        String majorresult2 = "[" + majorresult + "]";
-
-        String nonmajorresult = SharedPreference.getAttribute(AddSubjectActivity.this, "resultnonmajor");
-        String nonmajorresult2 = "[" + nonmajorresult +"]";
+//        //내장메모리(resultmajor, resultnonmajor)에 있는 값을 통신을 통해 post해주면 studentIfo에 반영되어 파이차트에 학점이 늘어난다
+//        String majorresult = SharedPreference.getAttribute(AddSubjectActivity.this, "resultmajor");
+//        String majorresult2 = "[" + majorresult + "]";
+//
+//        String nonmajorresult = SharedPreference.getAttribute(AddSubjectActivity.this, "resultnonmajor");
+//        String nonmajorresult2 = "[" + nonmajorresult +"]";
 
 
         //추가하기를 눌렀을 때 서버에 반영되어야
         addfinal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //내장메모리(resultmajor, resultnonmajor)에 있는 값을 통신을 통해 post해주면 studentIfo에 반영되어 파이차트에 학점이 늘어난다
+                String majorresult = SharedPreference.getAttribute(AddSubjectActivity.this, "resultmajor");
+                String majorresult2 = "[" + majorresult + "]";
+
+                String nonmajorresult = SharedPreference.getAttribute(AddSubjectActivity.this, "resultnonmajor");
+                String nonmajorresult2 = "[" + nonmajorresult +"]";
+                
                 ///id 값을 서버로 보내주는 거 있어야함
                 JsonObject subjectData = new JsonObject();
 
@@ -83,7 +90,7 @@ public class AddSubjectActivity extends AppCompatActivity {
                 Call<JsonObject> subjectdata2 = retrofitCommunication.nonmajorsubject(subjectData);
 
                 //전공과목이 서버로 들어가는 부분
-                subjectdata.enqueue(new Callback<JsonObject>() {
+               /* subjectdata.enqueue(new Callback<JsonObject>() {
                     @Override
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         if (response.body().get("code").getAsInt() == 200) {
@@ -100,10 +107,10 @@ public class AddSubjectActivity extends AppCompatActivity {
                                 .show();
                         Log.e("TAG", "onFailure: " + t.getMessage());
                     }
-                });
+                });*/
 
 
-                //교양과목이 서버로 들어가는 부분
+                /*//교양과목이 서버로 들어가는 부분
                 subjectdata2.enqueue(new Callback<JsonObject>() {
                     @Override
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
@@ -124,7 +131,7 @@ public class AddSubjectActivity extends AppCompatActivity {
                                 .show();
                         Log.e("TAG", "onFailure: " + t.getMessage());
                     }
-                });
+                });*/
                 //서버에 반영되고 나면 파이차트 있는 페이지로 넘어가
                 finish();
             }

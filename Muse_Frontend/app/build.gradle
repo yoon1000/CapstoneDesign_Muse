@@ -14,7 +14,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -63,5 +63,10 @@ dependencies {
 
     //v7
     implementation 'com.android.support:appcompat-v7:28.0.0'
+
+    //timetable
+    implementation 'com.github.tlaabs:TimetableView:1.0.3-fx1'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    implementation 'org.jetbrains:annotations:15.0'
 
 }
