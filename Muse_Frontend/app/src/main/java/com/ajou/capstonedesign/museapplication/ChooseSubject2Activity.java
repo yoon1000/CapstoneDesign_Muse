@@ -1,5 +1,7 @@
 package com.ajou.capstonedesign.museapplication;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,7 +23,7 @@ import retrofit2.Response;
 
 public class ChooseSubject2Activity extends AppCompatActivity {
 
-    private static  final String TAG = "ChooseSubject2Activity";
+    //private static  final String TAG = "ChooseSubject2Activity";
     private RecyclerView recyclerView2;
     private LinearLayoutManager linearLayoutManager;
     private ChooseSubjectAdapter recyclerAdapter;
@@ -38,9 +40,7 @@ public class ChooseSubject2Activity extends AppCompatActivity {
 
         recyclerView2.setHasFixedSize(true);
 
-        recyclerView2.addItemDecoration(
-                new DividerItemDecoration(this, linearLayoutManager.getOrientation())
-        );
+        recyclerView2.addItemDecoration(new DividerItemDecoration(this, linearLayoutManager.getOrientation()));
         recyclerView2.setLayoutManager(linearLayoutManager);
 
         JsonObject logindata = new JsonObject();
@@ -69,9 +69,26 @@ public class ChooseSubject2Activity extends AppCompatActivity {
             }
         });
 
+        //교양 과목들을 선택한 후 완료 버튼을 누른다.
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String data = "";
+                String Resultnonmajor = "";
+                List<SubjectList> resultnonmajor = ((ChooseSubjectAdapter)recyclerAdapter).getSubject();
+                for(int i = 0;i<resultnonmajor.size();i++){
+                    SubjectList singlemajor = resultnonmajor.get(i);
+                    if (singlemajor.isSelected() == true) {
+
+                        data = data + "," + singlemajor.getSubject().toString();
+                        Resultnonmajor = "["+ data.replaceFirst(",", "")+"]";
+
+                    }
+                }
+
+                Intent intent = new Intent(ChooseSubject2Activity.this, AddSubjectActivity.class);
+                intent.putExtra("resultnonmajor", Resultnonmajor);
+                setResult(Activity.RESULT_OK,intent);
                 finish();
             }
 

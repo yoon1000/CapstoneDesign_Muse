@@ -38,7 +38,6 @@ public class ChooseSubjectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_subject);
 
-
         recyclerView2 = (RecyclerView) findViewById(R.id.majorsubjectlist);
         btn = (Button) findViewById(R.id.completebtn);
         linearLayoutManager = new LinearLayoutManager(this);
@@ -97,7 +96,6 @@ public class ChooseSubjectActivity extends AppCompatActivity {
 
                     }
                 }
-                //Toast.makeText(ChooseSubjectActivity.this, "selected:"+ Resultmajor, Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(ChooseSubjectActivity.this, AddSubjectActivity.class);
                 intent.putExtra("resultmajor", Resultmajor);

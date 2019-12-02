@@ -40,12 +40,12 @@ public interface RetrofitCommunication {
     @POST("/studentInfo/main/nonmajorCredit")
     Call<JsonObject> nonmajorcreditSum(@Body JsonObject userID);
 
-    //사용자가 들은 전공과목들 가져오기
+    //사용자가 들은 전공과목들 선택 후 서버에 반영
     @POST("/studentInfo/subject/majorlist")
     Call<JsonObject> majorsubject(@Body JsonObject subjectData);
 
-    //사용자가 들은 교양과목들 가져오기
-    @POST("/studentInfo/subject/nonmajorlist")
+    //사용자가 들은 교양과목들 선택 후 반영
+    @POST("/studentInfo/subject/StudentNonmajorlist")
     Call<JsonObject> nonmajorsubject(@Body JsonObject subjectData);
 
     //사용자의 비교과영역 졸업요건 가져오기
@@ -55,6 +55,10 @@ public interface RetrofitCommunication {
     //사용자의 학기별 추천 과목들 가져오기
     @POST("/studentInfo/main/semester")
     Call<JsonObject> majorsemester(@Body JsonObject userData);
+
+    //사용자가 입력한 토익점수 서버에 반영하기
+    @POST("/studentInfo/main/languageScore")
+    Call<JsonObject> languagescore(@Body JsonObject toeicscore);
 
     @POST("/studentInfo/subject/completed_majorsubject")
     Call<JsonObject> completedsubject(@Body JsonObject userID);

@@ -29,7 +29,7 @@ import static java.lang.Integer.parseInt;
 public class FirstpageActivity extends AppCompatActivity {
 
     public static Context CONTEXT;
-    
+
     private Button timetable;
     private Button addsubject;
     private PieView pieView1;
@@ -49,15 +49,20 @@ public class FirstpageActivity extends AppCompatActivity {
     private Button fourthOne;
     private Button fourthTwo;
 
+    private TextView userscore;
     private TextView toeicscore;
     private TextView textView3;
     private TextView textViewSemester;
     private Toolbar toolbar;
 
+    String recomend = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_firstpage);
+
+        CONTEXT = this;
 
         toolbar = (Toolbar) findViewById(R.id.toolbar) ;
         setSupportActionBar(toolbar);
@@ -81,6 +86,7 @@ public class FirstpageActivity extends AppCompatActivity {
         fourthOne = (Button)findViewById(R.id.fourthOne);
         fourthTwo = (Button)findViewById(R.id.fourthTwo);
 
+        userscore = (TextView)findViewById(R.id.userscore);
         toeicscore = (TextView)findViewById(R.id.toeicscore);
         textView3 = (TextView) findViewById(R.id.textView3);
         textViewSemester = (TextView) findViewById(R.id.textViewSemester);
@@ -166,7 +172,13 @@ public class FirstpageActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if(response.body().get("code").getAsInt() == 200) {
-                    textView3.setText(response.body().get("result").toString());
+                    String data = response.body().get("result").toString();//data=[{"language_grade":760}]
+                    String[] split = data.split(":");
+                    String nonsubjectdata = split[1];
+                    String[] split2 = nonsubjectdata.split("[}]");
+                    String nonsubject = split2[0];
+                    //Integer nonsubjectint = parseInt(split2[0]);
+                    textView3.setText("TOEIC 점수는 "+nonsubject+" 이상 받아야 합니다.");
                 }
                 else {
                     Toast.makeText(FirstpageActivity.this, response.body().get("code").getAsString(), Toast.LENGTH_SHORT)
@@ -182,6 +194,17 @@ public class FirstpageActivity extends AppCompatActivity {
             }
         });
 
+        //사용자의 토익점수 받아와서 비어있으면 다이얼로그 입력하는 창 띄워주고 받아오면 다이얼로그 입력하는 창 비우기
+        /*userscore.setText(SharedPreference.getAttribute(FirstpageActivity.this, "toeicscore"));
+        if (userscore.getText() != "점수 받아오는 곳"){
+            toeicscore.setText("");
+        }*/
+
+
+
+
+
+
         timetable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -196,6 +219,7 @@ public class FirstpageActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(FirstpageActivity.this, AddSubjectActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -209,6 +233,7 @@ public class FirstpageActivity extends AppCompatActivity {
                 // 커스텀 다이얼로그를 호출한다.
                 // 커스텀 다이얼로그의 결과를 출력할 TextView를 매개변수로 같이 넘겨준다.
                 customDialog.callFunction(toeicscore);
+
             }
         });
 
@@ -236,7 +261,9 @@ public class FirstpageActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         if(response.body().get("code").getAsInt() == 200) {
-                            textViewSemester.setText(response.body().get("result").toString());
+                            String data = response.body().get("result").toString();
+                            recomend = contents(data);
+                            textViewSemester.setText(recomend);
                         }
                         else {
                             Toast.makeText(FirstpageActivity.this, response.body().get("code").getAsString(), Toast.LENGTH_SHORT)
@@ -277,7 +304,9 @@ public class FirstpageActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         if(response.body().get("code").getAsInt() == 200) {
-                            textViewSemester.setText(response.body().get("result").toString());
+                            String data = response.body().get("result").toString();
+                            recomend = contents(data);
+                            textViewSemester.setText(recomend);
                         }
                         else {
                             Toast.makeText(FirstpageActivity.this, response.body().get("code").getAsString(), Toast.LENGTH_SHORT)
@@ -318,7 +347,9 @@ public class FirstpageActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         if(response.body().get("code").getAsInt() == 200) {
-                            textViewSemester.setText(response.body().get("result").toString());
+                            String data = response.body().get("result").toString();
+                            recomend = contents(data);
+                            textViewSemester.setText(recomend);
                         }
                         else {
                             Toast.makeText(FirstpageActivity.this, response.body().get("code").getAsString(), Toast.LENGTH_SHORT)
@@ -359,7 +390,9 @@ public class FirstpageActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         if(response.body().get("code").getAsInt() == 200) {
-                            textViewSemester.setText(response.body().get("result").toString());
+                            String data = response.body().get("result").toString();
+                            recomend = contents(data);
+                            textViewSemester.setText(recomend);
                         }
                         else {
                             Toast.makeText(FirstpageActivity.this, response.body().get("code").getAsString(), Toast.LENGTH_SHORT)
@@ -400,7 +433,9 @@ public class FirstpageActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         if(response.body().get("code").getAsInt() == 200) {
-                            textViewSemester.setText(response.body().get("result").toString());
+                            String data = response.body().get("result").toString();
+                            recomend = contents(data);
+                            textViewSemester.setText(recomend);
                         }
                         else {
                             Toast.makeText(FirstpageActivity.this, response.body().get("code").getAsString(), Toast.LENGTH_SHORT)
@@ -441,7 +476,9 @@ public class FirstpageActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         if(response.body().get("code").getAsInt() == 200) {
-                            textViewSemester.setText(response.body().get("result").toString());
+                            String data = response.body().get("result").toString();
+                            recomend = contents(data);
+                            textViewSemester.setText(recomend);
                         }
                         else {
                             Toast.makeText(FirstpageActivity.this, response.body().get("code").getAsString(), Toast.LENGTH_SHORT)
@@ -482,7 +519,9 @@ public class FirstpageActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         if(response.body().get("code").getAsInt() == 200) {
-                            textViewSemester.setText(response.body().get("result").toString());
+                            String data = response.body().get("result").toString();
+                            recomend = contents(data);
+                            textViewSemester.setText(recomend);
                         }
                         else {
                             Toast.makeText(FirstpageActivity.this, response.body().get("code").getAsString(), Toast.LENGTH_SHORT)
@@ -523,7 +562,9 @@ public class FirstpageActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         if(response.body().get("code").getAsInt() == 200) {
-                            textViewSemester.setText(response.body().get("result").toString());
+                            String data = response.body().get("result").toString();
+                            recomend = contents(data);
+                            textViewSemester.setText(recomend);
                         }
                         else {
                             Toast.makeText(FirstpageActivity.this, response.body().get("code").getAsString(), Toast.LENGTH_SHORT)
@@ -570,5 +611,33 @@ public class FirstpageActivity extends AppCompatActivity {
 
         }
     }
+
+    public String contents(String income){
+        String[] split =income.split(",");
+        int splitlength = split.length;
+        String outcome ="";
+
+        for(int i=0;i<splitlength;i++){
+            split[i] = split[i].replaceAll("\"", "");
+            split[i] = split[i].replaceAll("\\[", "");
+            split[i] = split[i].replaceAll("subject_name", "");
+            split[i] = split[i].replaceAll("[{]","");
+            split[i] = split[i].replaceAll("[:]","");
+            split[i] = split[i].replaceAll("[}]","");
+            split[i] = split[i].replaceAll("\\]","");
+            outcome = outcome + split[i] + "\n";
+        }
+        return outcome;
+    }
+
+    /*@Override
+    protected void onResume() {
+        super.onResume();
+        // 화면에 보여주기 전에 준비를 끝냄
+        // 임시로 저장된 화면의 상태를 불러온다
+        //pieView1.notifyAll();
+        //pieView2.notifyAll();
+        //Toast.makeText(getApplicationContext(), "onResume() 호출됨", Toast.LENGTH_LONG).show();
+    }*/
 
 }

@@ -9,6 +9,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.JsonObject;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class CustomDialog {
     private Context context;
 
@@ -42,10 +48,40 @@ public class CustomDialog {
                 // '확인' 버튼 클릭시 메인 액티비티에서 설정한 main_label에
                 // 커스텀 다이얼로그에서 입력한 메시지를 대입한다.
                 main_label.setText(message.getText().toString());
+
+                //사용자가 입력한 점수를 서버에 반영해준다.
+                JsonObject toeicscore = new JsonObject();
+                toeicscore.addProperty("id", SharedPreference.getAttribute(context,"id"));
+                toeicscore.addProperty("language", message.getText().toString());
+
+
+                RetrofitCommunication retrofitCommunication = new RetrofitConnection().init();
+                Call<JsonObject> languagescore = retrofitCommunication.languagescore(toeicscore);
+
+                languagescore.enqueue(new Callback<JsonObject>() {
+                    @Override
+                    public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                        if(response.body().get("code").getAsInt() == 200) {
+
+                        }
+                        else {
+
+                        }
+
+                    }
+                    @Override
+                    public void onFailure(Call<JsonObject> call, Throwable t) {
+
+                    }
+                });
+                SharedPreference.setAttribute(view.getContext(), "toeicscore", message.getText().toString());
+
                 // 커스텀 다이얼로그를 종료한다.
                 dlg.dismiss();
             }
         });
+
+
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

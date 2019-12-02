@@ -29,11 +29,7 @@ public class ChooseSubjectAdapter extends RecyclerView.Adapter<ChooseSubjectAdap
 
     public ChooseSubjectAdapter(List<SubjectList> list) {
         this.listData2 = list;
-        //
     }
-    /*public ChooseSubjectAdapter(List subjectLists){
-        this.resultmajor = subjectLists;
-    }*/
 
 
     @NonNull

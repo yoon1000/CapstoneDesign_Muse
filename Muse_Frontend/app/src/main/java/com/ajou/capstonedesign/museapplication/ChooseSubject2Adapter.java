@@ -19,31 +19,45 @@ public class ChooseSubject2Adapter extends RecyclerView.Adapter<ChooseSubject2Ad
     String result0 = "";
     StringBuffer result = new StringBuffer();
 
-    public ChooseSubject2Adapter(List<SubjectList> list) { this.listData2 = list; }
+    public ChooseSubject2Adapter(List<SubjectList> list) {
+        this.listData2 = list;
+    }
 
     @NonNull
     @Override
-    public ChooseSubject2Adapter.ItemViewHolder2 onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ItemViewHolder2 onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_list3, parent, false);
-        return new ChooseSubject2Adapter.ItemViewHolder2(view);
+        return new ItemViewHolder2(view);
 
     }
 
     @Override
     public void onBindViewHolder(@NonNull ChooseSubject2Adapter.ItemViewHolder2 holder, final int position) {
+        final int pos = position;
+        final SubjectList subjectList = listData2.get(position);
+        holder.check2.setOnCheckedChangeListener(null);
+        holder.check2.setChecked(subjectList.isSelected());
         holder.nonmajor.setText(listData2.get(position).getSubject());
+
+
         holder.check2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                CheckBox cb = (CheckBox) v;
+                SubjectList contact = (SubjectList) cb.getTag();
+                contact.setSelected(cb.isChecked());
+                listData2.get(pos).setSelected(cb.isChecked());
+
                 if(holder.check2.isChecked()){
                     if(!result.toString().equals("")){
                         result.append(",");
                     }
                     result0 = '"'+holder.nonmajor.getText().toString()+'"';
                     result.append(result0);
-                    SharedPreference.setAttribute(v.getContext(),"resultnonmajor",result.toString());
                 }
+
+
             }
 
         });
@@ -71,6 +85,10 @@ public class ChooseSubject2Adapter extends RecyclerView.Adapter<ChooseSubject2Ad
             //text = (TextView) itemView.findViewById(R.id.getcheck);
         }
 
+    }
+
+    public List<SubjectList> getSubject(){
+        return listData2;
     }
 
 }

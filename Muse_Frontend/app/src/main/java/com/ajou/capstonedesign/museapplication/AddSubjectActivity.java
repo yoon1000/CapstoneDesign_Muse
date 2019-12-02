@@ -32,6 +32,7 @@ public class AddSubjectActivity extends AppCompatActivity {
     private  Button addfinal;
     private Boolean checkmajor;
     private String resultMajor;
+    private String resultNonmajor;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,16 +59,16 @@ public class AddSubjectActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AddSubjectActivity.this, ChooseSubject2Activity.class);
-                startActivity(intent);
+                startActivityForResult(intent,102);
 
             }
         });
 
-//        //내장메모리(resultmajor, resultnonmajor)에 있는 값을 통신을 통해 post해주면 studentIfo에 반영되어 파이차트에 학점이 늘어난다
+        //내장메모리(resultmajor, resultnonmajor)에 있는 값을 통신을 통해 post해주면 studentIfo에 반영되어 파이차트에 학점이 늘어난다
 //        String majorresult = SharedPreference.getAttribute(AddSubjectActivity.this, "resultmajor");
 //        String majorresult2 = "[" + majorresult + "]";
-//
-//        String nonmajorresult = SharedPreference.getAttribute(AddSubjectActivity.this, "resultnonmajor");
+
+//       String resultNonmajor = SharedPreference.getAttribute(AddSubjectActivity.this, "resultnonmajor");
 //        String nonmajorresult2 = "[" + nonmajorresult +"]";
 
 
@@ -75,73 +76,78 @@ public class AddSubjectActivity extends AppCompatActivity {
         addfinal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //내장메모리(resultmajor, resultnonmajor)에 있는 값을 통신을 통해 post해주면 studentIfo에 반영되어 파이차트에 학점이 늘어난다
-                /*String majorresult = SharedPreference.getAttribute(AddSubjectActivity.this, "resultmajor");
-                String majorresult2 = "[" + majorresult + "]";
 
-                String nonmajorresult = SharedPreference.getAttribute(AddSubjectActivity.this, "resultnonmajor");
-                String nonmajorresult2 = "[" + nonmajorresult +"]";
-                */
-                ///id 값을 서버로 보내주는 거 있어야함
                 JsonObject subjectData = new JsonObject();
 
-                subjectData.addProperty("id",SharedPreference.getAttribute(AddSubjectActivity.this,"id"));
-                subjectData.addProperty("subject",resultMajor);
-                //subjectData.addProperty("subject2",nonmajorresult2);
-
+                subjectData.addProperty("id", SharedPreference.getAttribute(AddSubjectActivity.this, "id"));
+                subjectData.addProperty("subject", resultMajor);
+                //subjectData.addProperty("subject2", resultNonmajor);
 
                 RetrofitCommunication retrofitCommunication = new RetrofitConnection().init();
                 Call<JsonObject> subjectdata = retrofitCommunication.majorsubject(subjectData);
-                //Call<JsonObject> subjectdata2 = retrofitCommunication.nonmajorsubject(subjectData);
 
-                //전공과목이 서버로 들어가는 부분
-                subjectdata.enqueue(new Callback<JsonObject>() {
-                    @Override
-                    public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                        if (response.body().get("code").getAsInt() == 200) {
+                if(resultMajor != null) {
+                    //전공과목이 서버로 들어가는 부분
+                    subjectdata.enqueue(new Callback<JsonObject>() {
+                        @Override
+                        public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                            if (response.body().get("code").getAsInt() == 200) {
 
-                        } else {
-                            Toast.makeText(AddSubjectActivity.this, response.body().get("code").getAsString(), Toast.LENGTH_SHORT)
-                                    .show();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<JsonObject> call, Throwable t) {
-                        Toast.makeText(AddSubjectActivity.this, "정보받아오기 실패", Toast.LENGTH_LONG)
-                                .show();
-                        Log.e("TAG", "onFailure: " + t.getMessage());
-                    }
-                });
-
-
-                /*//교양과목이 서버로 들어가는 부분
-                subjectdata2.enqueue(new Callback<JsonObject>() {
-                    @Override
-                    public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                        if (response.body().get("code").getAsInt() == 200) {
-
-                        } else {
-                            Toast.makeText(AddSubjectActivity.this, response.body().get("code").getAsString(), Toast.LENGTH_SHORT)
-                                    .show();
+                            } else {
+                                Toast.makeText(AddSubjectActivity.this, response.body().get("code").getAsString(), Toast.LENGTH_SHORT)
+                                        .show();
+                            }
                         }
 
-                    }
+                        @Override
+                        public void onFailure(Call<JsonObject> call, Throwable t) {
+                            Toast.makeText(AddSubjectActivity.this, "정보받아오기 실패", Toast.LENGTH_LONG)
+                                    .show();
+                            Log.e("TAG", "onFailure: " + t.getMessage());
+                        }
+                    });
+                }
+
+                JsonObject subjectData2 = new JsonObject();
+
+                subjectData2.addProperty("id", SharedPreference.getAttribute(AddSubjectActivity.this, "id"));
+                subjectData2.addProperty("subject2", resultNonmajor);
+
+
+                Call<JsonObject> subjectdata2 = retrofitCommunication.nonmajorsubject(subjectData2);
+
+                if(resultNonmajor !=null) {
+                    //교양과목이 서버로 들어가는 부분
+                    subjectdata2.enqueue(new Callback<JsonObject>() {
+                        @Override
+                        public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                            if (response.body().get("code").getAsInt() == 200) {
+
+                            } else {
+                                Toast.makeText(AddSubjectActivity.this, response.body().get("code").getAsString(), Toast.LENGTH_SHORT)
+                                        .show();
+                            }
+
+                        }
+
+
+                        @Override
+                        public void onFailure(Call<JsonObject> call, Throwable t) {
+                            Toast.makeText(AddSubjectActivity.this, "정보받아오기 실패", Toast.LENGTH_LONG)
+                                    .show();
+                            Log.e("TAG", "onFailure: " + t.getMessage());
+                        }
+                    });
+                }
 
 
 
-                    @Override
-                    public void onFailure(Call<JsonObject> call, Throwable t) {
-                        Toast.makeText(AddSubjectActivity.this, "정보받아오기 실패", Toast.LENGTH_LONG)
-                                .show();
-                        Log.e("TAG", "onFailure: " + t.getMessage());
-                    }
-                });*/
+
+
                 //서버에 반영되고 나면 파이차트 있는 페이지로 넘어가
-                //finish();
-
                 Intent intent = new Intent(AddSubjectActivity.this, FirstpageActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -157,7 +163,11 @@ public class AddSubjectActivity extends AppCompatActivity {
         if(requestCode == 101){
             String resultmajor = data.getStringExtra("resultmajor");
             resultMajor = resultmajor;
-            //textView.setText(resultmajor);
         }
+        if(requestCode == 102){
+            String resultnonmajor = data.getStringExtra("resultnonmajor");
+            resultNonmajor = resultnonmajor;
+        }
+        textView.setText(resultMajor+resultNonmajor);
     }
 }

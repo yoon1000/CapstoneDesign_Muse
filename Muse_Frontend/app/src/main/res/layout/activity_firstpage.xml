@@ -139,6 +139,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:fontFamily="@font/bmhanna_otf"
                         android:text="비교과 영역 나타내줄 곳"
                         android:textSize="20dp"
                         android:background="@color/main"/>
@@ -147,9 +148,20 @@
                         android:id="@+id/toeicscore"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="점수 입력"
+                        android:text="이 곳에 점수를 입력하세요"
+                        android:fontFamily="@font/bmhanna_otf"
                         android:textSize="20dp"
                         android:gravity="center" />
+
+                    <TextView
+                        android:id="@+id/userscore"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/bmhanna_otf"
+                        android:text="점수 받아오는 곳"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:layout_marginTop="10dp"/>
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
@@ -253,7 +265,9 @@
                         <TextView
                             android:id="@+id/textViewSemester"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/bmhanna_otf"
+                            android:textSize="15dp"/>
                     </ScrollView>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
