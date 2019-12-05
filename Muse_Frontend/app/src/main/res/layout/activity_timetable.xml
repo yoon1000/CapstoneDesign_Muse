@@ -7,6 +7,45 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FF80A2"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
+
+
+    <TextView
+        android:id="@+id/optionresult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/timetablesemester"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="학기 고르기" />
+
+        <Button
+            android:id="@+id/timetableoption"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="옵션 고르기" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/maketimetable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="시간표 가져오기" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,7 +53,7 @@
         android:layout_margin="10dp"
         android:gravity="center"
         android:orientation="horizontal">
-
+<!--
         <Button
             android:id="@+id/save_btn"
             android:layout_width="wrap_content"
@@ -37,7 +76,7 @@
             android:id="@+id/clear_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Clear" />
+            android:text="Clear" />-->
 
     </LinearLayout>
 
@@ -45,6 +84,7 @@
         android:id="@+id/timetable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:header_title="@array/header_title" />
+        app:header_title="@array/header_title"
+        app:row_count="14"/>
 
 </LinearLayout>

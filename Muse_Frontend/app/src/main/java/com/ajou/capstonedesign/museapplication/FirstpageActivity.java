@@ -30,7 +30,6 @@ public class FirstpageActivity extends AppCompatActivity {
 
     public static Context CONTEXT;
 
-    private Button timetable;
     private Button addsubject;
     private PieView pieView1;
     private PieView pieView2;
@@ -72,7 +71,6 @@ public class FirstpageActivity extends AppCompatActivity {
 //        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
         getSupportActionBar().setTitle("MUSE");
 
-        timetable = (Button)findViewById(R.id.timetable);
         addsubject = (Button)findViewById(R.id.addsubject);
         pieView1 = (PieView) findViewById(R.id.pieViewMajor);
         pieView2 = (PieView) findViewById(R.id.pieViewNonMajor);
@@ -195,23 +193,44 @@ public class FirstpageActivity extends AppCompatActivity {
         });
 
         //사용자의 토익점수 받아와서 비어있으면 다이얼로그 입력하는 창 띄워주고 받아오면 다이얼로그 입력하는 창 비우기
-        /*userscore.setText(SharedPreference.getAttribute(FirstpageActivity.this, "toeicscore"));
-        if (userscore.getText() != "점수 받아오는 곳"){
-            toeicscore.setText("");
-        }*/
+        JsonObject userID2 = new JsonObject();
+        userID2.addProperty("id",SharedPreference.getAttribute(FirstpageActivity.this,"id"));
 
+        Call<JsonObject> userScore = retrofitCommunication.userscore(userID2);
 
-
-
-
-
-        timetable.setOnClickListener(new View.OnClickListener() {
+        userScore.enqueue(new Callback<JsonObject>() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(FirstpageActivity.this, TimetableActivity.class);
-                startActivity(intent);
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                String data = response.body().get("result").toString();
+                String[] split = data.split(":");
+                String userdata = split[1];
+                String[] split2 = userdata.split("[}]");
+                String userdata2 = split2[0];
+                userscore.setText(userdata2);
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+
             }
         });
+
+
+
+        //사용자가 자신의 토익 점수를 입력하는 다이얼로그를 호출한다
+        toeicscore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 커스텀 다이얼로그를 생성한다. 사용자가 만든 클래스이다.
+                CustomDialog customDialog = new CustomDialog(FirstpageActivity.this);
+                // 커스텀 다이얼로그를 호출한다.
+                // 커스텀 다이얼로그의 결과를 출력할 TextView를 매개변수로 같이 넘겨준다.
+                customDialog.callFunction(toeicscore);
+
+            }
+        });
+
+
 
         //자신의 학적정보를 추가하는 액티비티로 넘어감
         addsubject.setOnClickListener(new View.OnClickListener() {
@@ -223,19 +242,7 @@ public class FirstpageActivity extends AppCompatActivity {
             }
         });
 
-        //사용자가 자신의 토익 점수를 입력하는 다이얼로그를 호출한다
-        toeicscore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 커스텀 다이얼로그를 생성한다. 사용자가 만든 클래스이다.
-                        CustomDialog customDialog = new CustomDialog(FirstpageActivity.this);
 
-                // 커스텀 다이얼로그를 호출한다.
-                // 커스텀 다이얼로그의 결과를 출력할 TextView를 매개변수로 같이 넘겨준다.
-                customDialog.callFunction(toeicscore);
-
-            }
-        });
 
         //학기별로 나타내주는 부분
         firstOne.setOnClickListener(new View.OnClickListener() {
@@ -598,11 +605,18 @@ public class FirstpageActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         //return super.onOptionsItemSelected(item);
         switch (item.getItemId()) {
-            case R.id.action_settings:
-                // User chose the "Settings" item, show the app settings UI...
-                Toast.makeText(getApplicationContext(), "환경설정 버튼 클릭됨", Toast.LENGTH_LONG).show();
+            case R.id.action_home:
+                Toast.makeText(getApplicationContext(),"홈메뉴 클릭", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, FirstpageActivity.class);
+                startActivity(intent);
+                finish();
                 return true;
 
+            case R.id.action_timetable:
+                Toast.makeText(getApplicationContext(),"시간표 클릭", Toast.LENGTH_SHORT).show();
+                Intent intent2 = new Intent(this, TimetableActivity.class);
+                startActivity(intent2);
+                finish();
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
@@ -612,6 +626,7 @@ public class FirstpageActivity extends AppCompatActivity {
         }
     }
 
+    //학기별 과목 받아올 때 파싱하는 함수(과목명들만 남김)
     public String contents(String income){
         String[] split =income.split(",");
         int splitlength = split.length;

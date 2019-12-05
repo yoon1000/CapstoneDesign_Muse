@@ -1,3 +1,4 @@
+/*
 package com.ajou.capstonedesign.museapplication;
 
 import android.view.LayoutInflater;
@@ -91,4 +92,4 @@ public class ChooseSubject2Adapter extends RecyclerView.Adapter<ChooseSubject2Ad
         return listData2;
     }
 
-}
+}*/

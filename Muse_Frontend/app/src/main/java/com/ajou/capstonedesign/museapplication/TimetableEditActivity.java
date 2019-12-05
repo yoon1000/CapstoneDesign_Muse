@@ -1,3 +1,4 @@
+/*
 package com.ajou.capstonedesign.museapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -69,7 +70,9 @@ public class TimetableEditActivity extends AppCompatActivity implements View.OnC
         initView();
     }
 
-    /** check whether the mode is ADD or EDIT */
+    */
+/** check whether the mode is ADD or EDIT *//*
+
     private void checkMode(){
         Intent i = getIntent();
         mode = i.getIntExtra("mode",TimetableActivity.REQUEST_ADD);
@@ -179,3 +182,4 @@ public class TimetableEditActivity extends AppCompatActivity implements View.OnC
         schedule.setProfessorName(professorEdit.getText().toString());
     }
 }
+*/

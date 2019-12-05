@@ -60,6 +60,10 @@ public interface RetrofitCommunication {
     @POST("/studentInfo/main/languageScore")
     Call<JsonObject> languagescore(@Body JsonObject toeicscore);
 
+    //사용자가 입력한 토익접수 서버에서 받아와서 띄워주기
+    @POST("/studentInfo/main/mainLanguageScore")
+    Call<JsonObject> userscore(@Body JsonObject userID);
+
     @POST("/studentInfo/subject/completed_majorsubject")
     Call<JsonObject> completedsubject(@Body JsonObject userID);
 }

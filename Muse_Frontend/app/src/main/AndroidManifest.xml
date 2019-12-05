@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TimetableEditActivity"></activity>
+        <activity android:name=".TimetableEditActivity" />
         <activity android:name=".TimetableActivity" />
         <activity android:name=".FirstpageActivity" />
         <activity android:name=".ChooseSubject2Activity" />
@@ -22,6 +22,7 @@
         <activity android:name=".ChooseMajorActivity" />
         <activity android:name=".Register_Activity" />
         <activity android:name=".LoginActivity" />
+        <activity android:name=".MainActivity"/>
         <activity
             android:name=".SplashActivity"
             android:theme="@style/Splashtheme">
@@ -31,13 +32,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--<activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>-->
     </application>
 
 </manifest>

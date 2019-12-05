@@ -21,258 +21,253 @@
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="12dp"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/timetable"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="시간표 액티비티로 넘어가기" />
-
-            <Button
-                android:id="@+id/addsubject"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginTop="10dp"
-                android:background="#F2F2F2"
-                android:fontFamily="@font/bmhanna_otf"
-                android:text="+"
-                android:textColor="#FF80A2"
-                android:textSize="40dp" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card_view1"
-                    android:layout_width="180dp"
-                    android:layout_height="230dp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:orientation="vertical"
-                    app:cardBackgroundColor="#FFFFFF"
-                    app:cardCornerRadius="4dp"
-                    app:cardElevation="5dp"
-                    app:cardPreventCornerOverlap="false">
-
-                    <az.plainpie.PieView
-                        android:id="@+id/pieViewMajor"
-                        android:layout_width="170dp"
-                        android:layout_height="170dp"
-                        android:layout_marginTop="20dp"
-                        plainpie:inner_pie_padding="30"
-                        plainpie:inner_text_visibility="true"
-                        plainpie:percentage_size="30" />
-
-                    <TextView
-                        android:id="@+id/creditText1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom|center"
-                        android:fontFamily="@font/bmhanna_otf"
-                        android:text="전공학점" />
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card_view2"
-                    android:layout_width="180dp"
-                    android:layout_height="230dp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:orientation="vertical"
-                    app:cardBackgroundColor="#FFFFFF"
-                    app:cardCornerRadius="4dp"
-                    app:cardElevation="5dp"
-                    app:cardPreventCornerOverlap="false">
-
-                    <az.plainpie.PieView
-                        android:id="@+id/pieViewNonMajor"
-                        android:layout_width="170dp"
-                        android:layout_height="170dp"
-                        android:layout_marginTop="20dp"
-                        plainpie:inner_pie_padding="30"
-                        plainpie:inner_text_visibility="true"
-                        plainpie:percentage_size="30" />
-
-                    <TextView
-                        android:id="@+id/creditText2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom|center"
-                        android:fontFamily="@font/bmhanna_otf"
-                        android:text="교양학점" />
-                </androidx.cardview.widget.CardView>
-            </LinearLayout>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_view3"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="10dp"
-                android:orientation="vertical"
-                app:cardBackgroundColor="#FFFFFF"
-                app:cardCornerRadius="4dp"
-                app:cardElevation="5dp"
-                app:cardPreventCornerOverlap="false">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/addsubject"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="10dp"
+                    android:background="#F2F2F2"
+                    android:fontFamily="@font/bmhanna_otf"
+                    android:text="+"
+                    android:textColor="#FF80A2"
+                    android:textSize="40dp" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/textView3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:fontFamily="@font/bmhanna_otf"
-                        android:text="비교과 영역 나타내줄 곳"
-                        android:textSize="20dp"
-                        android:background="@color/main"/>
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_view1"
+                        android:layout_width="180dp"
+                        android:layout_height="230dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="vertical"
+                        app:cardBackgroundColor="#FFFFFF"
+                        app:cardCornerRadius="4dp"
+                        app:cardElevation="5dp"
+                        app:cardPreventCornerOverlap="false">
 
-                    <TextView
-                        android:id="@+id/toeicscore"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="이 곳에 점수를 입력하세요"
-                        android:fontFamily="@font/bmhanna_otf"
-                        android:textSize="20dp"
-                        android:gravity="center" />
+                        <az.plainpie.PieView
+                            android:id="@+id/pieViewMajor"
+                            android:layout_width="170dp"
+                            android:layout_height="170dp"
+                            android:layout_marginTop="20dp"
+                            plainpie:inner_pie_padding="30"
+                            plainpie:inner_text_visibility="true"
+                            plainpie:percentage_size="30" />
 
-                    <TextView
-                        android:id="@+id/userscore"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/bmhanna_otf"
-                        android:text="점수 받아오는 곳"
-                        android:textSize="20dp"
-                        android:gravity="center"
-                        android:layout_marginTop="10dp"/>
+                        <TextView
+                            android:id="@+id/creditText1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center"
+                            android:fontFamily="@font/bmhanna_otf"
+                            android:text="전공학점" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_view2"
+                        android:layout_width="180dp"
+                        android:layout_height="230dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="vertical"
+                        app:cardBackgroundColor="#FFFFFF"
+                        app:cardCornerRadius="4dp"
+                        app:cardElevation="5dp"
+                        app:cardPreventCornerOverlap="false">
+
+                        <az.plainpie.PieView
+                            android:id="@+id/pieViewNonMajor"
+                            android:layout_width="170dp"
+                            android:layout_height="170dp"
+                            android:layout_marginTop="20dp"
+                            plainpie:inner_pie_padding="30"
+                            plainpie:inner_text_visibility="true"
+                            plainpie:percentage_size="30" />
+
+                        <TextView
+                            android:id="@+id/creditText2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center"
+                            android:fontFamily="@font/bmhanna_otf"
+                            android:text="교양학점" />
+                    </androidx.cardview.widget.CardView>
                 </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_view3"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="5dp"
+                    app:cardPreventCornerOverlap="false">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_view4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="10dp"
-                android:orientation="vertical"
-                app:cardBackgroundColor="#FFFFFF"
-                app:cardCornerRadius="4dp"
-                app:cardElevation="5dp"
-                app:cardPreventCornerOverlap="false">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-                <LinearLayout
+                        <TextView
+                            android:id="@+id/textView3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/main"
+                            android:fontFamily="@font/bmhanna_otf"
+                            android:gravity="center"
+                            android:text="비교과 영역 나타내줄 곳"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:id="@+id/toeicscore"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/bmhanna_otf"
+                            android:gravity="center"
+                            android:text="이 곳에 점수를 입력하세요"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:id="@+id/userscore"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/bmhanna_otf"
+                            android:gravity="center"
+                            android:text="점수 받아오는 곳"
+                            android:textSize="20dp" />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_view4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="5dp"
+                    app:cardPreventCornerOverlap="false">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
-                        <Button
-                            android:id="@+id/firstOne"
-                            android:layout_width="45dp"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="#F2F2F2"
-                            android:fontFamily="@font/bmhanna_otf"
-                            android:text="1-1" />
+                            android:orientation="horizontal">
 
-                        <Button
-                            android:id="@+id/firstTwo"
-                            android:layout_width="45dp"
-                            android:layout_height="wrap_content"
-                            android:background="#F2F2F2"
-                            android:fontFamily="@font/bmhanna_otf"
-                            android:text="1-2" />
+                            <Button
+                                android:id="@+id/firstOne"
+                                android:layout_width="45dp"
+                                android:layout_height="wrap_content"
+                                android:background="#F2F2F2"
+                                android:fontFamily="@font/bmhanna_otf"
+                                android:text="1-1" />
 
-                        <Button
-                            android:id="@+id/secondOne"
-                            android:layout_width="45dp"
-                            android:layout_height="wrap_content"
-                            android:background="#F2F2F2"
-                            android:fontFamily="@font/bmhanna_otf"
-                            android:text="2-1" />
+                            <Button
+                                android:id="@+id/firstTwo"
+                                android:layout_width="45dp"
+                                android:layout_height="wrap_content"
+                                android:background="#F2F2F2"
+                                android:fontFamily="@font/bmhanna_otf"
+                                android:text="1-2" />
 
-                        <Button
-                            android:id="@+id/secondTwo"
-                            android:layout_width="45dp"
-                            android:layout_height="wrap_content"
-                            android:background="#F2F2F2"
-                            android:fontFamily="@font/bmhanna_otf"
-                            android:text="2-2" />
+                            <Button
+                                android:id="@+id/secondOne"
+                                android:layout_width="45dp"
+                                android:layout_height="wrap_content"
+                                android:background="#F2F2F2"
+                                android:fontFamily="@font/bmhanna_otf"
+                                android:text="2-1" />
 
-                        <Button
-                            android:id="@+id/thirdOne"
-                            android:layout_width="45dp"
-                            android:layout_height="wrap_content"
-                            android:background="#F2F2F2"
-                            android:fontFamily="@font/bmhanna_otf"
-                            android:text="3-1" />
+                            <Button
+                                android:id="@+id/secondTwo"
+                                android:layout_width="45dp"
+                                android:layout_height="wrap_content"
+                                android:background="#F2F2F2"
+                                android:fontFamily="@font/bmhanna_otf"
+                                android:text="2-2" />
+
+                            <Button
+                                android:id="@+id/thirdOne"
+                                android:layout_width="45dp"
+                                android:layout_height="wrap_content"
+                                android:background="#F2F2F2"
+                                android:fontFamily="@font/bmhanna_otf"
+                                android:text="3-1" />
 
 
-                        <Button
-                            android:id="@+id/thirdTwo"
-                            android:layout_width="45dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="#F2F2F2"
-                            android:fontFamily="@font/bmhanna_otf"
-                            android:text="3-2" />
+                            <Button
+                                android:id="@+id/thirdTwo"
+                                android:layout_width="45dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="#F2F2F2"
+                                android:fontFamily="@font/bmhanna_otf"
+                                android:text="3-2" />
 
-                        <Button
-                            android:id="@+id/fourthOne"
-                            android:layout_width="45dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="#F2F2F2"
-                            android:fontFamily="@font/bmhanna_otf"
-                            android:text="4-1" />
+                            <Button
+                                android:id="@+id/fourthOne"
+                                android:layout_width="45dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="#F2F2F2"
+                                android:fontFamily="@font/bmhanna_otf"
+                                android:text="4-1" />
 
-                        <Button
-                            android:id="@+id/fourthTwo"
-                            android:layout_width="45dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="#F2F2F2"
-                            android:fontFamily="@font/bmhanna_otf"
-                            android:text="4-2" />
-                    </LinearLayout>
+                            <Button
+                                android:id="@+id/fourthTwo"
+                                android:layout_width="45dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="#F2F2F2"
+                                android:fontFamily="@font/bmhanna_otf"
+                                android:text="4-2" />
+                        </LinearLayout>
 
-                    <ScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
 
                         <TextView
                             android:id="@+id/textViewSemester"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/bmhanna_otf"
-                            android:textSize="15dp"/>
-                    </ScrollView>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                            android:textSize="15dp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
-        </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
 
     </LinearLayout>
 
