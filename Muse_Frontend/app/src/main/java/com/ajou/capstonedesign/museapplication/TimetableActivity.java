@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,18 +17,30 @@ import android.widget.Toast;
 
 import com.github.tlaabs.timetableview.Schedule;
 import com.github.tlaabs.timetableview.TimetableView;
-//import com.github.tlaabs.timetableview.Time;
+import com.github.tlaabs.timetableview.Time;
 import com.github.tlaabs.timetableview.Sticker;
 import com.github.tlaabs.timetableview.HighlightMode;
 import com.github.tlaabs.timetableview.SaveManager;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 
+import org.json.JSONArray;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static java.lang.Float.parseFloat;
+import static java.lang.Integer.parseInt;
 
 public class TimetableActivity extends AppCompatActivity {//implements View.OnClickListener
     //private Context context;
@@ -49,7 +62,17 @@ public class TimetableActivity extends AppCompatActivity {//implements View.OnCl
     String selectedsemster = "";
     String selectedoption = "";
 
-    private TimetableView timetable;
+    String[] splitsubject ={};
+
+    String[] subjectname;
+    String[] day1;
+    String[] day2;
+    int[] starttime;
+    int[] endtime;
+
+    private TimetableView timetableView;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +87,7 @@ public class TimetableActivity extends AppCompatActivity {//implements View.OnCl
 
         result = (TextView)findViewById(R.id.optionresult);
 
-        timetable = (TimetableView) findViewById(R.id.timetable);
+        timetableView = (TimetableView) findViewById(R.id.timetable);
 
         //사용자가 원하는 학기 고르기
         timetablesemester.setOnClickListener(new View.OnClickListener() {
@@ -124,24 +147,72 @@ public class TimetableActivity extends AppCompatActivity {//implements View.OnCl
             }
         });
 
+
+
         maketimetable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //예시: 월/25/29,수/25/29
-                ArrayList<Schedule> schedules1 = new ArrayList<Schedule>();
 
-                Schedule schedule1 = new Schedule();
-                schedule1.setClassTitle("IT전문영어"); // sets subject
-                //schedule1.setClassPlace("팔달409"); // sets place
-                //schedule1.setProfessorName("김떙땡"); // sets professor
-                schedule1.setStartTime(new Time(setHour(25), setMinute(25)));
-                schedule1.setEndTime(new Time(setHour(29+1), setMinute(29+1)));
-                schedule1.setDay(setDay("월"));
-                //schedule1.setDay(setDay("수"));
+                JsonObject userData = new JsonObject();
 
-                schedules1.add(schedule1);
+                userData.addProperty("id",SharedPreference.getAttribute(TimetableActivity.this,"id"));
+                userData.addProperty("semester", 5);
+                userData.addProperty("option", "월");
 
-                timetable.add(schedules1);
+                RetrofitCommunication retrofitCommunication = new RetrofitConnection().init();
+                Call<JsonObject> timetable = retrofitCommunication.timetable(userData);
+
+                timetable.enqueue(new Callback<JsonObject>() {
+                    @Override
+                    public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                        if (response.body().get("code").getAsInt() == 200) {
+                            String rawdata1 = response.body().get("result1").toString();
+                            Log.d("JsonObject1",rawdata1);
+
+                            /*String rawdata2 = response.body().get("result2").toString();
+                            String rawdata3 = response.body().get("result3").toString();
+                            Log.d("JsonObject2",rawdata2);
+                            Log.d("JsonObject3",rawdata3);*/
+
+                            ArrayList<Schedule> schedules0 = new ArrayList<Schedule>();
+                            ArrayList<Schedule> schedules1 = new ArrayList<Schedule>();
+                            ArrayList<Schedule> schedules2 = new ArrayList<Schedule>();
+                            ArrayList<Schedule> schedules3 = new ArrayList<Schedule>();
+
+                            Schedule schedule0 = new Schedule();
+                            Schedule schedule1 = new Schedule();
+                            Schedule schedule2 = new Schedule();
+                            Schedule schedule3 = new Schedule();
+
+                            splitsubject = rawdata1.split("\\]");//과목 별로 나뉜다.
+
+                            Getschedule(splitsubject[0], schedule0);
+                            Getschedule(splitsubject[1], schedule1);
+                            Getschedule(splitsubject[2], schedule2);
+                            Getschedule(splitsubject[3], schedule3);
+
+                            schedules0.add(schedule0);
+                            schedules1.add(schedule1);
+                            schedules2.add(schedule2);
+                            schedules3.add(schedule3);
+
+                            timetableView.add(schedules0);
+                            timetableView.add(schedules1);
+                            timetableView.add(schedules2);
+                            timetableView.add(schedules3);
+
+                        } else {
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonObject> call, Throwable t) {
+
+                    }
+                });
+
             }
         });
 
@@ -211,11 +282,15 @@ public class TimetableActivity extends AppCompatActivity {//implements View.OnCl
                 startActivity(intent);
                 finish();
                 return true;
-
             case R.id.action_timetable:
                 Toast.makeText(getApplicationContext(),"시간표 클릭", Toast.LENGTH_SHORT).show();
                 Intent intent2 = new Intent(this, TimetableActivity.class);
                 startActivity(intent2);
+                finish();
+            case R.id.action_edit:
+                Toast.makeText(getApplicationContext(),"수정하기 클릭", Toast.LENGTH_SHORT).show();
+                Intent intent3 = new Intent(this, EditInfoActivity.class);
+                startActivity(intent3);
                 finish();
             default:
                 // If we got here, the user's action was not recognized.
@@ -226,7 +301,49 @@ public class TimetableActivity extends AppCompatActivity {//implements View.OnCl
         }
     }
 
-//서버로부터 가져온 시간을 실제 시간으로 바꿔주기
+    public void Getschedule(String income, Schedule schedule){
+        String[] split = {};
+        String[] subjecttime = {};
+        String[] time1 = {};
+        String[] time2 = {};
+        String[] time3 = {};
+        split = income.split("\"");
+        for (int i = 0; i < split.length; i++) {
+            split[i] = split[i].replaceAll("\\[", "");
+        }
+        schedule.setClassTitle(split[1]);//과목명 설정해주
+
+        subjecttime = split[3].split(",");
+        time1 = subjecttime[0].split("/");
+        //time2 = subjecttime[1].split("/");
+        //time3 = subjecttime[2].split("/");
+        //[0]은 요일, [1]은 시작시간, [2]은 종료시간
+
+        schedule.setDay(setdays(time1[0]));
+        schedule.setStartTime(new Time(setHour(parseInt(time1[1])), setMinute(parseInt(time1[1]))));
+        schedule.setEndTime(new Time(setHour(parseInt(time1[2])+1), setMinute(parseInt(time1[2])+1)));
+    }
+
+    //가져온 내용으로부터 과목명만 빼내기
+    public String getsubjectname(String income){
+        String[] split = {};
+        split = income.split("\"");
+        for (int i = 0; i < split.length; i++) {
+            split[i] = split[i].replaceAll("\\[", "");
+        }
+        return split[1];
+    }
+    //가져온 내용으로부터 시간을 빼내기
+    public String getsubjecttime(String income){
+        String[] split = {};
+        split = income.split("\"");
+        for (int i = 0; i < split.length; i++) {
+            split[i] = split[i].replaceAll("\\[", "");
+        }
+        return split[3];
+    }
+
+    //서버로부터 가져온 시간을 실제 시간으로 바꿔주기
     public int setHour(int time) {
         int H;
         if(time%4==0)
@@ -251,7 +368,7 @@ public class TimetableActivity extends AppCompatActivity {//implements View.OnCl
         return m;
     }
 
-    public int setDay(String day){
+    public int setdays(String day){
         int d = 0;
         switch (day){
             case "월": d = 0;

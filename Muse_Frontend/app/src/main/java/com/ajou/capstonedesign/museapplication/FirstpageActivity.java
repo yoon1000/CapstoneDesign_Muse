@@ -17,11 +17,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+
+import java.util.ArrayList;
 
 import static java.lang.Float.parseFloat;
 import static java.lang.Integer.parseInt;
@@ -53,6 +56,8 @@ public class FirstpageActivity extends AppCompatActivity {
     private TextView textView3;
     private TextView textViewSemester;
     private Toolbar toolbar;
+
+    private ImageView passorfail;
 
     String recomend = "";
 
@@ -92,6 +97,7 @@ public class FirstpageActivity extends AppCompatActivity {
         pieView1.setPercentageBackgroundColor(getResources().getColor(R.color.main));
         pieView2.setPercentageBackgroundColor(getResources().getColor(R.color.main));
 
+        passorfail = (ImageView)findViewById(R.id.passorfail);
 
 
         //id 값을 서버로 보내주기
@@ -171,12 +177,16 @@ public class FirstpageActivity extends AppCompatActivity {
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if(response.body().get("code").getAsInt() == 200) {
                     String data = response.body().get("result").toString();//data=[{"language_grade":760}]
+                    /*JsonArray data = response.body().get("result").getAsJsonArray();
+                    String[] data = response.body().get("result").getAsJsonArray();//data=[{"language_grade":760}]*/
+
                     String[] split = data.split(":");
                     String nonsubjectdata = split[1];
                     String[] split2 = nonsubjectdata.split("[}]");
                     String nonsubject = split2[0];
                     //Integer nonsubjectint = parseInt(split2[0]);
                     textView3.setText("TOEIC 점수는 "+nonsubject+" 이상 받아야 합니다.");
+                    SharedPreference.setAttribute(FirstpageActivity.CONTEXT, "nonsubject", nonsubject);
                 }
                 else {
                     Toast.makeText(FirstpageActivity.this, response.body().get("code").getAsString(), Toast.LENGTH_SHORT)
@@ -207,6 +217,13 @@ public class FirstpageActivity extends AppCompatActivity {
                 String[] split2 = userdata.split("[}]");
                 String userdata2 = split2[0];
                 userscore.setText(userdata2);
+                SharedPreference.setAttribute(FirstpageActivity.CONTEXT, "userscore", userdata2);
+
+                int Nonsubject = parseInt(SharedPreference.getAttribute(FirstpageActivity.CONTEXT, "nonsubject"));
+                int Userscore = parseInt(SharedPreference.getAttribute(FirstpageActivity.CONTEXT, "userscore"));
+                if(Userscore>=Nonsubject){
+                    passorfail.setImageResource(R.drawable.pass);
+                }
             }
 
             @Override
@@ -229,6 +246,8 @@ public class FirstpageActivity extends AppCompatActivity {
 
             }
         });
+
+
 
 
 
@@ -260,7 +279,7 @@ public class FirstpageActivity extends AppCompatActivity {
                 JsonObject usersemester = new JsonObject();
                 usersemester.addProperty("id", SharedPreference.getAttribute(FirstpageActivity.this,"id"));
                 usersemester.addProperty("major", SharedPreference.getAttribute(FirstpageActivity.this,"major"));
-                usersemester.addProperty("semester", "1학기");
+                usersemester.addProperty("semester", 1);
 
                 Call<JsonObject> semester = retrofitCommunication.majorsemester(usersemester);
 
@@ -303,7 +322,7 @@ public class FirstpageActivity extends AppCompatActivity {
                 JsonObject usersemester = new JsonObject();
                 usersemester.addProperty("id", SharedPreference.getAttribute(FirstpageActivity.this,"id"));
                 usersemester.addProperty("major", SharedPreference.getAttribute(FirstpageActivity.this,"major"));
-                usersemester.addProperty("semester", "2학기");
+                usersemester.addProperty("semester", 2);
 
                 Call<JsonObject> semester = retrofitCommunication.majorsemester(usersemester);
 
@@ -617,6 +636,13 @@ public class FirstpageActivity extends AppCompatActivity {
                 Intent intent2 = new Intent(this, TimetableActivity.class);
                 startActivity(intent2);
                 finish();
+                return true;
+            case R.id.action_edit:
+                Toast.makeText(getApplicationContext(),"수정하기 클릭", Toast.LENGTH_SHORT).show();
+                Intent intent3 = new Intent(this, EditInfoActivity.class);
+                startActivity(intent3);
+                finish();
+                return true;
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
@@ -640,7 +666,7 @@ public class FirstpageActivity extends AppCompatActivity {
             split[i] = split[i].replaceAll("[:]","");
             split[i] = split[i].replaceAll("[}]","");
             split[i] = split[i].replaceAll("\\]","");
-            outcome = outcome + split[i] + "\n";
+            outcome += "\t\t\t" + split[i] + "\n";
         }
         return outcome;
     }

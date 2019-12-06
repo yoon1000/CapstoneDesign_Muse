@@ -17,13 +17,8 @@
 
     <!-- Settings, should always be in the overflow -->
     <item
-        android:id="@+id/action1"
-        android:title="메뉴1"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/action2"
-        android:title="메뉴2"
+        android:id="@+id/action_edit"
+        android:title="학적정보 수정하기"
         app:showAsAction="never" />
 
 </menu>

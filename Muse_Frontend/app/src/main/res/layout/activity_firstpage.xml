@@ -4,7 +4,6 @@
     xmlns:plainpie="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="top|center"
     android:orientation="vertical"
     android:background="#F2F2F2">
 
@@ -28,32 +27,38 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
                 android:orientation="vertical">
 
                 <Button
+                    android:background="@drawable/button_custom"
+                    android:textColor="#FFFFFF"
                     android:id="@+id/addsubject"
-                    android:layout_width="wrap_content"
+                    android:layout_width="60dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:layout_marginTop="10dp"
-                    android:background="#F2F2F2"
+                    android:layout_marginRight="10dp"
                     android:fontFamily="@font/bmhanna_otf"
                     android:text="+"
-                    android:textColor="#FF80A2"
                     android:textSize="40dp" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:orientation="horizontal">
+
+
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/card_view1"
-                        android:layout_width="180dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="230dp"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:orientation="vertical"
@@ -67,6 +72,7 @@
                             android:layout_width="170dp"
                             android:layout_height="170dp"
                             android:layout_marginTop="20dp"
+                            android:layout_gravity="center_horizontal"
                             plainpie:inner_pie_padding="30"
                             plainpie:inner_text_visibility="true"
                             plainpie:percentage_size="30" />
@@ -81,12 +87,16 @@
 
                     </androidx.cardview.widget.CardView>
 
+                    <Space
+                        android:layout_width="10dp"
+                        android:layout_height="match_parent" />
+
                     <androidx.cardview.widget.CardView
                         android:id="@+id/card_view2"
-                        android:layout_width="180dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="230dp"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:orientation="vertical"
@@ -100,6 +110,7 @@
                             android:layout_width="170dp"
                             android:layout_height="170dp"
                             android:layout_marginTop="20dp"
+                            android:layout_gravity="center_horizontal"
                             plainpie:inner_pie_padding="30"
                             plainpie:inner_text_visibility="true"
                             plainpie:percentage_size="30" />
@@ -119,18 +130,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
                     android:layout_marginBottom="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
                     android:orientation="vertical"
                     app:cardBackgroundColor="#FFFFFF"
                     app:cardCornerRadius="4dp"
                     app:cardElevation="5dp"
                     app:cardPreventCornerOverlap="false">
 
-                    <LinearLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
+                        android:layout_height="match_parent">
 
                         <TextView
                             android:id="@+id/textView3"
@@ -140,7 +151,11 @@
                             android:fontFamily="@font/bmhanna_otf"
                             android:gravity="center"
                             android:text="비교과 영역 나타내줄 곳"
-                            android:textSize="20dp" />
+                            android:textColor="#FFFFFF"
+                            android:textSize="20dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
                             android:id="@+id/toeicscore"
@@ -149,18 +164,35 @@
                             android:fontFamily="@font/bmhanna_otf"
                             android:gravity="center"
                             android:text="이 곳에 점수를 입력하세요"
-                            android:textSize="20dp" />
+                            android:textColor="#E0E0E0"
+                            android:textSize="20dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
                         <TextView
                             android:id="@+id/userscore"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
                             android:fontFamily="@font/bmhanna_otf"
                             android:gravity="center"
                             android:text="점수 받아오는 곳"
-                            android:textSize="20dp" />
-                    </LinearLayout>
+                            android:textSize="20dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/toeicscore" />
+
+                        <ImageView
+                            android:id="@+id/passorfail"
+                            android:layout_width="100dp"
+                            android:layout_height="60dp"
+                            android:layout_marginEnd="48dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toEndOf="@+id/userscore"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.cardview.widget.CardView>
 
@@ -169,8 +201,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
                     android:layout_marginBottom="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
                     android:orientation="vertical"
                     app:cardBackgroundColor="#FFFFFF"
                     app:cardCornerRadius="4dp"
@@ -188,16 +221,18 @@
                             android:orientation="horizontal">
 
                             <Button
+                                android:background="@drawable/button_topleft"
                                 android:id="@+id/firstOne"
-                                android:layout_width="45dp"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
                                 android:layout_height="wrap_content"
-                                android:background="#F2F2F2"
                                 android:fontFamily="@font/bmhanna_otf"
                                 android:text="1-1" />
 
                             <Button
                                 android:id="@+id/firstTwo"
-                                android:layout_width="45dp"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
                                 android:layout_height="wrap_content"
                                 android:background="#F2F2F2"
                                 android:fontFamily="@font/bmhanna_otf"
@@ -205,7 +240,8 @@
 
                             <Button
                                 android:id="@+id/secondOne"
-                                android:layout_width="45dp"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
                                 android:layout_height="wrap_content"
                                 android:background="#F2F2F2"
                                 android:fontFamily="@font/bmhanna_otf"
@@ -213,7 +249,8 @@
 
                             <Button
                                 android:id="@+id/secondTwo"
-                                android:layout_width="45dp"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
                                 android:layout_height="wrap_content"
                                 android:background="#F2F2F2"
                                 android:fontFamily="@font/bmhanna_otf"
@@ -221,7 +258,8 @@
 
                             <Button
                                 android:id="@+id/thirdOne"
-                                android:layout_width="45dp"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
                                 android:layout_height="wrap_content"
                                 android:background="#F2F2F2"
                                 android:fontFamily="@font/bmhanna_otf"
@@ -230,28 +268,28 @@
 
                             <Button
                                 android:id="@+id/thirdTwo"
-                                android:layout_width="45dp"
-                                android:layout_height="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_weight="1"
+                                android:layout_height="wrap_content"
                                 android:background="#F2F2F2"
                                 android:fontFamily="@font/bmhanna_otf"
                                 android:text="3-2" />
 
                             <Button
                                 android:id="@+id/fourthOne"
-                                android:layout_width="45dp"
-                                android:layout_height="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_weight="1"
+                                android:layout_height="wrap_content"
                                 android:background="#F2F2F2"
                                 android:fontFamily="@font/bmhanna_otf"
                                 android:text="4-1" />
 
                             <Button
+                                android:background="@drawable/button_topright"
                                 android:id="@+id/fourthTwo"
-                                android:layout_width="45dp"
-                                android:layout_height="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_weight="1"
-                                android:background="#F2F2F2"
+                                android:layout_height="wrap_content"
                                 android:fontFamily="@font/bmhanna_otf"
                                 android:text="4-2" />
                         </LinearLayout>
@@ -262,7 +300,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/bmhanna_otf"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 

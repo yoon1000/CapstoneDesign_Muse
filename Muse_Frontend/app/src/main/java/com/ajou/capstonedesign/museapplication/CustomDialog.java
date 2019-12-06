@@ -1,7 +1,9 @@
 package com.ajou.capstonedesign.museapplication;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -78,6 +80,9 @@ public class CustomDialog {
 
                 // 커스텀 다이얼로그를 종료한다.
                 dlg.dismiss();
+                Intent intent = new Intent(context, FirstpageActivity.class);
+                context.startActivity(intent);
+                ((Activity)context).finish();
             }
         });
 
@@ -89,7 +94,13 @@ public class CustomDialog {
 
                 // 커스텀 다이얼로그를 종료한다.
                 dlg.dismiss();
+                Intent intent = new Intent(context, FirstpageActivity.class);
+                context.startActivity(intent);
+                ((Activity)context).finish();
             }
         });
     }
+
+
+
 }

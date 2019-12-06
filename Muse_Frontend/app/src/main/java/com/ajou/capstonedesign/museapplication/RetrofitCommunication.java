@@ -64,6 +64,13 @@ public interface RetrofitCommunication {
     @POST("/studentInfo/main/mainLanguageScore")
     Call<JsonObject> userscore(@Body JsonObject userID);
 
+    //사용자의 아이디와 옵션 두가지를 보내면 추천 시간표를 보내준다
+    @POST("/timeTable/timeTable/time")
+    Call<JsonObject> timetable(@Body JsonObject userData);
+
+    //id만 보내주기
     @POST("/studentInfo/subject/completed_majorsubject")
     Call<JsonObject> completedsubject(@Body JsonObject userID);
+
+
 }

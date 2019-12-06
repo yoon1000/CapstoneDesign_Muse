@@ -98,6 +98,7 @@ public class LoginActivity extends AppCompatActivity {
                             //로그인이 되면 MainActivity로 넘어가준다
                             Intent intent = new Intent(LoginActivity.this, FirstpageActivity.class);
                             startActivity(intent);
+                            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                         }
                         else {
                             Toast.makeText(LoginActivity.this, response.body().get("code").getAsString(), Toast.LENGTH_SHORT)

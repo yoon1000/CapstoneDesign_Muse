@@ -45,7 +45,7 @@ public class ChooseMajorActivity extends AppCompatActivity {
         );
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        JsonObject majorlist = new JsonObject();
+        //JsonObject majorlist = new JsonObject();
 
         //retrofit통신으로 majorlist에 있는 내용들을 받아온다
         RetrofitCommunication retrofitCommunication = new RetrofitConnection().init();
