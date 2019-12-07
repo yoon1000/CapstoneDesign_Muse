@@ -15,12 +15,12 @@
             android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="MUSE"
-            android:textSize="30dp"
-            android:textColor="#000000"
-            android:gravity="center"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/bmhanna_otf"
-            android:layout_marginTop="20dp"/>
+            android:gravity="center"
+            android:text="전공 수정"
+            android:textColor="#000000"
+            android:textSize="30dp" />
 
     </LinearLayout>
 
@@ -37,8 +37,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="완료"
+            android:textColor="#FFFFFF"
             android:fontFamily="@font/bmhanna_otf"
-            android:layout_gravity="end"/>
+            android:layout_gravity="end"
+            android:background="@drawable/button_custom"/>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -50,9 +52,10 @@
                 android:orientation="vertical" >
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/editsubjectlist"
+                    android:id="@+id/majorsubjectlist"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="wrap_content"
+                    android:background="#F0F0F0" />
             </LinearLayout>
         </ScrollView>
 

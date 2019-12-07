@@ -15,12 +15,12 @@
             android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="MUSE"
-            android:textSize="30dp"
-            android:textColor="#000000"
-            android:gravity="center"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/bmhanna_otf"
-            android:layout_marginTop="20dp"/>
+            android:gravity="center"
+            android:text="교양 추가"
+            android:textColor="#000000"
+            android:textSize="30dp" />
 
     </LinearLayout>
 
@@ -38,7 +38,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:fontFamily="@font/bmhanna_otf"
-            android:text="완료" />
+            android:text="완료"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/button_custom"/>
 
         <ScrollView
             android:layout_width="match_parent"

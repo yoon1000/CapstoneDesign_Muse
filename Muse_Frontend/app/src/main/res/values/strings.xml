@@ -24,11 +24,22 @@
         <item>"성균관대학교"</item>
     </string-array>
 
-    <string-array name="Major_list">
-        <item>"소프트웨어학과"</item>
-        <item>"사이버보안학과"</item>
-        <item>"미디어학과"</item>
-        <item>"전자공학과"</item>
+    <string-array name="semester">
+        <item>"1학기"</item>
+        <item>"2학기"</item>
+        <item>"3학기"</item>
+        <item>"4학기"</item>
+        <item>"5학기"</item>
+        <item>"6학기"</item>
+        <item>"7학기"</item>
+        <item>"8학기"</item>
+    </string-array>
+
+    <string-array name="option">
+        <item>"월 공강"</item>
+        <item>"금 공강"</item>
+        <item>"오후 수업 위주"</item>
+        <item>"점심 시간 확보"</item>
     </string-array>
 
     <string-array name="Number_list">

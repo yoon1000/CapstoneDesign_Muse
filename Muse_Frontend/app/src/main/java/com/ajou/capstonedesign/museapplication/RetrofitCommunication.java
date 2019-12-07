@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -36,9 +37,17 @@ public interface RetrofitCommunication {
     @POST("/studentInfo/main/majorCredit")
     Call<JsonObject> majorcreditSum(@Body JsonObject userID);
 
+    //전공이랑 학번 보내줘야함
+    @POST("/studentInfo/main/required_majorCredit")
+    Call<JsonObject> requiredmajorcredit(@Body JsonObject userData);
+
     //파이차트에 띄워줄 사용자의 현재 교양학점 가져오기
     @POST("/studentInfo/main/nonmajorCredit")
     Call<JsonObject> nonmajorcreditSum(@Body JsonObject userID);
+
+    //전공이랑 학번 보내줘야함
+    @POST("/studentInfo/main/required_nonmajorCredit")
+    Call<JsonObject> requiredmnonajorcredit(@Body JsonObject userData);
 
     //사용자가 들은 전공과목들 선택 후 서버에 반영
     @POST("/studentInfo/subject/majorlist")
@@ -68,9 +77,18 @@ public interface RetrofitCommunication {
     @POST("/timeTable/timeTable/time")
     Call<JsonObject> timetable(@Body JsonObject userData);
 
-    //id만 보내주기
+    //사용자의 데이터에서 들은 전공 데이터만 받아오기
     @POST("/studentInfo/subject/completed_majorsubject")
     Call<JsonObject> completedsubject(@Body JsonObject userID);
 
+    //사용자의 데이터에서 들은 교양 데이터만 받아오기
+
+    //사용자가 수정하고 싶은 전공 과목을 보내면 데이터베이스에서 삭제해주기
+    @DELETE("/StudentMajorlist")
+    Call<JsonObject> deletemajor(@Body JsonObject subjectData);
+
+    //사용자가 수정하고 싶은 교양 과목을 보내면 데이터베이스에서 삭제해주기
+    @DELETE("/StudentMajorlist")
+    Call<JsonObject> deletenonmajor(@Body JsonObject subjectData);
 
 }

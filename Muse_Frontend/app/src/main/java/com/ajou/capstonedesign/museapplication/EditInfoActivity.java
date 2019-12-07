@@ -9,13 +9,17 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class EditInfoActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
-    private TextView edit;
+
+    private Button editmajor;
+    private Button editnonmajor;
+    private Button editfinal;
 
 
 
@@ -27,15 +31,33 @@ public class EditInfoActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar) ;
         setSupportActionBar(toolbar);
 
-        edit = (TextView)findViewById(R.id.editSubject);
+        editmajor = (Button)findViewById(R.id.editmajor);
+        editnonmajor = (Button)findViewById(R.id.editnonmajor);
+        editfinal = (Button)findViewById(R.id.editfinal);
 
-        edit.setOnClickListener(new View.OnClickListener() {
+        editmajor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(EditInfoActivity.this, EditSubjectActivity.class);
+                Intent intent = new Intent(EditInfoActivity.this, Editmajor.class);
                 startActivityForResult(intent, 103);
             }
         });
+
+        editnonmajor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EditInfoActivity.this, Editnonmajor.class);
+                startActivityForResult(intent, 104);
+            }
+        });
+
+        editfinal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
     }
 
     @Override

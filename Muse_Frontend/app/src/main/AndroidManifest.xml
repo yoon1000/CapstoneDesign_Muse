@@ -11,7 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EditSubjectActivity"></activity>
+        <activity android:name=".Editnonmajor"></activity>
+        <activity android:name=".Editmajor" />
+        <activity android:name=".TimetableThree" />
+        <activity android:name=".TimetableTwo" />
+        <activity android:name=".TimetableOne" />
         <activity android:name=".EditInfoActivity" />
         <activity android:name=".TimetableEditActivity" />
         <activity android:name=".TimetableActivity" />

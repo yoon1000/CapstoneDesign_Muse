@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".TimetableActivity">
+    tools:context=".TimetableActivity"
+    android:background="#F2F2F2">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -17,41 +18,50 @@
 
 
     <TextView
-        android:id="@+id/optionresult"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <LinearLayout
+        android:layout_marginTop="70dp"
+        android:id="@+id/textView6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:text="학기 선택하기"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:fontFamily="@font/bmhanna_otf"/>
 
-        <Button
-            android:id="@+id/timetablesemester"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="학기 고르기" />
+    <Spinner
+        android:id="@+id/selectsemester"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:entries="@array/semester"
+        android:layout_gravity="center"
+        android:fontFamily="@font/bmhanna_otf"/>
 
-        <Button
-            android:id="@+id/timetableoption"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="옵션 고르기" />
-    </LinearLayout>
+    <TextView
+        android:layout_marginTop="40dp"
+        android:id="@+id/textView7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="옵션 선택하기"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:fontFamily="@font/bmhanna_otf"/>
+
+    <Spinner
+        android:id="@+id/selectoption"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:entries="@array/option"
+        android:layout_gravity="center"
+        android:fontFamily="@font/bmhanna_otf"/>
 
     <Button
+        android:layout_marginTop="40dp"
+        android:background="@drawable/button_custom"
         android:id="@+id/maketimetable"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="시간표 가져오기" />
-
-    <com.github.tlaabs.timetableview.TimetableView
-        android:id="@+id/timetable"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:header_title="@array/header_title"
-        app:row_count="14" />
+        android:layout_gravity="center"
+        android:text="시간표 가져오기"
+        android:textColor="#FFFFFF"
+        android:fontFamily="@font/bmhanna_otf"/>
 
 </LinearLayout>

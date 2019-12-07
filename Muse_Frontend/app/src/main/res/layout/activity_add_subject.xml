@@ -28,9 +28,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="완료"
+            android:textColor="#FFFFFF"
             android:fontFamily="@font/bmhanna_otf"
             android:layout_gravity="end"
-            android:background="#F2F2F2"/>
+            android:background="@drawable/button_custom"/>
         <Button
             android:id="@+id/majorbtn"
             android:layout_width="match_parent"

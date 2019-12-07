@@ -11,7 +11,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,33 +44,15 @@ import retrofit2.Response;
 import static java.lang.Float.parseFloat;
 import static java.lang.Integer.parseInt;
 
-public class TimetableActivity extends AppCompatActivity {//implements View.OnClickListener
-    //private Context context;
-    //public static final int REQUEST_ADD = 1;
-    //public static final int REQUEST_EDIT = 2;
-
-    //private Button addBtn;
-    //private Button clearBtn;
-    //private Button saveBtn;
-    //private Button loadBtn;
+public class TimetableActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
 
-    private Button timetablesemester;
-    private Button timetableoption;
+
     private Button maketimetable;
 
-    private TextView result;
-    String selectedsemster = "";
-    String selectedoption = "";
-
-    String[] splitsubject ={};
-
-    String[] subjectname;
-    String[] day1;
-    String[] day2;
-    int[] starttime;
-    int[] endtime;
+    private Spinner selectsemester;
+    private Spinner selectoption;
 
     private TimetableView timetableView;
 
@@ -81,186 +65,81 @@ public class TimetableActivity extends AppCompatActivity {//implements View.OnCl
         toolbar = (Toolbar) findViewById(R.id.toolbar) ;
         setSupportActionBar(toolbar);
 
-        timetablesemester = (Button)findViewById(R.id.timetablesemester);
-        timetableoption = (Button) findViewById(R.id.timetableoption);
+
         maketimetable = (Button)findViewById(R.id.maketimetable);
 
-        result = (TextView)findViewById(R.id.optionresult);
+
 
         timetableView = (TimetableView) findViewById(R.id.timetable);
 
-        //사용자가 원하는 학기 고르기
-        timetablesemester.setOnClickListener(new View.OnClickListener() {
+        selectsemester = (Spinner)findViewById(R.id.selectsemester);
+        selectoption = (Spinner)findViewById(R.id.selectoption);
+
+
+        selectsemester.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View v) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch(parent.getItemAtPosition(position).toString()){
+                    case "1학기":
+                        SharedPreference.setAttribute(view.getContext(), "selectedsemester", "1");break;
+                    case "2학기":
+                        SharedPreference.setAttribute(view.getContext(), "selectedsemester", "2");break;
+                    case "3학기":
+                        SharedPreference.setAttribute(view.getContext(), "selectedsemester", "3");break;
+                    case "4학기":
+                        SharedPreference.setAttribute(view.getContext(), "selectedsemester", "4");break;
+                    case "5학기":
+                        SharedPreference.setAttribute(view.getContext(), "selectedsemester", "5");break;
+                    case "6학기":
+                        SharedPreference.setAttribute(view.getContext(), "selectedsemester", "6");break;
+                    case "7학기":
+                        SharedPreference.setAttribute(view.getContext(), "selectedsemester", "7");break;
+                    case "8학기":
+                        SharedPreference.setAttribute(view.getContext(), "selectedsemester", "8");break;
+                }
+            }
 
-                final String[] items = new String[]{"1학기", "2학기", "3학기", "4학기", "5학기", "6학기","7학기", "8학기"};
-                final int[] selectedindex = {0};
-
-                AlertDialog.Builder dialog = new AlertDialog.Builder(TimetableActivity.this);
-                dialog.setTitle("학기 고르기")
-                        .setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                selectedindex[0] = which;
-
-                            }
-                        })
-                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                selectedsemster = items[selectedindex[0]];
-                                SharedPreference.setAttribute(v.getContext(), "selectedsemster", items[selectedindex[0]]);
-                                Toast.makeText(TimetableActivity.this, items[selectedindex[0]], Toast.LENGTH_SHORT).show();
-                            }
-                        }).create().show();
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
 
-        //사용자가 원하는 옵션 고르기
-        timetableoption.setOnClickListener(new View.OnClickListener() {
+        selectoption.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View v) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (parent.getItemAtPosition(position).toString()){
+                    case "월 공강":
+                        SharedPreference.setAttribute(view.getContext(), "selectedoption", "월");break;
+                    case "금 공강":
+                        SharedPreference.setAttribute(view.getContext(), "selectedoption", "금");break;
+                    case "점심 시간 확보":
+                        SharedPreference.setAttribute(view.getContext(), "selectedoption", "/13/");break;
+                    case "오후 수업 위주":
+                        SharedPreference.setAttribute(view.getContext(), "selectedoption", "/1/");break;
+                }
 
-                final String[] items = new String[]{"월 공강", "금 공강", "점심시간 확보", "오후 수업 위주"};
-                final int[] selectedindex = {0};
+            }
 
-                AlertDialog.Builder dialog = new AlertDialog.Builder(TimetableActivity.this);
-                dialog.setTitle("옵션 고르기")
-                        .setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                selectedindex[0] = which;
-
-                            }
-                        })
-                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                selectedoption = items[selectedindex[0]];
-                                SharedPreference.setAttribute(v.getContext(), "selectedoption", items[selectedindex[0]]);
-                                Toast.makeText(TimetableActivity.this, items[selectedindex[0]], Toast.LENGTH_SHORT).show();
-                            }
-                        }).create().show();
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
-
 
 
         maketimetable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                JsonObject userData = new JsonObject();
-
-                userData.addProperty("id",SharedPreference.getAttribute(TimetableActivity.this,"id"));
-                userData.addProperty("semester", 5);
-                userData.addProperty("option", "월");
-
-                RetrofitCommunication retrofitCommunication = new RetrofitConnection().init();
-                Call<JsonObject> timetable = retrofitCommunication.timetable(userData);
-
-                timetable.enqueue(new Callback<JsonObject>() {
-                    @Override
-                    public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                        if (response.body().get("code").getAsInt() == 200) {
-                            String rawdata1 = response.body().get("result1").toString();
-                            Log.d("JsonObject1",rawdata1);
-
-                            /*String rawdata2 = response.body().get("result2").toString();
-                            String rawdata3 = response.body().get("result3").toString();
-                            Log.d("JsonObject2",rawdata2);
-                            Log.d("JsonObject3",rawdata3);*/
-
-                            ArrayList<Schedule> schedules0 = new ArrayList<Schedule>();
-                            ArrayList<Schedule> schedules1 = new ArrayList<Schedule>();
-                            ArrayList<Schedule> schedules2 = new ArrayList<Schedule>();
-                            ArrayList<Schedule> schedules3 = new ArrayList<Schedule>();
-
-                            Schedule schedule0 = new Schedule();
-                            Schedule schedule1 = new Schedule();
-                            Schedule schedule2 = new Schedule();
-                            Schedule schedule3 = new Schedule();
-
-                            splitsubject = rawdata1.split("\\]");//과목 별로 나뉜다.
-
-                            Getschedule(splitsubject[0], schedule0);
-                            Getschedule(splitsubject[1], schedule1);
-                            Getschedule(splitsubject[2], schedule2);
-                            Getschedule(splitsubject[3], schedule3);
-
-                            schedules0.add(schedule0);
-                            schedules1.add(schedule1);
-                            schedules2.add(schedule2);
-                            schedules3.add(schedule3);
-
-                            timetableView.add(schedules0);
-                            timetableView.add(schedules1);
-                            timetableView.add(schedules2);
-                            timetableView.add(schedules3);
-
-                        } else {
-
-                        }
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<JsonObject> call, Throwable t) {
-
-                    }
-                });
+                Intent intent = new Intent(TimetableActivity.this, TimetableOne.class);
+                startActivity(intent);
+                finish();
 
             }
         });
 
 
-       /* ArrayList<Schedule> schedules1 = new ArrayList<Schedule>();
-        ArrayList<Schedule> schedules2 = new ArrayList<Schedule>();
-        ArrayList<Schedule> schedules3 = new ArrayList<Schedule>();
-        ArrayList<Schedule> schedules4 = new ArrayList<Schedule>();
-        ArrayList<Schedule> schedules5 = new ArrayList<Schedule>();
-
-        Schedule schedule1 = new Schedule();
-        schedule1.setClassTitle("예시 과목"); // sets subject
-        schedule1.setClassPlace("팔달409"); // sets place
-        schedule1.setProfessorName("김떙땡"); // sets professor
-        schedule1.setStartTime(new Time(12,0)); // sets the beginning of class time (hour,minute)
-        schedule1.setEndTime(new Time(13,15)); // sets the end of class time (hour,minute)
-        schedule1.setDay(2);//2 = wednesday
-
-        Schedule schedule2 = new Schedule();
-        schedule2.setClassTitle("예시 과목2"); // sets subject
-        schedule2.setClassPlace("팔달1025"); // sets place
-        schedule2.setProfessorName("김모모"); // sets professor
-        schedule2.setStartTime(new Time(10,30)); // sets the beginning of class time (hour,minute)
-        schedule2.setEndTime(new Time(11,45)); // sets the end of class time (hour,minute)
-        schedule2.setDay(1);//2 = wednesday
-
-        Schedule schedule3 = new Schedule();
-        schedule3.setClassTitle("예시 과목3"); // sets subject
-        schedule3.setClassPlace("팔달309"); // sets place
-        schedule3.setProfessorName("강떙땡"); // sets professor
-        schedule3.setStartTime(new Time(16,30)); // sets the beginning of class time (hour,minute)
-        schedule3.setEndTime(new Time(21,00)); // sets the end of class time (hour,minute)
-        schedule3.setDay(0);//2 = wednesday
-
-
-
-        schedules1.add(schedule1);
-        schedules2.add(schedule2);
-        schedules3.add(schedule3);
-
-
-
-        //.. add one or more schedules
-        timetable.add(schedules1);
-        timetable.add(schedules2);
-        timetable.add(schedules3);*/
-
-        //init();
     }
 
 
@@ -280,18 +159,23 @@ public class TimetableActivity extends AppCompatActivity {//implements View.OnCl
                 Toast.makeText(getApplicationContext(),"홈메뉴 클릭", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, FirstpageActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                 finish();
                 return true;
             case R.id.action_timetable:
                 Toast.makeText(getApplicationContext(),"시간표 클릭", Toast.LENGTH_SHORT).show();
                 Intent intent2 = new Intent(this, TimetableActivity.class);
                 startActivity(intent2);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 finish();
+                return true;
             case R.id.action_edit:
                 Toast.makeText(getApplicationContext(),"수정하기 클릭", Toast.LENGTH_SHORT).show();
                 Intent intent3 = new Intent(this, EditInfoActivity.class);
                 startActivity(intent3);
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                 finish();
+                return true;
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
@@ -300,90 +184,4 @@ public class TimetableActivity extends AppCompatActivity {//implements View.OnCl
 
         }
     }
-
-    public void Getschedule(String income, Schedule schedule){
-        String[] split = {};
-        String[] subjecttime = {};
-        String[] time1 = {};
-        String[] time2 = {};
-        String[] time3 = {};
-        split = income.split("\"");
-        for (int i = 0; i < split.length; i++) {
-            split[i] = split[i].replaceAll("\\[", "");
-        }
-        schedule.setClassTitle(split[1]);//과목명 설정해주
-
-        subjecttime = split[3].split(",");
-        time1 = subjecttime[0].split("/");
-        //time2 = subjecttime[1].split("/");
-        //time3 = subjecttime[2].split("/");
-        //[0]은 요일, [1]은 시작시간, [2]은 종료시간
-
-        schedule.setDay(setdays(time1[0]));
-        schedule.setStartTime(new Time(setHour(parseInt(time1[1])), setMinute(parseInt(time1[1]))));
-        schedule.setEndTime(new Time(setHour(parseInt(time1[2])+1), setMinute(parseInt(time1[2])+1)));
-    }
-
-    //가져온 내용으로부터 과목명만 빼내기
-    public String getsubjectname(String income){
-        String[] split = {};
-        split = income.split("\"");
-        for (int i = 0; i < split.length; i++) {
-            split[i] = split[i].replaceAll("\\[", "");
-        }
-        return split[1];
-    }
-    //가져온 내용으로부터 시간을 빼내기
-    public String getsubjecttime(String income){
-        String[] split = {};
-        split = income.split("\"");
-        for (int i = 0; i < split.length; i++) {
-            split[i] = split[i].replaceAll("\\[", "");
-        }
-        return split[3];
-    }
-
-    //서버로부터 가져온 시간을 실제 시간으로 바꿔주기
-    public int setHour(int time) {
-        int H;
-        if(time%4==0)
-            H = time/4 +8;
-        else
-            H = time/4 +9;
-        return H;
-    }
-
-    public int setMinute(int time) {
-        int m=0;
-        switch(time%4){
-            case 1: m = 0;
-                break;
-            case 2: m = 15;
-                break;
-            case 3: m = 30;
-                break;
-            case 0: m = 45;
-                break;
-        }
-        return m;
-    }
-
-    public int setdays(String day){
-        int d = 0;
-        switch (day){
-            case "월": d = 0;
-                break;
-            case "화": d = 1;
-                break;
-            case "수": d = 2;
-                break;
-            case "목": d = 3;
-                break;
-            case "금": d = 4;
-                break;
-        }
-        return d;
-    }
-
-
 }

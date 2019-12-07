@@ -60,6 +60,8 @@ public class FirstpageActivity extends AppCompatActivity {
     private ImageView passorfail;
 
     String recomend = "";
+    String temp="";
+    String[] splitsubject ={};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,10 +101,31 @@ public class FirstpageActivity extends AppCompatActivity {
 
         passorfail = (ImageView)findViewById(R.id.passorfail);
 
+        //JsonObject userData = new JsonObject();
+        //userData.addProperty("major", SharedPreference.getAttribute(FirstpageActivity.this,"major"));
+        //userData.addProperty("num", SharedPreference.getAttribute(FirstpageActivity.this,"num"));
+
+
+        //Call<JsonObject> requiredmajorcredit = retrofitCommunication.requiredmajorcredit(userData);
+
+        /*requiredmajorcredit.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if(response.body().get("code").getAsInt() == 200){
+                    String requireddata = response.body().get("result").toString();
+                    Log.d("졸업요건 전공학점:", requireddata);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+
+            }
+        });*/
+
 
         //id 값을 서버로 보내주기
         JsonObject userID = new JsonObject();
-
         userID.addProperty("id",SharedPreference.getAttribute(FirstpageActivity.this,"id"));
 
         RetrofitCommunication retrofitCommunication = new RetrofitConnection().init();
@@ -288,7 +311,14 @@ public class FirstpageActivity extends AppCompatActivity {
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         if(response.body().get("code").getAsInt() == 200) {
                             String data = response.body().get("result").toString();
-                            recomend = contents(data);
+
+                            splitsubject = data.split("[}]");
+                            recomend = content(splitsubject[0]) + "\n";
+                            Log.d("1번과목", recomend);
+                            for(int i=1;i<splitsubject.length-1;i++){
+                                temp += content2(splitsubject[i])+ "\n";
+                            }
+                            Log.d("나머지과목", temp);
                             textViewSemester.setText(recomend);
                         }
                         else {
@@ -331,7 +361,13 @@ public class FirstpageActivity extends AppCompatActivity {
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         if(response.body().get("code").getAsInt() == 200) {
                             String data = response.body().get("result").toString();
-                            recomend = contents(data);
+                            Log.d("data", data);
+
+                            splitsubject = data.split("[}]");
+                            recomend = content(splitsubject[0]) + "\n";
+                            for(int i=1; i<splitsubject.length-1; i++){
+                                recomend = recomend + content2(splitsubject[i])+ "\n";
+                            }
                             textViewSemester.setText(recomend);
                         }
                         else {
@@ -374,7 +410,12 @@ public class FirstpageActivity extends AppCompatActivity {
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         if(response.body().get("code").getAsInt() == 200) {
                             String data = response.body().get("result").toString();
-                            recomend = contents(data);
+
+                            splitsubject = data.split("[}]");
+                            recomend = content(splitsubject[0]) + "\n";
+                            for(int i=1;i<splitsubject.length-1;i++){
+                                recomend = recomend + content2(splitsubject[i])+ "\n";
+                            }
                             textViewSemester.setText(recomend);
                         }
                         else {
@@ -417,7 +458,12 @@ public class FirstpageActivity extends AppCompatActivity {
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         if(response.body().get("code").getAsInt() == 200) {
                             String data = response.body().get("result").toString();
-                            recomend = contents(data);
+
+                            splitsubject = data.split("[}]");
+                            recomend = content(splitsubject[0]) + "\n";
+                            for(int i=1;i<splitsubject.length-1;i++){
+                                recomend = recomend + content2(splitsubject[i])+ "\n";
+                            }
                             textViewSemester.setText(recomend);
                         }
                         else {
@@ -460,7 +506,12 @@ public class FirstpageActivity extends AppCompatActivity {
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         if(response.body().get("code").getAsInt() == 200) {
                             String data = response.body().get("result").toString();
-                            recomend = contents(data);
+
+                            splitsubject = data.split("[}]");
+                            recomend = content(splitsubject[0]) + "\n";
+                            for(int i=1; i<splitsubject.length-1; i++){
+                                recomend = recomend + content2(splitsubject[i])+ "\n";
+                            }
                             textViewSemester.setText(recomend);
                         }
                         else {
@@ -503,7 +554,12 @@ public class FirstpageActivity extends AppCompatActivity {
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         if(response.body().get("code").getAsInt() == 200) {
                             String data = response.body().get("result").toString();
-                            recomend = contents(data);
+
+                            splitsubject = data.split("[}]");
+                            recomend = content(splitsubject[0]) + "\n";
+                            for(int i=1;i<splitsubject.length-1;i++){
+                                recomend = recomend + content2(splitsubject[i])+ "\n";
+                            }
                             textViewSemester.setText(recomend);
                         }
                         else {
@@ -546,7 +602,12 @@ public class FirstpageActivity extends AppCompatActivity {
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         if(response.body().get("code").getAsInt() == 200) {
                             String data = response.body().get("result").toString();
-                            recomend = contents(data);
+
+                            splitsubject = data.split("[}]");
+                            recomend = content(splitsubject[0]) + "\n";
+                            for(int i=1;i<splitsubject.length-1;i++){
+                                recomend = recomend + content2(splitsubject[i])+ "\n";
+                            }
                             textViewSemester.setText(recomend);
                         }
                         else {
@@ -589,7 +650,12 @@ public class FirstpageActivity extends AppCompatActivity {
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         if(response.body().get("code").getAsInt() == 200) {
                             String data = response.body().get("result").toString();
-                            recomend = contents(data);
+
+                            splitsubject = data.split("[}]");
+                            recomend = content(splitsubject[0]) + "\n";
+                            for(int i=1;i<splitsubject.length-1;i++){
+                                recomend = recomend + content2(splitsubject[i])+ "\n";
+                            }
                             textViewSemester.setText(recomend);
                         }
                         else {
@@ -628,6 +694,7 @@ public class FirstpageActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"홈메뉴 클릭", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, FirstpageActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                 finish();
                 return true;
 
@@ -635,12 +702,14 @@ public class FirstpageActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"시간표 클릭", Toast.LENGTH_SHORT).show();
                 Intent intent2 = new Intent(this, TimetableActivity.class);
                 startActivity(intent2);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 finish();
                 return true;
             case R.id.action_edit:
                 Toast.makeText(getApplicationContext(),"수정하기 클릭", Toast.LENGTH_SHORT).show();
                 Intent intent3 = new Intent(this, EditInfoActivity.class);
                 startActivity(intent3);
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                 finish();
                 return true;
             default:
@@ -653,32 +722,42 @@ public class FirstpageActivity extends AppCompatActivity {
     }
 
     //학기별 과목 받아올 때 파싱하는 함수(과목명들만 남김)
-    public String contents(String income){
-        String[] split =income.split(",");
-        int splitlength = split.length;
-        String outcome ="";
+    public String content(String income){
+        income = income.replaceAll("\\[", "");
+        income = income.replaceAll("\\]", "");
+        income = income.replaceAll("[{]","");
+        income = income.replaceAll("\"", "");
+        income = income.replaceAll("[:]","");
+        income = income.replaceAll("subject_name","");
+        income = income.replaceAll("required","");
+        income = income.replaceAll("credit","");
+        income = income.replaceAll(" ", "");
 
-        for(int i=0;i<splitlength;i++){
-            split[i] = split[i].replaceAll("\"", "");
-            split[i] = split[i].replaceAll("\\[", "");
-            split[i] = split[i].replaceAll("subject_name", "");
-            split[i] = split[i].replaceAll("[{]","");
-            split[i] = split[i].replaceAll("[:]","");
-            split[i] = split[i].replaceAll("[}]","");
-            split[i] = split[i].replaceAll("\\]","");
-            outcome += "\t\t\t" + split[i] + "\n";
-        }
+        String[] split ={};
+        split = income.split(",");
+
+        String outcome = split[0]+"("+split[1]+"/"+split[2]+")";
+        Log.d("outcome1",outcome.toString());
         return outcome;
     }
 
-    /*@Override
-    protected void onResume() {
-        super.onResume();
-        // 화면에 보여주기 전에 준비를 끝냄
-        // 임시로 저장된 화면의 상태를 불러온다
-        //pieView1.notifyAll();
-        //pieView2.notifyAll();
-        //Toast.makeText(getApplicationContext(), "onResume() 호출됨", Toast.LENGTH_LONG).show();
-    }*/
+    public String content2(String income){
+        income = income.replaceAll("\\[", "");
+        income = income.replaceAll("\\]", "");
+        income = income.replaceAll("[{]","");
+        income = income.replaceAll("\"", "");
+        income = income.replaceAll("[:]","");
+        income = income.replaceAll("subject_name","");
+        income = income.replaceAll("required","");
+        income = income.replaceAll("credit","");
+        income = income.replaceAll(" ", "");
+
+        String[] split ={};
+        split = income.split(",");
+
+        String outcome = split[1]+"("+split[2]+"/"+split[3]+")";
+        Log.d("outcome2", outcome);
+        return outcome;
+    }
 
 }
