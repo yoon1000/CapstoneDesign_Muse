@@ -40,6 +40,7 @@ public class EditInfoActivity extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("MUSE");
 
         editmajor = (Button) findViewById(R.id.editmajor);
         editnonmajor = (Button) findViewById(R.id.editnonmajor);
@@ -131,8 +132,10 @@ public class EditInfoActivity extends AppCompatActivity {
 
                 }
 
-                Toast.makeText(EditInfoActivity.this, "홈화면 가서 확인", Toast.LENGTH_SHORT);
-
+                //Toast.makeText(EditInfoActivity.this, "홈화면 가서 확인", Toast.LENGTH_SHORT);
+                Intent intent = new Intent(EditInfoActivity.this, FirstpageActivity.class);
+                startActivity(intent);
+                finish();
             }
 
         });

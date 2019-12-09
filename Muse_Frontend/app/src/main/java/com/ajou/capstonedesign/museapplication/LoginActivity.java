@@ -81,6 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                             //내장메모리를 이용해 id값과 major값을 지정해준다
                             SharedPreference.setAttribute(v.getContext(), "id", jsonArray.get(0).getAsJsonObject().get("id").getAsString());
                             SharedPreference.setAttribute(v.getContext(), "major", jsonArray.get(0).getAsJsonObject().get("major").getAsString());
+                            SharedPreference.setAttribute(v.getContext(), "num", jsonArray.get(0).getAsJsonObject().get("num").getAsString());
 
                             //로그인이 되면 MainActivity로 넘어가준다
                             Intent intent = new Intent(LoginActivity.this, FirstpageActivity.class);

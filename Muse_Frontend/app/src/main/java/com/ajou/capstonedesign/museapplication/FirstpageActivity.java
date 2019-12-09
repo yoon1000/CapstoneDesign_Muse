@@ -62,6 +62,7 @@ public class FirstpageActivity extends AppCompatActivity {
     String recomend = "";
     String temp="";
     String[] splitsubject ={};
+    String Null = "null";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,12 +114,14 @@ public class FirstpageActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if(response.body().get("code").getAsInt() == 200){
+
                     String rawdata = response.body().get("result").toString();
                     Log.d("졸업요건 전공학점:", rawdata);
                     String[] splitrequired = rawdata.split(":");
-                    String split = splitrequired[1].replaceAll("[}]","");
-                    String result = split.replaceAll("\\]","");
+                    String split = splitrequired[1].replaceAll("[}]", "");
+                    String result = split.replaceAll("\\]", "");
                     SharedPreference.setAttribute(FirstpageActivity.this, "requiredmajor", result);
+
                 }
             }
 
@@ -133,12 +136,13 @@ public class FirstpageActivity extends AppCompatActivity {
         requirednonmajorcredit.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                if(response.body().get("code").getAsInt() == 200){
+                if(response.body().get("code").getAsInt() == 200) {
+
                     String rawdata = response.body().get("result").toString();
                     Log.d("졸업요건 교양학점:", rawdata);
                     String[] splitrequired = rawdata.split(":");
-                    String split = splitrequired[1].replaceAll("[}]","");
-                    String result = split.replaceAll("\\]","");
+                    String split = splitrequired[1].replaceAll("[}]", "");
+                    String result = split.replaceAll("\\]", "");
                     SharedPreference.setAttribute(FirstpageActivity.this, "requirednonmajor", result);
                 }
             }
@@ -165,20 +169,34 @@ public class FirstpageActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if (response.body().get("code").getAsInt() == 200) {
-                    String creditdata1 = response.body().get("result").toString();
-                    String[] splitCredit1 = creditdata1.split(":");
-                    String creditsumdata1 = splitCredit1[1];
-                    String[] splitCreditSum1 = creditsumdata1.split("[}]");
-                    Float required = parseFloat(SharedPreference.getAttribute(FirstpageActivity.this, "requiredmajor"));
-                    Log.d("requirddfadfasf", required.toString());
+                        String creditdata1 = response.body().get("result").toString();
+                        Log.d("creditdata1", creditdata1);
+                        String[] splitCredit1 = creditdata1.split(":");
+                        String creditsumdata1 = splitCredit1[1];
+                        Log.d("creditsumdata1", splitCredit1[1]);
+                        String[] splitCreditSum1 = creditsumdata1.split("[}]");
+                        Log.d("splitCreditSum1[0]", splitCreditSum1[0]);
+                        //int length = splitCreditSum1[0].length();
+                        //Log.d("AAAAAAAA", Integer.toString(length));
+                    if (splitCreditSum1[0].contains("n")) {
+                        Log.d("AAAAAA", "AAAAAAA");
+                        int required1Int = parseInt(SharedPreference.getAttribute(FirstpageActivity.this, "requiredmajor"));
+                        pieView1.setPercentage(0);
+                        pieView1.setInnerText(0 + "\n-\n" + required1Int);
+                    } else {
+                        Log.d("BBBBBB", "BBBBBBB");
+                        Float required = parseFloat(SharedPreference.getAttribute(FirstpageActivity.this, "requiredmajor"));
+                        Log.d("requirddfadfasf", required.toString());
 
-                    Float creditSum1 = parseFloat(splitCreditSum1[0]);
-                    int requiredInt = parseInt(SharedPreference.getAttribute(FirstpageActivity.this, "requiredmajor"));
-                    int creditSum1Int =  parseInt(splitCreditSum1[0]);;
+                        Float creditSum1 = parseFloat(splitCreditSum1[0]);
+                        int requiredInt = parseInt(SharedPreference.getAttribute(FirstpageActivity.this, "requiredmajor"));
+                        int creditSum1Int = parseInt(splitCreditSum1[0]);
 
-                    Float persent_creditSum1 = creditSum1/required;
-                    pieView1.setPercentage(persent_creditSum1*100);
-                    pieView1.setInnerText(creditSum1Int+"\n-\n"+requiredInt);
+
+                        Float persent_creditSum1 = creditSum1 / required;
+                        pieView1.setPercentage(persent_creditSum1 * 100);
+                        pieView1.setInnerText(creditSum1Int + "\n-\n" + requiredInt);
+                    }
                 } else {
                     Toast.makeText(FirstpageActivity.this, response.body().get("code").getAsString(), Toast.LENGTH_SHORT)
                             .show();
@@ -201,26 +219,29 @@ public class FirstpageActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if (response.body().get("code").getAsInt() == 200) {
-                    String creditdata2 = response.body().get("result").toString();
-                    String[] splitCredit2 = creditdata2.split(":");
-                    String creditsumdata2 = splitCredit2[1];
-                    String[] splitCreditSum2 = creditsumdata2.split("[}]");
-                    Float required2 = parseFloat(SharedPreference.getAttribute(FirstpageActivity.this, "requirednonmajor"));
-                    Float creditSum2 = parseFloat(splitCreditSum2[0]);
-                    int required2Int = parseInt(SharedPreference.getAttribute(FirstpageActivity.this, "requirednonmajor"));
-                    int creditSum2Int =  parseInt(splitCreditSum2[0]);;
+                        String creditdata2 = response.body().get("result").toString();
+                        Log.d("creditdata2", creditdata2);
+                        String[] splitCredit2 = creditdata2.split(":");
+                        String creditsumdata2 = splitCredit2[1];
+                        Log.d("creditsumdata2", creditsumdata2);
+                        String[] splitCreditSum2 = creditsumdata2.split("[}]");
+                        Log.d("splitCreditSum2[0]",splitCreditSum2[0] );
+                    if (splitCreditSum2[0].contains("n")) {
+                        int required1Int = parseInt(SharedPreference.getAttribute(FirstpageActivity.this, "requirednonmajor"));
+                        pieView2.setPercentage(0);
+                        pieView2.setInnerText(0 + "\n-\n" + required1Int);
+                    } else {
+                        Float required2 = parseFloat(SharedPreference.getAttribute(FirstpageActivity.this, "requirednonmajor"));
+                        Float creditSum2 = parseFloat(splitCreditSum2[0]);
+                        int required2Int = parseInt(SharedPreference.getAttribute(FirstpageActivity.this, "requirednonmajor"));
+                        int creditSum2Int = parseInt(splitCreditSum2[0]);
 
-                    Float persent_creditSum2 = creditSum2/required2;
-                    pieView2.setPercentage(persent_creditSum2*100);
-                    pieView2.setInnerText(creditSum2Int+"\n-\n"+required2Int);
 
+                        Float persent_creditSum2 = creditSum2 / required2;
+                        pieView2.setPercentage(persent_creditSum2 * 100);
+                        pieView2.setInnerText(creditSum2Int + "\n-\n" + required2Int);
+                    }
 
-
-
-
-                    //PieView pieView2 = (PieView) findViewById(R.id.pieViewNonMajor);
-                    //pieView2.setPercentage(persent_creditSum2/65*100);
-                    //pieView2.setInnerText(creditSum2+"\n-\n65");
                 } else {
                     Toast.makeText(FirstpageActivity.this, response.body().get("code").getAsString(), Toast.LENGTH_SHORT)
                             .show();
@@ -246,9 +267,8 @@ public class FirstpageActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if(response.body().get("code").getAsInt() == 200) {
-                    String data = response.body().get("result").toString();//data=[{"language_grade":760}]
-                    /*JsonArray data = response.body().get("result").getAsJsonArray();
-                    String[] data = response.body().get("result").getAsJsonArray();//data=[{"language_grade":760}]*/
+                    String data = response.body().get("result").toString();
+                    Log.d("비교과 요건", data);
 
                     String[] split = data.split(":");
                     String nonsubjectdata = split[1];
@@ -286,14 +306,24 @@ public class FirstpageActivity extends AppCompatActivity {
                 String userdata = split[1];
                 String[] split2 = userdata.split("[}]");
                 String userdata2 = split2[0];
-                userscore.setText(userdata2);
-                SharedPreference.setAttribute(FirstpageActivity.CONTEXT, "userscore", userdata2);
-
+                if (userdata2.contains("n")) {
+                    SharedPreference.setAttribute(FirstpageActivity.this, "userscore", "0");
+                    userscore.setText("0");
+                } else {
+                    /*String data = response.body().get("result").toString();
+                    String[] split = data.split(":");
+                    String userdata = split[1];
+                    String[] split2 = userdata.split("[}]");
+                    String userdata2 = split2[0];*/
+                    userscore.setText(userdata2);
+                    SharedPreference.setAttribute(FirstpageActivity.CONTEXT, "userscore", userdata2);
+                }
                 int Nonsubject = parseInt(SharedPreference.getAttribute(FirstpageActivity.CONTEXT, "nonsubject"));
                 int Userscore = parseInt(SharedPreference.getAttribute(FirstpageActivity.CONTEXT, "userscore"));
-                if(Userscore>=Nonsubject){
+                if (Userscore >= Nonsubject) {
                     passorfail.setImageResource(R.drawable.pass);
                 }
+
             }
 
             @Override
@@ -359,13 +389,20 @@ public class FirstpageActivity extends AppCompatActivity {
                         if(response.body().get("code").getAsInt() == 200) {
                             String data = response.body().get("result").toString();
 
-                            splitsubject = data.split("[}]");
+                            /*splitsubject = data.split("[}]");
                             recomend = content(splitsubject[0]) + "\n";
                             Log.d("1번과목", recomend);
                             for(int i=1;i<splitsubject.length-1;i++){
                                 temp += content2(splitsubject[i])+ "\n";
                             }
                             Log.d("나머지과목", temp);
+                            recomend +=recomend+"\n"+temp;
+                            textViewSemester.setText(recomend);*/
+                            splitsubject = data.split("[}]");
+                            recomend = content(splitsubject[0]) + "\n";
+                            for(int i=1; i<splitsubject.length-1; i++){
+                                recomend = recomend + content2(splitsubject[i])+ "\n";
+                            }
                             textViewSemester.setText(recomend);
                         }
                         else {

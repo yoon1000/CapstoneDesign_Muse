@@ -46,6 +46,7 @@ public class TimetableTwo extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar) ;
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("MUSE");
 
         timetableView = (TimetableView) findViewById(R.id.timetable);
 
@@ -116,6 +117,11 @@ public class TimetableTwo extends AppCompatActivity {
                         ArrayList<Schedule> schedules6 = new ArrayList<Schedule>();
                         ArrayList<Schedule> schedules7 = new ArrayList<Schedule>();
 
+                        ArrayList<Schedule> schedules8 = new ArrayList<Schedule>();
+                        ArrayList<Schedule> schedules9 = new ArrayList<Schedule>();
+                        ArrayList<Schedule> schedules10 = new ArrayList<Schedule>();
+                        ArrayList<Schedule> schedules11 = new ArrayList<Schedule>();
+
                         Schedule schedule0 = new Schedule();
                         Schedule schedule1 = new Schedule();
                         Schedule schedule2 = new Schedule();
@@ -126,13 +132,18 @@ public class TimetableTwo extends AppCompatActivity {
                         Schedule schedule6 = new Schedule();
                         Schedule schedule7 = new Schedule();
 
+                        Schedule schedule8 = new Schedule();
+                        Schedule schedule9 = new Schedule();
+                        Schedule schedule10 = new Schedule();
+                        Schedule schedule11 = new Schedule();
+
                         splitsubject = rawdata1.split("\\]");//]로 나누면 과목 별로 나뉜다
 
                         //서버에서 받아온 내용을 기반으로 과목과 시작시간,종료시간을 스케줄이 지정해준다
-                        Getschedule(splitsubject[0], schedule0, schedule4);
-                        Getschedule(splitsubject[1], schedule1, schedule5);
-                        Getschedule(splitsubject[2], schedule2, schedule6);
-                        Getschedule(splitsubject[3], schedule3, schedule7);
+                        Getschedule(splitsubject[0], schedule0, schedule4, schedule8);
+                        Getschedule(splitsubject[1], schedule1, schedule5, schedule9);
+                        Getschedule(splitsubject[2], schedule2, schedule6, schedule10);
+                        Getschedule(splitsubject[3], schedule3, schedule7, schedule11);
 
                         schedules0.add(schedule0);
                         schedules1.add(schedule1);
@@ -142,6 +153,10 @@ public class TimetableTwo extends AppCompatActivity {
                         schedules5.add(schedule5);
                         schedules6.add(schedule6);
                         schedules7.add(schedule7);
+                        schedules8.add(schedule8);
+                        schedules9.add(schedule9);
+                        schedules10.add(schedule10);
+                        schedules11.add(schedule11);
 
                         timetableView.add(schedules0);
                         timetableView.add(schedules1);
@@ -151,6 +166,10 @@ public class TimetableTwo extends AppCompatActivity {
                         timetableView.add(schedules5);
                         timetableView.add(schedules6);
                         timetableView.add(schedules7);
+                        timetableView.add(schedules8);
+                        timetableView.add(schedules9);
+                        timetableView.add(schedules10);
+                        timetableView.add(schedules11);
                     }
 
                 }
@@ -164,12 +183,12 @@ public class TimetableTwo extends AppCompatActivity {
         });
     }
 
-    public void Getschedule(String income, Schedule schedule, Schedule schedule2){
+    public void Getschedule(String income, Schedule schedule, Schedule schedule2, Schedule schedule3){
         String[] split = {};
         String[] subjecttime = {};
         String[] time1 = {};
         String[] time2 = {};
-        //String[] time3 = {};
+        String[] time3 = {};
         split = income.split("\"");
         for (int i = 0; i < split.length; i++) {
             split[i] = split[i].replaceAll("\\[", "");
@@ -178,21 +197,30 @@ public class TimetableTwo extends AppCompatActivity {
         //과목명 정해주기
         schedule.setClassTitle(split[1]);
         schedule2.setClassTitle(split[1]);
+        schedule3.setClassTitle(split[1]);
 
         subjecttime = split[3].split(",");
         time1 = subjecttime[0].split("/");
-
-        //time3 = subjecttime[2].split("/");
         //[0]은 요일, [1]은 시작시간, [2]은 종료시간
 
         schedule.setDay(setdays(time1[0]));
         schedule.setStartTime(new com.github.tlaabs.timetableview.Time(setHour(parseInt(time1[1])), setMinute(parseInt(time1[1]))));
         schedule.setEndTime(new com.github.tlaabs.timetableview.Time(setHour(parseInt(time1[2])+1), setMinute(parseInt(time1[2])+1)));
-        if(subjecttime[1]!=null) {
+
+        int length = subjecttime.length;
+        if(length >=2) {
             time2 = subjecttime[1].split("/");
             schedule2.setDay(setdays(time2[0]));
             schedule2.setStartTime(new com.github.tlaabs.timetableview.Time(setHour(parseInt(time2[1])), setMinute(parseInt(time2[1]))));
             schedule2.setEndTime(new Time(setHour(parseInt(time2[2]) + 1), setMinute(parseInt(time2[2]) + 1)));
+        }
+
+        if(length ==3){
+            time3 = subjecttime[2].split("/");
+            schedule3.setDay(setdays(time3[0]));
+            schedule3.setStartTime(new com.github.tlaabs.timetableview.Time(setHour(parseInt(time3[1])), setMinute(parseInt(time3[1]))));
+            schedule3.setEndTime(new com.github.tlaabs.timetableview.Time(setHour(parseInt(time3[2])+1), setMinute(parseInt(time3[2])+1)));
+
         }
     }
 

@@ -65,7 +65,7 @@ public class Register_Activity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             String receivedData = intent.getStringExtra("major");
-            majorselected.setText("전공:" + receivedData);
+            majorselected.setText(receivedData);
         }
     };
 

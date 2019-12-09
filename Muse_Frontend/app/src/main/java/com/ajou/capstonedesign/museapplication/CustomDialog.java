@@ -76,7 +76,7 @@ public class CustomDialog {
 
                     }
                 });
-                SharedPreference.setAttribute(view.getContext(), "toeicscore", message.getText().toString());
+                SharedPreference.setAttribute(view.getContext(), "userscore", message.getText().toString());
 
                 // 커스텀 다이얼로그를 종료한다.
                 dlg.dismiss();

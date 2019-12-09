@@ -65,9 +65,8 @@
             android:id="@+id/selected"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="전공:"
             android:layout_gravity="center"
-            android:fontFamily="@font/bmhanna_otf"/>
+            android:fontFamily="@font/bmhanna_otf" />
 
         <EditText
             android:id="@+id/et_name"
