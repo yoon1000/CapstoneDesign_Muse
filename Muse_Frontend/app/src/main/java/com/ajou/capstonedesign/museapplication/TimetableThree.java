@@ -1,11 +1,13 @@
 package com.ajou.capstonedesign.museapplication;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -77,56 +79,73 @@ public class TimetableThree extends AppCompatActivity {
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if (response.body().get("code").getAsInt() == 200) {
                     String rawdata1 = response.body().get("result3").toString();
-                    Log.d("JsonObject1",rawdata1);
+                    Log.d("JsonObject1", rawdata1);
 
-                    ArrayList<Schedule> schedules0 = new ArrayList<Schedule>();
-                    ArrayList<Schedule> schedules1 = new ArrayList<Schedule>();
-                    ArrayList<Schedule> schedules2 = new ArrayList<Schedule>();
-                    ArrayList<Schedule> schedules3 = new ArrayList<Schedule>();
+                    if (rawdata1.contains("&")) {
 
-                    ArrayList<Schedule> schedules4 = new ArrayList<Schedule>();
-                    ArrayList<Schedule> schedules5 = new ArrayList<Schedule>();
-                    ArrayList<Schedule> schedules6 = new ArrayList<Schedule>();
-                    ArrayList<Schedule> schedules7 = new ArrayList<Schedule>();
 
-                    Schedule schedule0 = new Schedule();
-                    Schedule schedule1 = new Schedule();
-                    Schedule schedule2 = new Schedule();
-                    Schedule schedule3 = new Schedule();
+                        AlertDialog.Builder alert = new AlertDialog.Builder(TimetableThree.this);
+                        alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                                Intent intent = new Intent(TimetableThree.this, TimetableTwo.class);
+                                startActivity(intent);
+                                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+                                finish(); //닫기
+                            }
+                        });
+                        alert.setMessage("더이상 추천 시간표가 없습니다.");
+                        alert.show();
+                    } else {
 
-                    Schedule schedule4 = new Schedule();
-                    Schedule schedule5 = new Schedule();
-                    Schedule schedule6 = new Schedule();
-                    Schedule schedule7 = new Schedule();
+                        ArrayList<Schedule> schedules0 = new ArrayList<Schedule>();
+                        ArrayList<Schedule> schedules1 = new ArrayList<Schedule>();
+                        ArrayList<Schedule> schedules2 = new ArrayList<Schedule>();
+                        ArrayList<Schedule> schedules3 = new ArrayList<Schedule>();
 
-                    splitsubject = rawdata1.split("\\]");//]로 나누면 과목 별로 나뉜다
+                        ArrayList<Schedule> schedules4 = new ArrayList<Schedule>();
+                        ArrayList<Schedule> schedules5 = new ArrayList<Schedule>();
+                        ArrayList<Schedule> schedules6 = new ArrayList<Schedule>();
+                        ArrayList<Schedule> schedules7 = new ArrayList<Schedule>();
 
-                    //서버에서 받아온 내용을 기반으로 과목과 시작시간,종료시간을 스케줄이 지정해준다
-                    Getschedule(splitsubject[0], schedule0, schedule4);
-                    Getschedule(splitsubject[1], schedule1, schedule5);
-                    Getschedule(splitsubject[2], schedule2, schedule6);
-                    Getschedule(splitsubject[3], schedule3, schedule7);
+                        Schedule schedule0 = new Schedule();
+                        Schedule schedule1 = new Schedule();
+                        Schedule schedule2 = new Schedule();
+                        Schedule schedule3 = new Schedule();
 
-                    schedules0.add(schedule0);
-                    schedules1.add(schedule1);
-                    schedules2.add(schedule2);
-                    schedules3.add(schedule3);
-                    schedules4.add(schedule4);
-                    schedules5.add(schedule5);
-                    schedules6.add(schedule6);
-                    schedules7.add(schedule7);
+                        Schedule schedule4 = new Schedule();
+                        Schedule schedule5 = new Schedule();
+                        Schedule schedule6 = new Schedule();
+                        Schedule schedule7 = new Schedule();
 
-                    timetableView.add(schedules0);
-                    timetableView.add(schedules1);
-                    timetableView.add(schedules2);
-                    timetableView.add(schedules3);
-                    timetableView.add(schedules4);
-                    timetableView.add(schedules5);
-                    timetableView.add(schedules6);
-                    timetableView.add(schedules7);
+                        splitsubject = rawdata1.split("\\]");//]로 나누면 과목 별로 나뉜다
 
-                } else {
+                        //서버에서 받아온 내용을 기반으로 과목과 시작시간,종료시간을 스케줄이 지정해준다
+                        Getschedule(splitsubject[0], schedule0, schedule4);
+                        Getschedule(splitsubject[1], schedule1, schedule5);
+                        Getschedule(splitsubject[2], schedule2, schedule6);
+                        Getschedule(splitsubject[3], schedule3, schedule7);
 
+                        schedules0.add(schedule0);
+                        schedules1.add(schedule1);
+                        schedules2.add(schedule2);
+                        schedules3.add(schedule3);
+                        schedules4.add(schedule4);
+                        schedules5.add(schedule5);
+                        schedules6.add(schedule6);
+                        schedules7.add(schedule7);
+
+                        timetableView.add(schedules0);
+                        timetableView.add(schedules1);
+                        timetableView.add(schedules2);
+                        timetableView.add(schedules3);
+                        timetableView.add(schedules4);
+                        timetableView.add(schedules5);
+                        timetableView.add(schedules6);
+                        timetableView.add(schedules7);
+
+                    }
                 }
 
             }
@@ -155,17 +174,19 @@ public class TimetableThree extends AppCompatActivity {
 
         subjecttime = split[3].split(",");
         time1 = subjecttime[0].split("/");
-        time2 = subjecttime[1].split("/");
+
         //time3 = subjecttime[2].split("/");
         //[0]은 요일, [1]은 시작시간, [2]은 종료시간
 
         schedule.setDay(setdays(time1[0]));
         schedule.setStartTime(new com.github.tlaabs.timetableview.Time(setHour(parseInt(time1[1])), setMinute(parseInt(time1[1]))));
         schedule.setEndTime(new com.github.tlaabs.timetableview.Time(setHour(parseInt(time1[2])+1), setMinute(parseInt(time1[2])+1)));
-
-        schedule2.setDay(setdays(time2[0]));
-        schedule2.setStartTime(new com.github.tlaabs.timetableview.Time(setHour(parseInt(time2[1])), setMinute(parseInt(time2[1]))));
-        schedule2.setEndTime(new Time(setHour(parseInt(time2[2])+1), setMinute(parseInt(time2[2])+1)));
+        if(subjecttime.length !=1) {
+            time2 = subjecttime[1].split("/");
+            schedule2.setDay(setdays(time2[0]));
+            schedule2.setStartTime(new com.github.tlaabs.timetableview.Time(setHour(parseInt(time2[1])), setMinute(parseInt(time2[1]))));
+            schedule2.setEndTime(new Time(setHour(parseInt(time2[2]) + 1), setMinute(parseInt(time2[2]) + 1)));
+        }
     }
 
 
@@ -237,12 +258,14 @@ public class TimetableThree extends AppCompatActivity {
                 startActivity(intent2);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 finish();
+                return true;
             case R.id.action_edit:
                 Toast.makeText(getApplicationContext(),"수정하기 클릭", Toast.LENGTH_SHORT).show();
                 Intent intent3 = new Intent(this, EditInfoActivity.class);
                 startActivity(intent3);
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                 finish();
+                return true;
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
@@ -250,6 +273,14 @@ public class TimetableThree extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
 
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(TimetableThree.this, TimetableActivity.class);
+        startActivity(intent);
+        finish();
+        super.onBackPressed();
     }
 
 }

@@ -82,6 +82,7 @@ public class FirstpageActivity extends AppCompatActivity {
         pieView1 = (PieView) findViewById(R.id.pieViewMajor);
         pieView2 = (PieView) findViewById(R.id.pieViewNonMajor);
 
+
         firstOne = (Button)findViewById(R.id.firstOne);
         firstTwo = (Button)findViewById(R.id.firstTwo);
         secondOne = (Button)findViewById(R.id.secondOne);
@@ -101,19 +102,23 @@ public class FirstpageActivity extends AppCompatActivity {
 
         passorfail = (ImageView)findViewById(R.id.passorfail);
 
-        //JsonObject userData = new JsonObject();
-        //userData.addProperty("major", SharedPreference.getAttribute(FirstpageActivity.this,"major"));
-        //userData.addProperty("num", SharedPreference.getAttribute(FirstpageActivity.this,"num"));
+        JsonObject userData = new JsonObject();
+        userData.addProperty("major", SharedPreference.getAttribute(FirstpageActivity.this,"major"));
+        userData.addProperty("num", SharedPreference.getAttribute(FirstpageActivity.this,"num"));
 
+        RetrofitCommunication retrofitCommunication = new RetrofitConnection().init();
+        Call<JsonObject> requiredmajorcredit = retrofitCommunication.requiredmajorcredit(userData);
 
-        //Call<JsonObject> requiredmajorcredit = retrofitCommunication.requiredmajorcredit(userData);
-
-        /*requiredmajorcredit.enqueue(new Callback<JsonObject>() {
+        requiredmajorcredit.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if(response.body().get("code").getAsInt() == 200){
-                    String requireddata = response.body().get("result").toString();
-                    Log.d("졸업요건 전공학점:", requireddata);
+                    String rawdata = response.body().get("result").toString();
+                    Log.d("졸업요건 전공학점:", rawdata);
+                    String[] splitrequired = rawdata.split(":");
+                    String split = splitrequired[1].replaceAll("[}]","");
+                    String result = split.replaceAll("\\]","");
+                    SharedPreference.setAttribute(FirstpageActivity.this, "requiredmajor", result);
                 }
             }
 
@@ -121,14 +126,39 @@ public class FirstpageActivity extends AppCompatActivity {
             public void onFailure(Call<JsonObject> call, Throwable t) {
 
             }
-        });*/
+        });
+
+        Call<JsonObject> requirednonmajorcredit = retrofitCommunication.requirednonmajorcredit(userData);
+
+        requirednonmajorcredit.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if(response.body().get("code").getAsInt() == 200){
+                    String rawdata = response.body().get("result").toString();
+                    Log.d("졸업요건 교양학점:", rawdata);
+                    String[] splitrequired = rawdata.split(":");
+                    String split = splitrequired[1].replaceAll("[}]","");
+                    String result = split.replaceAll("\\]","");
+                    SharedPreference.setAttribute(FirstpageActivity.this, "requirednonmajor", result);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+
+            }
+        });
+
+
+
+
 
 
         //id 값을 서버로 보내주기
         JsonObject userID = new JsonObject();
         userID.addProperty("id",SharedPreference.getAttribute(FirstpageActivity.this,"id"));
 
-        RetrofitCommunication retrofitCommunication = new RetrofitConnection().init();
+
         Call<JsonObject> majorCredit = retrofitCommunication.majorcreditSum(userID);
 
         majorCredit.enqueue(new Callback<JsonObject>() {
@@ -139,10 +169,16 @@ public class FirstpageActivity extends AppCompatActivity {
                     String[] splitCredit1 = creditdata1.split(":");
                     String creditsumdata1 = splitCredit1[1];
                     String[] splitCreditSum1 = creditsumdata1.split("[}]");
-                    Float persent_creditSum1 = parseFloat(splitCreditSum1[0]);
-                    Integer creditSum1 = parseInt(splitCreditSum1[0]);
-                    pieView1.setPercentage(persent_creditSum1/75*100);
-                    pieView1.setInnerText(creditSum1+"\n-\n75");
+                    Float required = parseFloat(SharedPreference.getAttribute(FirstpageActivity.this, "requiredmajor"));
+                    Log.d("requirddfadfasf", required.toString());
+
+                    Float creditSum1 = parseFloat(splitCreditSum1[0]);
+                    int requiredInt = parseInt(SharedPreference.getAttribute(FirstpageActivity.this, "requiredmajor"));
+                    int creditSum1Int =  parseInt(splitCreditSum1[0]);;
+
+                    Float persent_creditSum1 = creditSum1/required;
+                    pieView1.setPercentage(persent_creditSum1*100);
+                    pieView1.setInnerText(creditSum1Int+"\n-\n"+requiredInt);
                 } else {
                     Toast.makeText(FirstpageActivity.this, response.body().get("code").getAsString(), Toast.LENGTH_SHORT)
                             .show();
@@ -169,11 +205,22 @@ public class FirstpageActivity extends AppCompatActivity {
                     String[] splitCredit2 = creditdata2.split(":");
                     String creditsumdata2 = splitCredit2[1];
                     String[] splitCreditSum2 = creditsumdata2.split("[}]");
-                    Float persent_creditSum2 = parseFloat(splitCreditSum2[0]);
-                    Integer creditSum2 = parseInt(splitCreditSum2[0]);
-                    PieView pieView2 = (PieView) findViewById(R.id.pieViewNonMajor);
-                    pieView2.setPercentage(persent_creditSum2/65*100);
-                    pieView2.setInnerText(creditSum2+"\n-\n65");
+                    Float required2 = parseFloat(SharedPreference.getAttribute(FirstpageActivity.this, "requirednonmajor"));
+                    Float creditSum2 = parseFloat(splitCreditSum2[0]);
+                    int required2Int = parseInt(SharedPreference.getAttribute(FirstpageActivity.this, "requirednonmajor"));
+                    int creditSum2Int =  parseInt(splitCreditSum2[0]);;
+
+                    Float persent_creditSum2 = creditSum2/required2;
+                    pieView2.setPercentage(persent_creditSum2*100);
+                    pieView2.setInnerText(creditSum2Int+"\n-\n"+required2Int);
+
+
+
+
+
+                    //PieView pieView2 = (PieView) findViewById(R.id.pieViewNonMajor);
+                    //pieView2.setPercentage(persent_creditSum2/65*100);
+                    //pieView2.setInnerText(creditSum2+"\n-\n65");
                 } else {
                     Toast.makeText(FirstpageActivity.this, response.body().get("code").getAsString(), Toast.LENGTH_SHORT)
                             .show();

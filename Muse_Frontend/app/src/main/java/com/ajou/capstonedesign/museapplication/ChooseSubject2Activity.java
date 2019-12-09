@@ -73,6 +73,11 @@ public class ChooseSubject2Activity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //데이터를 반환하지 않으려면
+                /*Intent returnIntent = new Intent();
+                setResult(Activity.RESULT_CANCELED, returnIntent);
+                finish();*/
+
                 String data = "";
                 String Resultnonmajor = "";
                 List<SubjectList> resultnonmajor = ((ChooseSubjectAdapter)recyclerAdapter).getSubject();
@@ -94,5 +99,13 @@ public class ChooseSubject2Activity extends AppCompatActivity {
 
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent returnIntent = new Intent();
+        setResult(Activity.RESULT_CANCELED, returnIntent);
+        finish();
+        super.onBackPressed();
     }
 }

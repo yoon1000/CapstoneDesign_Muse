@@ -79,7 +79,6 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:fontFamily="@font/bmhanna_otf"
             android:drawableLeft="@drawable/login_name" />
 
         <EditText
@@ -92,7 +91,6 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:fontFamily="@font/bmhanna_otf"
             android:drawableLeft="@drawable/login_id"/>
 
         <EditText
@@ -105,7 +103,6 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:fontFamily="@font/bmhanna_otf"
             android:drawableLeft="@drawable/login_password"/>
 
         <EditText
@@ -118,7 +115,6 @@
             android:hint="비밀번호 확인"
             android:layout_gravity="center"
             android:inputType="textPassword"
-            android:fontFamily="@font/bmhanna_otf"
             android:drawableLeft="@drawable/login_passwordconfirm"/>
 
         <ImageView
@@ -138,7 +134,6 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:fontFamily="@font/bmhanna_otf"
             android:drawableLeft="@drawable/login_number"/>
 
         <Button

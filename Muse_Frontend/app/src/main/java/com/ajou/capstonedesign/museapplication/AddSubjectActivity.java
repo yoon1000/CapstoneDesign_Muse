@@ -1,5 +1,6 @@
 package com.ajou.capstonedesign.museapplication;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,7 +28,6 @@ public class AddSubjectActivity extends AppCompatActivity {
     private Button majorbtn;
     private Button nonmajorbtn;
 
-    private TextView textView;
 
     private  Button addfinal;
     private Boolean checkmajor;
@@ -43,7 +43,6 @@ public class AddSubjectActivity extends AppCompatActivity {
         nonmajorbtn = (Button)findViewById(R.id.nonmajorbtn);
         addfinal = (Button) findViewById(R.id.addfinal);
 
-        textView = (TextView)findViewById(R.id.textView5);
 
         //전공 선택을 눌렀을 때 전공과목을 띄워주는 액티비티로 넘어감
         majorbtn.setOnClickListener(new View.OnClickListener() {
@@ -161,13 +160,29 @@ public class AddSubjectActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == 101){
-            String resultmajor = data.getStringExtra("resultmajor");
-            resultMajor = resultmajor;
+            if(resultCode == Activity.RESULT_OK){
+                String resultmajor = data.getStringExtra("resultmajor");
+                resultMajor = resultmajor;
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
         }
         if(requestCode == 102){
-            String resultnonmajor = data.getStringExtra("resultnonmajor");
-            resultNonmajor = resultnonmajor;
+            if(resultCode == Activity.RESULT_OK){
+                String resultnonmajor = data.getStringExtra("resultnonmajor");
+                resultNonmajor = resultnonmajor;
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
         }
-        textView.setText(resultMajor+resultNonmajor);
+    }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(AddSubjectActivity.this, FirstpageActivity.class);
+        startActivity(intent);
+        finish();
+        super.onBackPressed();
     }
 }
