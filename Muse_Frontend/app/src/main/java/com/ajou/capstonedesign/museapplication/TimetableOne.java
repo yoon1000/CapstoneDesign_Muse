@@ -70,6 +70,7 @@ public class TimetableOne extends AppCompatActivity {
         JsonObject userData = new JsonObject();
 
         userData.addProperty("id",SharedPreference.getAttribute(TimetableOne.this,"id"));
+        userData.addProperty("major",SharedPreference.getAttribute(TimetableOne.this,"major"));
         userData.addProperty("semester", parseInt(SharedPreference.getAttribute(TimetableOne.this, "selectedsemester")));
         userData.addProperty("option", SharedPreference.getAttribute(TimetableOne.this, "selectedoption"));
 

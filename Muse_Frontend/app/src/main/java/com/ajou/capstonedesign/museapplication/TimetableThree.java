@@ -69,6 +69,7 @@ public class TimetableThree extends AppCompatActivity {
         JsonObject userData = new JsonObject();
 
         userData.addProperty("id",SharedPreference.getAttribute(TimetableThree.this,"id"));
+        userData.addProperty("major",SharedPreference.getAttribute(TimetableThree.this,"major"));
         userData.addProperty("semester", parseInt(SharedPreference.getAttribute(TimetableThree.this, "selectedsemester")));
         userData.addProperty("option", SharedPreference.getAttribute(TimetableThree.this, "selectedoption"));
 

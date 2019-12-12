@@ -388,22 +388,16 @@ public class FirstpageActivity extends AppCompatActivity {
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         if(response.body().get("code").getAsInt() == 200) {
                             String data = response.body().get("result").toString();
-
-                            /*splitsubject = data.split("[}]");
-                            recomend = content(splitsubject[0]) + "\n";
-                            Log.d("1번과목", recomend);
-                            for(int i=1;i<splitsubject.length-1;i++){
-                                temp += content2(splitsubject[i])+ "\n";
-                            }
-                            Log.d("나머지과목", temp);
-                            recomend +=recomend+"\n"+temp;
-                            textViewSemester.setText(recomend);*/
                             splitsubject = data.split("[}]");
-                            recomend = content(splitsubject[0]) + "\n";
-                            for(int i=1; i<splitsubject.length-1; i++){
-                                recomend = recomend + content2(splitsubject[i])+ "\n";
+                            if(splitsubject.length>2) {
+                                recomend = content(splitsubject[0]) + "\n";
+                                for (int i = 1; i < splitsubject.length - 1; i++) {
+                                    recomend = recomend + content2(splitsubject[i]) + "\n";
+                                }
+                                textViewSemester.setText(recomend);
                             }
-                            textViewSemester.setText(recomend);
+                            else
+                                textViewSemester.setText("수강 완료");
                         }
                         else {
                             Toast.makeText(FirstpageActivity.this, response.body().get("code").getAsString(), Toast.LENGTH_SHORT)
@@ -445,14 +439,16 @@ public class FirstpageActivity extends AppCompatActivity {
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         if(response.body().get("code").getAsInt() == 200) {
                             String data = response.body().get("result").toString();
-                            Log.d("data", data);
-
                             splitsubject = data.split("[}]");
-                            recomend = content(splitsubject[0]) + "\n";
-                            for(int i=1; i<splitsubject.length-1; i++){
-                                recomend = recomend + content2(splitsubject[i])+ "\n";
+                            if(splitsubject.length>2) {
+                                recomend = content(splitsubject[0]) + "\n";
+                                for (int i = 1; i < splitsubject.length - 1; i++) {
+                                    recomend = recomend + content2(splitsubject[i]) + "\n";
+                                }
+                                textViewSemester.setText(recomend);
                             }
-                            textViewSemester.setText(recomend);
+                            else
+                                textViewSemester.setText("수강 완료");
                         }
                         else {
                             Toast.makeText(FirstpageActivity.this, response.body().get("code").getAsString(), Toast.LENGTH_SHORT)
@@ -494,13 +490,16 @@ public class FirstpageActivity extends AppCompatActivity {
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         if(response.body().get("code").getAsInt() == 200) {
                             String data = response.body().get("result").toString();
-
                             splitsubject = data.split("[}]");
-                            recomend = content(splitsubject[0]) + "\n";
-                            for(int i=1;i<splitsubject.length-1;i++){
-                                recomend = recomend + content2(splitsubject[i])+ "\n";
+                            if(splitsubject.length>2) {
+                                recomend = content(splitsubject[0]) + "\n";
+                                for (int i = 1; i < splitsubject.length - 1; i++) {
+                                    recomend = recomend + content2(splitsubject[i]) + "\n";
+                                }
+                                textViewSemester.setText(recomend);
                             }
-                            textViewSemester.setText(recomend);
+                            else
+                                textViewSemester.setText("수강 완료");
                         }
                         else {
                             Toast.makeText(FirstpageActivity.this, response.body().get("code").getAsString(), Toast.LENGTH_SHORT)
@@ -542,13 +541,16 @@ public class FirstpageActivity extends AppCompatActivity {
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         if(response.body().get("code").getAsInt() == 200) {
                             String data = response.body().get("result").toString();
-
                             splitsubject = data.split("[}]");
-                            recomend = content(splitsubject[0]) + "\n";
-                            for(int i=1;i<splitsubject.length-1;i++){
-                                recomend = recomend + content2(splitsubject[i])+ "\n";
+                            if(splitsubject.length>2) {
+                                recomend = content(splitsubject[0]) + "\n";
+                                for (int i = 1; i < splitsubject.length - 1; i++) {
+                                    recomend = recomend + content2(splitsubject[i]) + "\n";
+                                }
+                                textViewSemester.setText(recomend);
                             }
-                            textViewSemester.setText(recomend);
+                            else
+                                textViewSemester.setText("수강 완료");
                         }
                         else {
                             Toast.makeText(FirstpageActivity.this, response.body().get("code").getAsString(), Toast.LENGTH_SHORT)
@@ -590,13 +592,16 @@ public class FirstpageActivity extends AppCompatActivity {
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         if(response.body().get("code").getAsInt() == 200) {
                             String data = response.body().get("result").toString();
-
                             splitsubject = data.split("[}]");
-                            recomend = content(splitsubject[0]) + "\n";
-                            for(int i=1; i<splitsubject.length-1; i++){
-                                recomend = recomend + content2(splitsubject[i])+ "\n";
+                            if(splitsubject.length>2) {
+                                recomend = content(splitsubject[0]) + "\n";
+                                for (int i = 1; i < splitsubject.length - 1; i++) {
+                                    recomend = recomend + content2(splitsubject[i]) + "\n";
+                                }
+                                textViewSemester.setText(recomend);
                             }
-                            textViewSemester.setText(recomend);
+                            else
+                                textViewSemester.setText("수강 완료");
                         }
                         else {
                             Toast.makeText(FirstpageActivity.this, response.body().get("code").getAsString(), Toast.LENGTH_SHORT)
@@ -638,13 +643,16 @@ public class FirstpageActivity extends AppCompatActivity {
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         if(response.body().get("code").getAsInt() == 200) {
                             String data = response.body().get("result").toString();
-
                             splitsubject = data.split("[}]");
-                            recomend = content(splitsubject[0]) + "\n";
-                            for(int i=1;i<splitsubject.length-1;i++){
-                                recomend = recomend + content2(splitsubject[i])+ "\n";
+                            if(splitsubject.length>2) {
+                                recomend = content(splitsubject[0]) + "\n";
+                                for (int i = 1; i < splitsubject.length - 1; i++) {
+                                    recomend = recomend + content2(splitsubject[i]) + "\n";
+                                }
+                                textViewSemester.setText(recomend);
                             }
-                            textViewSemester.setText(recomend);
+                            else
+                                textViewSemester.setText("수강 완료");
                         }
                         else {
                             Toast.makeText(FirstpageActivity.this, response.body().get("code").getAsString(), Toast.LENGTH_SHORT)
@@ -686,13 +694,16 @@ public class FirstpageActivity extends AppCompatActivity {
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         if(response.body().get("code").getAsInt() == 200) {
                             String data = response.body().get("result").toString();
-
                             splitsubject = data.split("[}]");
-                            recomend = content(splitsubject[0]) + "\n";
-                            for(int i=1;i<splitsubject.length-1;i++){
-                                recomend = recomend + content2(splitsubject[i])+ "\n";
+                            if(splitsubject.length>2) {
+                                recomend = content(splitsubject[0]) + "\n";
+                                for (int i = 1; i < splitsubject.length - 1; i++) {
+                                    recomend = recomend + content2(splitsubject[i]) + "\n";
+                                }
+                                textViewSemester.setText(recomend);
                             }
-                            textViewSemester.setText(recomend);
+                            else
+                                textViewSemester.setText("수강 완료");
                         }
                         else {
                             Toast.makeText(FirstpageActivity.this, response.body().get("code").getAsString(), Toast.LENGTH_SHORT)
@@ -734,13 +745,16 @@ public class FirstpageActivity extends AppCompatActivity {
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         if(response.body().get("code").getAsInt() == 200) {
                             String data = response.body().get("result").toString();
-
                             splitsubject = data.split("[}]");
-                            recomend = content(splitsubject[0]) + "\n";
-                            for(int i=1;i<splitsubject.length-1;i++){
-                                recomend = recomend + content2(splitsubject[i])+ "\n";
+                            if(splitsubject.length>2) {
+                                recomend = content(splitsubject[0]) + "\n";
+                                for (int i = 1; i < splitsubject.length - 1; i++) {
+                                    recomend = recomend + content2(splitsubject[i]) + "\n";
+                                }
+                                textViewSemester.setText(recomend);
                             }
-                            textViewSemester.setText(recomend);
+                            else
+                                textViewSemester.setText("수강 완료");
                         }
                         else {
                             Toast.makeText(FirstpageActivity.this, response.body().get("code").getAsString(), Toast.LENGTH_SHORT)
