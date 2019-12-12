@@ -58,6 +58,8 @@ public class FirstpageActivity extends AppCompatActivity {
     private Toolbar toolbar;
 
     private ImageView passorfail;
+    private ImageView majorpass;
+    private ImageView nonmajorpass;
 
     String recomend = "";
     String temp="";
@@ -102,6 +104,8 @@ public class FirstpageActivity extends AppCompatActivity {
         pieView2.setPercentageBackgroundColor(getResources().getColor(R.color.main));
 
         passorfail = (ImageView)findViewById(R.id.passorfail);
+        majorpass = (ImageView)findViewById(R.id.majorpass);
+        nonmajorpass = (ImageView)findViewById(R.id.nonmajorpass);
 
         JsonObject userData = new JsonObject();
         userData.addProperty("major", SharedPreference.getAttribute(FirstpageActivity.this,"major"));
@@ -176,8 +180,6 @@ public class FirstpageActivity extends AppCompatActivity {
                         Log.d("creditsumdata1", splitCredit1[1]);
                         String[] splitCreditSum1 = creditsumdata1.split("[}]");
                         Log.d("splitCreditSum1[0]", splitCreditSum1[0]);
-                        //int length = splitCreditSum1[0].length();
-                        //Log.d("AAAAAAAA", Integer.toString(length));
                     if (splitCreditSum1[0].contains("n")) {
                         Log.d("AAAAAA", "AAAAAAA");
                         int required1Int = parseInt(SharedPreference.getAttribute(FirstpageActivity.this, "requiredmajor"));
@@ -196,6 +198,10 @@ public class FirstpageActivity extends AppCompatActivity {
                         Float persent_creditSum1 = creditSum1 / required;
                         pieView1.setPercentage(persent_creditSum1 * 100);
                         pieView1.setInnerText(creditSum1Int + "\n-\n" + requiredInt);
+                        if(persent_creditSum1>=1) {
+                            pieView1.setPercentageBackgroundColor(getResources().getColor(R.color.C1));
+                            majorpass.setImageResource(R.drawable.pass);
+                        }
                     }
                 } else {
                     Toast.makeText(FirstpageActivity.this, response.body().get("code").getAsString(), Toast.LENGTH_SHORT)
@@ -240,6 +246,10 @@ public class FirstpageActivity extends AppCompatActivity {
                         Float persent_creditSum2 = creditSum2 / required2;
                         pieView2.setPercentage(persent_creditSum2 * 100);
                         pieView2.setInnerText(creditSum2Int + "\n-\n" + required2Int);
+                        if(persent_creditSum2>=1) {
+                            pieView2.setPercentageBackgroundColor(getResources().getColor(R.color.C1));
+                            nonmajorpass.setImageResource(R.drawable.pass);
+                        }
                     }
 
                 } else {
@@ -321,6 +331,7 @@ public class FirstpageActivity extends AppCompatActivity {
                 int Nonsubject = parseInt(SharedPreference.getAttribute(FirstpageActivity.CONTEXT, "nonsubject"));
                 int Userscore = parseInt(SharedPreference.getAttribute(FirstpageActivity.CONTEXT, "userscore"));
                 if (Userscore >= Nonsubject) {
+                    textView3.setBackgroundColor(getResources().getColor(R.color.C1));
                     passorfail.setImageResource(R.drawable.pass);
                 }
 
@@ -389,15 +400,17 @@ public class FirstpageActivity extends AppCompatActivity {
                         if(response.body().get("code").getAsInt() == 200) {
                             String data = response.body().get("result").toString();
                             splitsubject = data.split("[}]");
-                            if(splitsubject.length>2) {
+                            if(splitsubject.length>=2) {
                                 recomend = content(splitsubject[0]) + "\n";
                                 for (int i = 1; i < splitsubject.length - 1; i++) {
                                     recomend = recomend + content2(splitsubject[i]) + "\n";
                                 }
                                 textViewSemester.setText(recomend);
                             }
-                            else
+                            else {
+                                firstOne.setBackgroundColor(getResources().getColor(R.color.C1));
                                 textViewSemester.setText("수강 완료");
+                            }
                         }
                         else {
                             Toast.makeText(FirstpageActivity.this, response.body().get("code").getAsString(), Toast.LENGTH_SHORT)
@@ -440,15 +453,17 @@ public class FirstpageActivity extends AppCompatActivity {
                         if(response.body().get("code").getAsInt() == 200) {
                             String data = response.body().get("result").toString();
                             splitsubject = data.split("[}]");
-                            if(splitsubject.length>2) {
+                            if(splitsubject.length>=2) {
                                 recomend = content(splitsubject[0]) + "\n";
                                 for (int i = 1; i < splitsubject.length - 1; i++) {
                                     recomend = recomend + content2(splitsubject[i]) + "\n";
                                 }
                                 textViewSemester.setText(recomend);
                             }
-                            else
+                            else {
+                                firstTwo.setBackgroundColor(getResources().getColor(R.color.C1));
                                 textViewSemester.setText("수강 완료");
+                            }
                         }
                         else {
                             Toast.makeText(FirstpageActivity.this, response.body().get("code").getAsString(), Toast.LENGTH_SHORT)
@@ -491,15 +506,17 @@ public class FirstpageActivity extends AppCompatActivity {
                         if(response.body().get("code").getAsInt() == 200) {
                             String data = response.body().get("result").toString();
                             splitsubject = data.split("[}]");
-                            if(splitsubject.length>2) {
+                            if(splitsubject.length>=2) {
                                 recomend = content(splitsubject[0]) + "\n";
                                 for (int i = 1; i < splitsubject.length - 1; i++) {
                                     recomend = recomend + content2(splitsubject[i]) + "\n";
                                 }
                                 textViewSemester.setText(recomend);
                             }
-                            else
+                            else {
+                                secondOne.setBackgroundColor(getResources().getColor(R.color.C1));
                                 textViewSemester.setText("수강 완료");
+                            }
                         }
                         else {
                             Toast.makeText(FirstpageActivity.this, response.body().get("code").getAsString(), Toast.LENGTH_SHORT)
@@ -542,15 +559,17 @@ public class FirstpageActivity extends AppCompatActivity {
                         if(response.body().get("code").getAsInt() == 200) {
                             String data = response.body().get("result").toString();
                             splitsubject = data.split("[}]");
-                            if(splitsubject.length>2) {
+                            if(splitsubject.length>=2) {
                                 recomend = content(splitsubject[0]) + "\n";
                                 for (int i = 1; i < splitsubject.length - 1; i++) {
                                     recomend = recomend + content2(splitsubject[i]) + "\n";
                                 }
                                 textViewSemester.setText(recomend);
                             }
-                            else
+                            else {
+                                secondTwo.setBackgroundColor(getResources().getColor(R.color.C1));
                                 textViewSemester.setText("수강 완료");
+                            }
                         }
                         else {
                             Toast.makeText(FirstpageActivity.this, response.body().get("code").getAsString(), Toast.LENGTH_SHORT)
@@ -593,15 +612,17 @@ public class FirstpageActivity extends AppCompatActivity {
                         if(response.body().get("code").getAsInt() == 200) {
                             String data = response.body().get("result").toString();
                             splitsubject = data.split("[}]");
-                            if(splitsubject.length>2) {
+                            if(splitsubject.length>=2) {
                                 recomend = content(splitsubject[0]) + "\n";
                                 for (int i = 1; i < splitsubject.length - 1; i++) {
                                     recomend = recomend + content2(splitsubject[i]) + "\n";
                                 }
                                 textViewSemester.setText(recomend);
                             }
-                            else
+                            else {
+                                thirdOne.setBackgroundColor(getResources().getColor(R.color.C1));
                                 textViewSemester.setText("수강 완료");
+                            }
                         }
                         else {
                             Toast.makeText(FirstpageActivity.this, response.body().get("code").getAsString(), Toast.LENGTH_SHORT)
@@ -644,15 +665,17 @@ public class FirstpageActivity extends AppCompatActivity {
                         if(response.body().get("code").getAsInt() == 200) {
                             String data = response.body().get("result").toString();
                             splitsubject = data.split("[}]");
-                            if(splitsubject.length>2) {
+                            if(splitsubject.length>=2) {
                                 recomend = content(splitsubject[0]) + "\n";
                                 for (int i = 1; i < splitsubject.length - 1; i++) {
                                     recomend = recomend + content2(splitsubject[i]) + "\n";
                                 }
                                 textViewSemester.setText(recomend);
                             }
-                            else
+                            else {
+                                thirdTwo.setBackgroundColor(getResources().getColor(R.color.C1));
                                 textViewSemester.setText("수강 완료");
+                            }
                         }
                         else {
                             Toast.makeText(FirstpageActivity.this, response.body().get("code").getAsString(), Toast.LENGTH_SHORT)
@@ -695,15 +718,17 @@ public class FirstpageActivity extends AppCompatActivity {
                         if(response.body().get("code").getAsInt() == 200) {
                             String data = response.body().get("result").toString();
                             splitsubject = data.split("[}]");
-                            if(splitsubject.length>2) {
+                            if(splitsubject.length>=2) {
                                 recomend = content(splitsubject[0]) + "\n";
                                 for (int i = 1; i < splitsubject.length - 1; i++) {
                                     recomend = recomend + content2(splitsubject[i]) + "\n";
                                 }
                                 textViewSemester.setText(recomend);
                             }
-                            else
+                            else {
+                                fourthOne.setBackgroundColor(getResources().getColor(R.color.C1));
                                 textViewSemester.setText("수강 완료");
+                            }
                         }
                         else {
                             Toast.makeText(FirstpageActivity.this, response.body().get("code").getAsString(), Toast.LENGTH_SHORT)
@@ -746,15 +771,17 @@ public class FirstpageActivity extends AppCompatActivity {
                         if(response.body().get("code").getAsInt() == 200) {
                             String data = response.body().get("result").toString();
                             splitsubject = data.split("[}]");
-                            if(splitsubject.length>2) {
+                            if(splitsubject.length>=2) {
                                 recomend = content(splitsubject[0]) + "\n";
                                 for (int i = 1; i < splitsubject.length - 1; i++) {
                                     recomend = recomend + content2(splitsubject[i]) + "\n";
                                 }
                                 textViewSemester.setText(recomend);
                             }
-                            else
+                            else {
+                                fourthTwo.setBackgroundColor(getResources().getColor(R.color.C1));
                                 textViewSemester.setText("수강 완료");
+                            }
                         }
                         else {
                             Toast.makeText(FirstpageActivity.this, response.body().get("code").getAsString(), Toast.LENGTH_SHORT)

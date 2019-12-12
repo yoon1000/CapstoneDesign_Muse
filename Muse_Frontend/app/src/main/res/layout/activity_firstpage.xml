@@ -77,6 +77,11 @@
                             plainpie:inner_text_visibility="true"
                             plainpie:percentage_size="30" />
 
+                        <ImageView
+                            android:id="@+id/majorpass"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
                         <TextView
                             android:id="@+id/creditText1"
                             android:layout_width="wrap_content"
@@ -114,6 +119,11 @@
                             plainpie:inner_pie_padding="30"
                             plainpie:inner_text_visibility="true"
                             plainpie:percentage_size="30" />
+
+                        <ImageView
+                            android:id="@+id/nonmajorpass"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
                         <TextView
                             android:id="@+id/creditText2"
